@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment
 {
@@ -23,6 +24,20 @@ namespace WPF_Library_assessment
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void signInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            signInWn signin = new signInWn();
+            signin.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            signin.Show();
+
+        }
+
+        private void signUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
