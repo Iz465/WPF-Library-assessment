@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Library_Pages;
 
 namespace WPF_Library_assessment.Window_stuff
 {
@@ -22,6 +23,24 @@ namespace WPF_Library_assessment.Window_stuff
         public signUpWn()
         {
             InitializeComponent();
+        }
+
+        private void closeSignUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void submitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            if (mainWindow != null)
+            {
+                WelcomePG welcomePG = new WelcomePG();
+                mainWindow.Content = welcomePG;
+            }
+
         }
     }
 }

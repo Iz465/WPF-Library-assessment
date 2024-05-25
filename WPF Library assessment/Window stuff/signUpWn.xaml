@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
+        xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
         mc:Ignorable="d"
         Title="signUpWn" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Name="closeSignUpBtn" Content="X" Width="50" Height="55" FontSize="40" HorizontalAlignment="Right" Margin="0,0,20,0" Click="closeSignUpBtn_Click" Background="Transparent" BorderThickness="0"/>
+            <UserControl:textboxUC Grid.Row="1" Width="200" Height="40" PlaceHolder="First Name"/>
+            <UserControl:textboxUC Grid.Row="2" Width="200" Height="40" PlaceHolder="Last Name"/>
+            <UserControl:textboxUC Grid.Row="3" Width="200" Height="40" PlaceHolder="Age"/>
+            <UserControl:textboxUC Grid.Row="4" Width="200" Height="40" PlaceHolder="Phone Number"/>
+            <UserControl:textboxUC Grid.Row="5" Width="200" Height="40" PlaceHolder="Address"/>
+            <UserControl:textboxUC Grid.Row="6" Width="200" Height="40" PlaceHolder="Username"/>
+            <UserControl:textboxUC Grid.Row="7" Width="200" Height="40" PlaceHolder="Password"/>
+            <UserControl:textboxUC Grid.Row="8" Width="200" Height="40" PlaceHolder="Reconfirm Password"/>
+            <Button Grid.Row="9" Name="submitBtn" Width="200" Height="40" Content="Submit" Click="submitBtn_Click"/>
+        </Grid>
+    </ScrollViewer>
 </Window>

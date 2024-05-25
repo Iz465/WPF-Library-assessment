@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
+        xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
         mc:Ignorable="d"
         Title="signInWn" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="hello"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+          
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Name="closeSignInBtn" Content="X" Width="50" Height="55" FontSize="40" HorizontalAlignment="Right" Margin="0,0,20,0" Click="closeSignInBtn_Click" Background="Transparent" BorderThickness="0"/>
+        <UserControl:textboxUC Grid.Row="1" Width="200" Height="40" PlaceHolder="Username" x:Name="UserName"/>
+        <UserControl:textboxUC Grid.Row="2" Width="200" Height="40" PlaceHolder="Password" x:Name="Password"/>
+        <Button Grid.Row="3" Name="submitBtn" Width="200" Height="40" Content="Submit" Click="submitBtn_Click"/>
     </Grid>
 </Window>

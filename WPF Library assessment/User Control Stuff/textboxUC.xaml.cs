@@ -23,6 +23,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
             InitializeComponent();
         }
 
+        public string Text
+        { get { return txtInput.Text; }
+            set { txtInput.Text = value; } 
+        }
+
+          
+
         private string placeHolder;
 
         public string PlaceHolder

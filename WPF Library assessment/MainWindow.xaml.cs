@@ -30,14 +30,17 @@ namespace WPF_Library_assessment
         {
             signInWn signin = new signInWn();
             signin.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-
+            signin.WindowStyle = WindowStyle.None;
             signin.Show();
-
+            
         }
 
         private void signUpBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            signUpWn signup = new signUpWn();
+            signup.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            signup.WindowStyle = WindowStyle.None;
+            signup.Show();
         }
     }
 }
