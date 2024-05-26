@@ -12,17 +12,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.User_Control_Stuff;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for WelcomePG.xaml
-    /// </summary>
+ 
     public partial class WelcomePG : Page
     {
         public WelcomePG()
         {
             InitializeComponent();
+
+            MongoData mongoData = new MongoData();
+            List<Admin> admin = mongoData.Connect<Admin>("Administrator");
+
+         
+                card1.FirstName = admin[0].FirstName;
+                card1.LastName = admin[0].LastName;   
+                card1.Username = admin[0].Username;
+                card2.FirstName = admin[1].FirstName;
+                card2.LastName = admin[1].LastName;
+                card2.Username = admin[1].Username;
+
+
+
         }
+
+        
+                              
+
     }
 }

@@ -4,11 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
+        xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800" Background="White"
       Title="WelcomePG">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <TextBlock Text="Welcome to the library" HorizontalAlignment="Center"/>
+        <Grid Grid.Row="1" x:Name="Grid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <UserControl:bookCardUC x:Name="card1" Grid.Column="0" Width="200" />
+            <UserControl:bookCardUC x:Name="card2" Grid.Column="1" Width="200" />
+        </Grid>
     </Grid>
 </Page>
