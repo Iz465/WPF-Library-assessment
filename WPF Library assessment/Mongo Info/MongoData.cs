@@ -11,7 +11,8 @@ namespace WPF_Library_assessment.Mongo_Info
     {
         const string connectionUri = "mongodb+srv://Isak:juju4u4udahdah5@cluster0.akdrimv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-        public List<Members> members;
+       // public List<Members> members;
+   //     Members memberType = new Members();
 
         public MongoData() { }
 
@@ -21,13 +22,20 @@ namespace WPF_Library_assessment.Mongo_Info
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             return client.GetDatabase("Library");
+         
+        
         }
 
-        public void MembersConnect() {
+        public List<T> Connect<T>(string name)
+        {
             var dataBase = GetMongoDatabase();
-            IMongoCollection<Members> collection = dataBase.GetCollection<Members>("Members");
-            members = collection.AsQueryable().ToList<Members>();
+            IMongoCollection<T> collection = dataBase.GetCollection<T>(name);
+            return collection.AsQueryable().ToList();
         }
+
+
+
+
 
     }
 }

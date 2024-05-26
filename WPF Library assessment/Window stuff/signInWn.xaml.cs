@@ -27,28 +27,24 @@ namespace WPF_Library_assessment.Window_stuff
         }
 
 
-        private void closeSignInBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
-
-         
             textboxUC usernameTextBox = UserName as textboxUC;
             textboxUC passwordTextBox = Password as textboxUC;
             string username = usernameTextBox.Text;
             string password = passwordTextBox.Text;
-            bool uCheck = checkInfo(username, "Username");
-            bool pCheck = checkInfo(password, "Password");
 
-            if (!uCheck || !pCheck)
-            {
-                MessageBox.Show("Incorrect Login Details");
-            }
+            MongoData mongoData = new MongoData();
+            List<Members> members = mongoData.Connect<Members>("Members");
+            List<Admin> admin = mongoData.Connect<Admin>("Administrator");
 
-            else
+
+            bool muCheck = checkInfo(username, "Username", members);
+            bool mpCheck = checkInfo(password, "Password", members);
+            bool auCheck = checkInfo(username, "Username", admin);
+            bool apCheck = checkInfo(password, "Password", admin);
+
+            if ((muCheck && mpCheck) || (auCheck && apCheck))
             {
                 this.Close();
 
@@ -58,19 +54,30 @@ namespace WPF_Library_assessment.Window_stuff
                     WelcomePG welcomePG = new WelcomePG();
                     mainWindow.Content = welcomePG;
                 }
+             
             }
+            else
+            {
+                MessageBox.Show("Incorrect Login Details");
+            }
+
+            }
+
+
+        private bool checkInfo<T>(string info, string type, List<T> items)
+        {
+            var property = typeof(T).GetProperty(type);
+            return items.Any(item => property.GetValue(item)?.ToString() == info);
         }
 
-        private bool checkInfo(string info, string type)
+
+        private void closeSignInBtn_Click(object sender, RoutedEventArgs e)
         {
-       
-            MongoData mongoData = new MongoData();
-            mongoData.MembersConnect();
-            var property = typeof(Members).GetProperty(type);
-            bool check = mongoData.members.Any(members => property.GetValue(members).ToString() == info);
-         
-            return check;
-         
+            this.Close();
         }
-    }
+
+      
+        }
+
+    
 }

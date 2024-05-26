@@ -42,6 +42,8 @@ namespace WPF_Library_assessment.Mongo_Info
 
         public string Password { get; set; }
 
+        public Members() { }
+
         public Members(string firstName, string lastName, string age, string phoneNumber, string address,
             string username, string password) {
             FirstName = firstName;
