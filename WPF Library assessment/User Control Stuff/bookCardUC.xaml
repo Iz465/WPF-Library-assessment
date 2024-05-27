@@ -19,9 +19,11 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="70"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding FirstName}" HorizontalAlignment="center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="{Binding LastName}" HorizontalAlignment="center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Text="{Binding Username}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="{Binding Image}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform"/>
+                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
 

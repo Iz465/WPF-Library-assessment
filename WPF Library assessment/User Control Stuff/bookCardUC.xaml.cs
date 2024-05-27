@@ -26,33 +26,74 @@ namespace WPF_Library_assessment.User_Control_Stuff
             DataContext = this;
         }
 
-        public static readonly DependencyProperty FirstNameProperty =
-             DependencyProperty.Register("FirstName", typeof(string), typeof(bookCardUC));
+        public static readonly DependencyProperty ImageDetails =
+            DependencyProperty.Register("Image", typeof(string), typeof(bookCardUC));
 
-        public string FirstName
-        {
-            get { return (string)GetValue(FirstNameProperty); }
-            set { SetValue(FirstNameProperty, value); }
+        public string Image
+        { 
+            get { return (string)GetValue(ImageDetails); }
+            set 
+            { 
+                 SetValue(ImageDetails, value); 
+               try
+                {
+                    ImageSource = new BitmapImage(new Uri(value));
+               }
+              catch (Exception ex)
+               {
+                  MessageBox.Show("Image error" + ex.Message);
+                }
+            } 
         }
 
-        public static readonly DependencyProperty LastNameProperty = 
-            DependencyProperty.Register("LastName", typeof (string), typeof(bookCardUC));
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.Register("ImageSource", typeof(BitmapImage), typeof(bookCardUC));
 
-        public string LastName
+        public BitmapImage ImageSource
         {
-            get { return (string)GetValue(LastNameProperty); }
-            set { SetValue(LastNameProperty, value); }
+            get { return (BitmapImage)GetValue(ImageSourceProperty); }
+            set { SetValue(ImageSourceProperty, value); } }
+
+
+
+
+        public static readonly DependencyProperty NameDetails =
+             DependencyProperty.Register("Name", typeof(string), typeof(bookCardUC));
+
+        public string Name
+        {
+            get { return (string)GetValue(NameDetails); }
+            set { SetValue(NameDetails, value); }
         }
 
-        public static readonly DependencyProperty UsernameProperty =
-            DependencyProperty.Register("Username", typeof (string), typeof (bookCardUC));
+        public static readonly DependencyProperty AuthorDetails = 
+            DependencyProperty.Register("Author", typeof (string), typeof(bookCardUC));
 
-        public string Username
+        public string Author
         {
-            get { return (string)GetValue(UsernameProperty); }
-            set { SetValue(UsernameProperty, value); }
+            get { return (string)GetValue(AuthorDetails); }
+            set { SetValue(AuthorDetails, value); }
         }
-        
+
+        public static readonly DependencyProperty PagesDetails =
+            DependencyProperty.Register("Pages", typeof (int), typeof (bookCardUC));
+
+        public int Pages
+        {
+            get { return (int)GetValue(PagesDetails); }
+            set { SetValue(PagesDetails, value); }
+        }
+
+        public static readonly DependencyProperty AvailableDetails =
+          DependencyProperty.Register("Available", typeof(string), typeof(bookCardUC));
+
+        public string Available
+        {
+            get { return (string)GetValue(AvailableDetails); }
+            set { SetValue(AvailableDetails, value); }
+        }
+
+
 
 
     }
