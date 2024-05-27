@@ -5,11 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="400" Background="DarkGray">
+             d:DesignHeight="400" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Style TargetType="Border" x:Key="CardBorder">
+            <Setter Property="Background" Value="MistyRose"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#888888" Direction="320" ShadowDepth="5" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+   
     <Grid Margin="10">
-        <Border BorderBrush="Black" BorderThickness="5">
+        <Border Style="{StaticResource CardBorder}" >
             <Border.Effect>
-                <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="Black" Opacity="0.5"/>
+                <DropShadowEffect ShadowDepth="5" BlurRadius="10" Color="Black" Opacity="0.5"/>
             </Border.Effect>
             <Grid>
                 <Grid.RowDefinitions>
@@ -17,13 +33,17 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Source="{Binding ImageSource}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform"/>
-                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="{Binding ImageSource}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill"/>
+                <TextBlock Grid.Row="1" Text="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
+                <TextBlock Grid.Row="2" Text="Author:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="48,0,0,0"/>
+                <TextBlock Grid.Row="3" Text="Pages:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
+                <TextBlock Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="58,0,0,0"/>
 
 
 
