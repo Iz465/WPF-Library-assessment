@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YourNamespace;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
@@ -35,14 +36,9 @@ namespace WPF_Library_assessment.User_Control_Stuff
             set 
             { 
                  SetValue(ImageDetails, value); 
-               try
-                {
-                    ImageSource = new BitmapImage(new Uri(value));
-               }
-              catch (Exception ex)
-               {
-                  MessageBox.Show("Image error" + ex.Message);
-                }
+         ImageSource = convertImage.ConvertBase64ToImage(value);
+               
+             
             } 
         }
 

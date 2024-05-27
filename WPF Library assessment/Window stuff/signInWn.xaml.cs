@@ -29,39 +29,49 @@ namespace WPF_Library_assessment.Window_stuff
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
-            textboxUC usernameTextBox = UserName as textboxUC;
-            textboxUC passwordTextBox = Password as textboxUC;
-            string username = usernameTextBox.Text;
-            string password = passwordTextBox.Text;
-
-            MongoData mongoData = new MongoData();
-            List<Members> members = mongoData.Connect<Members>("Members");
-            List<Admin> admin = mongoData.Connect<Admin>("Administrator");
-
-
-            bool muCheck = checkInfo(username, "Username", members);
-            bool mpCheck = checkInfo(password, "Password", members);
-            bool auCheck = checkInfo(username, "Username", admin);
-            bool apCheck = checkInfo(password, "Password", admin);
-
-            if ((muCheck && mpCheck) || (auCheck && apCheck))
+            try
             {
-                this.Close();
+                textboxUC usernameTextBox = UserName as textboxUC;
+                textboxUC passwordTextBox = Password as textboxUC;
+                string username = usernameTextBox.Text;
+                string password = passwordTextBox.Text;
 
-                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                if (mainWindow != null)
+                MongoData mongoData = new MongoData();
+                List<Members> members = mongoData.Connect<Members>("Members");
+                List<Admin> admin = mongoData.Connect<Admin>("Administrator");
+
+
+                bool muCheck = checkInfo(username, "Username", members);
+                bool mpCheck = checkInfo(password, "Password", members);
+                bool auCheck = checkInfo(username, "Username", admin);
+                bool apCheck = checkInfo(password, "Password", admin);
+
+                if ((muCheck && mpCheck) || (auCheck && apCheck))
                 {
-                    WelcomePG welcomePG = new WelcomePG();
-                    mainWindow.Content = welcomePG;
+                    this.Close();
+
+                    MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                    if (mainWindow != null)
+                    {
+                        WelcomePG welcomePG = new WelcomePG();
+                        mainWindow.Content = welcomePG;
+                    }
+
                 }
-             
-            }
-            else
-            {
-                MessageBox.Show("Incorrect Login Details");
-            }
+                else
+                {
+                    MessageBox.Show("Incorrect Login Details");
+                }
 
             }
+            catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+                // Optionally, display a message to the user indicating an error occurred
+                MessageBox.Show("An error occurred. Please try again later.");
+
+            }
+            }
+        
 
 
         private bool checkInfo<T>(string info, string type, List<T> items)
