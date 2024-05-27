@@ -24,5 +24,6 @@
             <UserControl:bookCardUC x:Name="card1" Grid.Column="0" Width="200" />
             <UserControl:bookCardUC x:Name="card2" Grid.Column="1" Width="200" />
         </Grid>
+        <Button Grid.Row="2" Content="Member info" Width="100" Height="100" Click="Button_Click"/>
     </Grid>
 </Page>
