@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Amazon.Runtime.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment.Library_Pages
 {
@@ -23,6 +25,21 @@ namespace WPF_Library_assessment.Library_Pages
         public LibraryInfo()
         {
             InitializeComponent();
+        }
+
+        private void MemberInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BookInfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BookInfoWN bookInfoWN= new BookInfoWN();
+            bookInfoWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            bookInfoWN.WindowStyle = WindowStyle.None;
+            bookInfoWN.Show();
+
+       
         }
     }
 }

@@ -24,7 +24,7 @@ namespace YourNamespace
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error converting Base64 string to image: {ex.Message}");
+                MessageBox.Show($"Error: {ex.Message}");
                 return null;
             }
         }

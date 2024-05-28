@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="BookInfoWN" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="240"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock TextAlignment="Center" Text="Ancient Library Members" FontSize="40"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Horror" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+            <TextBlock Grid.Row="1" Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="20"/>
+            <TextBlock Grid.Row="1" x:Name="TextName" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0" Width="Auto" />
+            <TextBlock Grid.Row="2" Text="Author:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="20"/>
+            <TextBlock Grid.Row="2" x:Name="TextAuthor" Text="{Binding Author}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="90,0,0,0" Width="Auto" />
+            <TextBlock Grid.Row="3" Text="Pages:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="20"/>
+            <TextBlock Grid.Row="3" x:Name="TextPages" Text="{Binding Pages}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="80,0,0,0" Width="Auto" />
+            <TextBlock Grid.Row="4" Text="Available:" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontSize="20"/>
+            <TextBlock Grid.Row="4" x:Name="TextAvailable" Text="{Binding Available}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="105,0,0,0" Width="Auto" />
+
+
+        </Grid>
     </Grid>
 </Window>

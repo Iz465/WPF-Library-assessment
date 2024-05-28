@@ -21,8 +21,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Member Info" />
-            <Button Grid.Column="1" Content="Book Info" />
+            <Button x:Name="MemberInfoBtn" Content="Member Info" Click="MemberInfoBtn_Click" />
+            <Button x:Name="BookInfoBtn" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" />
         </Grid>
 
     </Grid>
