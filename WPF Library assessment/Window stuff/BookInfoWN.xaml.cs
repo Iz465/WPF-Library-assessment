@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.Library_Pages;
+using System.Data;
 
 namespace WPF_Library_assessment.Window_stuff
 {
@@ -10,65 +15,63 @@ namespace WPF_Library_assessment.Window_stuff
             InitializeComponent();
             DataContext = this;
 
-            // Example usage
-            textInfo("Author", "TextAuthor");
-        }
+            MongoData mongoData = new MongoData();
+            List<Horror> horrorBooks = mongoData.Connect<Horror>("Horror");
 
-        public void textInfo(string name, string bindName)
-        {
-            var property = DependencyProperty.Register(
-                name,
-                typeof(string),
-                typeof(BookInfoWN));
+            
+            int rowNum = 3; //row book info will start
 
-            // Register attached property
-            RegisterAttachedProperty(property, bindName);
-        }
-
-        private void RegisterAttachedProperty(DependencyProperty property, string bindName)
-        {
-            // Define attached property get and set methods
-            var attachedProperty = DependencyProperty.RegisterAttached(
-                bindName,
-                typeof(string),
-                typeof(BookInfoWN),
-                new PropertyMetadata(null));
-
-            // Register the attached property with the owner class
-            RegisterAttached(bindName, property, attachedProperty);
-        }
-
-        private void RegisterAttached(string bindName, DependencyProperty property, DependencyProperty attachedProperty)
-        {
-            // Add get and set methods for the attached property
-            var getMethod = typeof(BookInfoWN).GetMethod($"Get{bindName}");
-            var setMethod = typeof(BookInfoWN).GetMethod($"Set{bindName}");
-
-            if (getMethod == null || setMethod == null)
+            // Goes through each book in collection
+            foreach (var horrorBook in horrorBooks) 
             {
-                throw new InvalidOperationException("Failed to register attached property.");
+                RowDefinition row = new RowDefinition();
+                row.Height = new GridLength(40);
+                InfoGrid.RowDefinitions.Add(row);
+
+                TextBlock nameText = new TextBlock(); // makes a textblock with the name nameText
+                nameText.Text = horrorBook.Name;
+                nameText.FontSize = 16;
+                nameText.Margin = new Thickness(10, 0, 0, 0);
+                nameText.HorizontalAlignment = HorizontalAlignment.Center;
+
+                TextBlock authorText = new TextBlock();
+                authorText.Text = horrorBook.Author;
+                authorText.FontSize = 16;
+                authorText.Margin = new Thickness(10, 0, 0, 0);
+                authorText.HorizontalAlignment = HorizontalAlignment.Center;
+
+                TextBlock pagesText = new TextBlock();
+                pagesText.Text = horrorBook.Pages.ToString();
+                pagesText.FontSize = 16;
+                pagesText.Margin = new Thickness(10, 0, 0, 0);
+                pagesText.HorizontalAlignment = HorizontalAlignment.Center;
+
+                TextBlock availableText = new TextBlock();
+                availableText.Text = horrorBook.Available;
+                availableText.FontSize = 16;
+                availableText.Margin = new Thickness(10, 0, 0, 0);
+                availableText.HorizontalAlignment = HorizontalAlignment.Center;
+
+              
+                Grid.SetRow(nameText, rowNum);
+                Grid.SetColumn(nameText, 0);
+
+                Grid.SetRow(authorText, rowNum);
+                Grid.SetColumn(authorText, 1);
+
+                Grid.SetRow(pagesText, rowNum);
+                Grid.SetColumn(pagesText, 2);
+
+                Grid.SetRow(availableText, rowNum);
+                Grid.SetColumn(availableText, 3);
+
+                InfoGrid.Children.Add(nameText);
+                InfoGrid.Children.Add(authorText);
+                InfoGrid.Children.Add(pagesText);
+                InfoGrid.Children.Add(availableText);
+        
+                rowNum++; 
             }
-
-            // Define a lambda expression for the get and set methods
-            var getLambda = CreateGetLambda(property);
-            var setLambda = CreateSetLambda(property);
-
-            // Attach the get and set methods to the attached property
-            var propertyMetadata = new PropertyMetadata(
-                null,
-                (d, e) => setLambda(d, (string)e.NewValue));
-
-            attachedProperty.OverrideMetadata(typeof(BookInfoWN), propertyMetadata);
-        }
-
-        private Func<DependencyObject, string> CreateGetLambda(DependencyProperty property)
-        {
-            return obj => (string)obj.GetValue(property);
-        }
-
-        private Action<DependencyObject, string> CreateSetLambda(DependencyProperty property)
-        {
-            return (obj, value) => obj.SetValue(property, value);
         }
     }
 }

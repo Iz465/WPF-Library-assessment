@@ -16,7 +16,7 @@
             <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Name="closeSignInBtn" Content="X" Width="50" Height="55" FontSize="40" HorizontalAlignment="Right" Margin="0,0,20,0" Click="closeSignInBtn_Click" Background="Transparent" BorderThickness="0"/>
+        <UserControl:ExitButtonUC/>
         <UserControl:textboxUC Grid.Row="1" Width="200" Height="40" PlaceHolder="Username" x:Name="UserName"/>
         <UserControl:textboxUC Grid.Row="2" Width="200" Height="40" PlaceHolder="Password" x:Name="Password"/>
         <Button Grid.Row="3" Name="submitBtn" Width="200" Height="40" Content="Submit" Click="submitBtn_Click"/>

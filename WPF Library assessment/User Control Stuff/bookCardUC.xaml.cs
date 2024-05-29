@@ -52,8 +52,6 @@ namespace WPF_Library_assessment.User_Control_Stuff
             set { SetValue(ImageSourceProperty, value); } }
 
 
-
-
         public static readonly DependencyProperty NameDetails =
              DependencyProperty.Register("Name", typeof(string), typeof(bookCardUC));
 
@@ -91,9 +89,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
         }
 
 
-        // Assuming 'myBorder' is the name of your Border element
-        double angle = 0; // Default direction is downwards
-
+        
         
 
 
