@@ -29,7 +29,7 @@ namespace WPF_Library_assessment.Library_Pages
         InitializeComponent();
 
             MongoData mongoData = new MongoData();
-            List<Horror> horror = mongoData.Connect<Horror>("Horror");
+            List<Books> horror = mongoData.Connect<Books>("Horror");
               List<bookCardUC> cardList;
 
         cardList = new List<bookCardUC> { card1, card2 };

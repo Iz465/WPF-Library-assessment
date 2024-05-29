@@ -9,16 +9,16 @@ using MongoDB.Bson;
 
 namespace WPF_Library_assessment.Mongo_Info
 {
-    internal class Horror
+    public class Books
     {
         [BsonId] 
-        protected ObjectId Id { get; set; }
+        public ObjectId Id { get; set; }
 
         [BsonElement("Name")]
 
         public string Name { get; set; }
 
-        [BsonElement("Author")]
+        [BsonElement("Author")] 
 
         public string Author { get; set; }
 
@@ -32,8 +32,8 @@ namespace WPF_Library_assessment.Mongo_Info
         [BsonElement("Available")]
         public string Available { get; set; }
 
-        Horror() { }
-        Horror(string name, string author, int pages, string image, string available) {
+        Books() { }
+        Books(string name, string author, int pages, string image, string available) {
             Name = name;
             Author = author;
             Pages = pages;
