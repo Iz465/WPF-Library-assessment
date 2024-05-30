@@ -1,9 +1,11 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace WPF_Library_assessment.Mongo_Info
 {
@@ -31,11 +33,23 @@ namespace WPF_Library_assessment.Mongo_Info
             var dataBase = GetMongoDatabase();
             IMongoCollection<T> collection = dataBase.GetCollection<T>(name);
             return collection.AsQueryable().ToList();
+            
         }
 
 
 
+public void DeleteCollection<T>(string collectionName, string bookId)
+    {
+        var dataBase = GetMongoDatabase();
+        IMongoCollection<T> collection = dataBase.GetCollection<T>(collectionName);
 
+        var filter = Builders<T>.Filter.Eq("_id", new ObjectId(bookId)); 
 
+        collection.DeleteOne(filter);
     }
+
+
+
+
+}
 }

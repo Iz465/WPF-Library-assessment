@@ -5,13 +5,15 @@ using System.Windows.Controls;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.Library_Pages;
 using System.Data;
+using System.Windows.Media;
+using System.Linq;
 
 namespace WPF_Library_assessment.Window_stuff
 {
     public partial class BookInfoWN : Window
     {
 
-      
+
         public BookInfoWN()
         {
             InitializeComponent();
@@ -19,20 +21,24 @@ namespace WPF_Library_assessment.Window_stuff
 
             MongoData mongoData = new MongoData();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
-            List<Books> booktest = mongoData.Connect<Books>("Fantasy");
-               
-;
-           int row = addInfo(horrorBooks, "Fantasy", 3);
-            row = addInfo(booktest, "Drama", row);
+            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
+            List<Books> DramaBooks = mongoData.Connect<Books>("Drama");
+            List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
+
+
+            int row = addInfo(horrorBooks,"Horror", "Fantasy", 3); row++;
+            row = addInfo(fantasyBooks,"Fantasy", "Drama", row); row++;
+            row = addInfo(DramaBooks,"Drama", "Mystery", row); row++;
+            row = addInfo(MysteryBooks,"Mystery", "", row);
 
 
 
 
         }
 
-        public int addInfo(List<Books> bookType, string genre, int rowNum) 
+        public int addInfo(List<Books> bookType, string collectionName, string genre, int rowNum)
         {
-            ; //row book info will start
+
 
             foreach (var book in bookType)       // Goes through each book in collection
             {
@@ -40,29 +46,52 @@ namespace WPF_Library_assessment.Window_stuff
                 row.Height = new GridLength(40);
                 InfoGrid.RowDefinitions.Add(row);
 
+
+
                 TextBlock nameText = new TextBlock(); // makes a textblock with the name nameText
                 nameText.Text = book.Name;
                 nameText.FontSize = 16;
                 nameText.Margin = new Thickness(10, 0, 0, 0);
                 nameText.HorizontalAlignment = HorizontalAlignment.Center;
+                nameText.VerticalAlignment = VerticalAlignment.Center;
 
                 TextBlock authorText = new TextBlock();
                 authorText.Text = book.Author;
                 authorText.FontSize = 16;
                 authorText.Margin = new Thickness(10, 0, 0, 0);
                 authorText.HorizontalAlignment = HorizontalAlignment.Center;
+                authorText.VerticalAlignment = VerticalAlignment.Center;
 
                 TextBlock pagesText = new TextBlock();
                 pagesText.Text = book.Pages.ToString();
                 pagesText.FontSize = 16;
                 pagesText.Margin = new Thickness(10, 0, 0, 0);
                 pagesText.HorizontalAlignment = HorizontalAlignment.Center;
+                pagesText.VerticalAlignment = VerticalAlignment.Center;
 
                 TextBlock availableText = new TextBlock();
                 availableText.Text = book.Available;
                 availableText.FontSize = 16;
                 availableText.Margin = new Thickness(10, 0, 0, 0);
                 availableText.HorizontalAlignment = HorizontalAlignment.Center;
+                availableText.VerticalAlignment = VerticalAlignment.Center;
+
+                Button deleteButton = new Button();
+                TextBlock buttonText = new TextBlock();
+                buttonText.Text = "Delete";
+                buttonText.Padding = new Thickness(1);
+                deleteButton.Content = buttonText;
+                deleteButton.FontSize = 16;
+                deleteButton.Margin = new Thickness(10, 0, 0, 0);
+                deleteButton.Padding = new Thickness(10, 10, 10, 10);
+                deleteButton.Width = 70;
+                deleteButton.Height = 30;
+                deleteButton.HorizontalAlignment = HorizontalAlignment.Center;
+                deleteButton.VerticalAlignment = VerticalAlignment.Center;
+                deleteButton.Style = (Style)FindResource("RoundedButtonStyle");
+                deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
+                deleteButton.Click += DeleteButton_Click;
+
 
 
                 Grid.SetRow(nameText, rowNum);
@@ -77,10 +106,14 @@ namespace WPF_Library_assessment.Window_stuff
                 Grid.SetRow(availableText, rowNum);
                 Grid.SetColumn(availableText, 3);
 
+                Grid.SetRow(deleteButton, rowNum);
+                Grid.SetColumn(deleteButton, 4);
+
                 InfoGrid.Children.Add(nameText);
                 InfoGrid.Children.Add(authorText);
                 InfoGrid.Children.Add(pagesText);
                 InfoGrid.Children.Add(availableText);
+                InfoGrid.Children.Add(deleteButton);
 
                 rowNum++;
             }
@@ -92,15 +125,45 @@ namespace WPF_Library_assessment.Window_stuff
             genreText.FontSize = 30;
             genreText.Margin = new Thickness(0, 0, 0, 10);
             genreText.Padding = new Thickness(0, 0, 0, 10);
-            genreText.HorizontalAlignment= HorizontalAlignment.Center;
-            genreText.VerticalAlignment= VerticalAlignment.Center;
-            
-            Grid.SetRow(genreText,rowNum);
+            genreText.HorizontalAlignment = HorizontalAlignment.Center;
+            genreText.VerticalAlignment = VerticalAlignment.Center;
+
+            Grid.SetRow(genreText, rowNum);
             Grid.SetColumn(genreText, 1);
-            Grid.SetColumnSpan(genreText, 2);
+            Grid.SetColumnSpan(genreText, 3);
             InfoGrid.Children.Add(genreText);
 
             return rowNum;
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            
+           
+            Button? deleteBtn = sender as Button;
+
+
+
+            Tuple<string, string> tagData = deleteBtn.Tag as Tuple<string, string>;
+            string collectionName = tagData.Item1;
+            string bookId = tagData.Item2;
+
+            MongoData mongoData = new MongoData();
+            mongoData.DeleteCollection<Books>(collectionName, bookId);
+
+           
+            int row = Grid.GetRow(deleteBtn);
+            InfoGrid.Children.Remove(deleteBtn);
+
+   
+            foreach (UIElement element in InfoGrid.Children.Cast<UIElement>().ToList())
+            {
+                if (Grid.GetRow(element) == row)
+                {
+                    InfoGrid.Children.Remove(element);
+                }
+            }
         }
 
     }

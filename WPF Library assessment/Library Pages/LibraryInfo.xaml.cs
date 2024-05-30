@@ -41,5 +41,15 @@ namespace WPF_Library_assessment.Library_Pages
 
        
         }
+
+        private void ModifyBooksBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ModifyMembersBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

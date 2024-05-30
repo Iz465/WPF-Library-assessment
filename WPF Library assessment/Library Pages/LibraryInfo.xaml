@@ -21,8 +21,14 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="MemberInfoBtn" Content="Member Info" Click="MemberInfoBtn_Click" />
-            <Button x:Name="BookInfoBtn" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" />
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="MemberInfoBtn" Content="Member Info" Click="MemberInfoBtn_Click" Height="100" Width="120" />
+            <Button x:Name="BookInfoBtn" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" Height="100" Width="120" />
+            <Button x:Name="ModifyBooksBtn" Grid.Row="1" Content="Modify Book List" Click="ModifyBooksBtn_Click" Height="100" Width="120"/>
+            <Button x:Name="ModifyMembersBtn" Grid.Row="1" Grid.Column="1" Content="Modify Member List" Click="ModifyMembersBtn_Click" Height="100" Width="120"/>
         </Grid>
 
     </Grid>
