@@ -19,7 +19,7 @@ namespace WPF_Library_assessment.Mongo_Info
 
         public MongoData() { }
 
-        private IMongoDatabase GetMongoDatabase()
+        public IMongoDatabase GetMongoDatabase()
         {
            var settings = MongoClientSettings.FromConnectionString(connectionUri);
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
@@ -47,15 +47,15 @@ namespace WPF_Library_assessment.Mongo_Info
         collection.DeleteOne(filter);
     }
 
-       public void UpdateCollection<T>(string collectionName, string bookId)
-        {
-           var dataBase = GetMongoDatabase();
-           IMongoCollection<T> collection = dataBase.GetCollection<T>(collectionName);
+    //   public void UpdateCollection<T>(string collectionName, string bookId)
+     //   {
+      //     var dataBase = GetMongoDatabase();
+     //      IMongoCollection<T> collection = dataBase.GetCollection<T>(collectionName);
 
-            var filter = Builders<T>.Filter.Eq("_id", new ObjectId(bookId));
+      //      var filter = Builders<T>.Filter.Eq("_id", new ObjectId(bookId));
 
            
-        }
+    //    }
 
 
 
