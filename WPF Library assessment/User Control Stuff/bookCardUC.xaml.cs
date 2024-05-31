@@ -17,9 +17,7 @@ using YourNamespace;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
-    /// <summary>
-    /// Interaction logic for bookCardUC.xaml
-    /// </summary>
+    
     public partial class bookCardUC : UserControl
     {
         public bookCardUC()

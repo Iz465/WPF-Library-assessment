@@ -76,14 +76,25 @@ namespace WPF_Library_assessment.Window_stuff
                 availableText.HorizontalAlignment = HorizontalAlignment.Center;
                 availableText.VerticalAlignment = VerticalAlignment.Center;
 
+                Button updateButton = new Button();
+                TextBlock updateText = new TextBlock();
+                updateText.Text = "Update";
+                updateButton.Content = updateText;
+                updateButton.FontSize= 16;
+                updateButton.Width = 70;
+                updateButton.Height = 30;
+                updateButton.HorizontalAlignment = HorizontalAlignment.Center;
+                updateButton.VerticalAlignment = VerticalAlignment.Center;
+                updateButton.Style = (Style)FindResource("RoundedButtonStyle");
+                updateButton.Tag = new Tuple<string, string, string, string, string, string>
+                       (collectionName, book.Id.ToString(), book.Name, book.Author, book.Pages.ToString(), book.Available);
+                updateButton.Click += UpdateButton_Click;
+
                 Button deleteButton = new Button();
                 TextBlock buttonText = new TextBlock();
-                buttonText.Text = "Delete";
-                buttonText.Padding = new Thickness(1);
+                buttonText.Text = "Delete";         
                 deleteButton.Content = buttonText;
                 deleteButton.FontSize = 16;
-                deleteButton.Margin = new Thickness(10, 0, 0, 0);
-                deleteButton.Padding = new Thickness(10, 10, 10, 10);
                 deleteButton.Width = 70;
                 deleteButton.Height = 30;
                 deleteButton.HorizontalAlignment = HorizontalAlignment.Center;
@@ -106,13 +117,18 @@ namespace WPF_Library_assessment.Window_stuff
                 Grid.SetRow(availableText, rowNum);
                 Grid.SetColumn(availableText, 3);
 
+
+                Grid.SetRow(updateButton, rowNum);
+                Grid.SetColumn(updateButton, 4);
+
                 Grid.SetRow(deleteButton, rowNum);
-                Grid.SetColumn(deleteButton, 4);
+                Grid.SetColumn(deleteButton, 5);
 
                 InfoGrid.Children.Add(nameText);
                 InfoGrid.Children.Add(authorText);
                 InfoGrid.Children.Add(pagesText);
                 InfoGrid.Children.Add(availableText);
+                InfoGrid.Children.Add(updateButton);
                 InfoGrid.Children.Add(deleteButton);
 
                 rowNum++;
@@ -135,6 +151,31 @@ namespace WPF_Library_assessment.Window_stuff
 
             return rowNum;
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            Button? updatebtn = sender as Button;
+            Tuple<string, string, string, string, string, string> tagData = updatebtn.Tag as Tuple<string, string, string, string, string, string>;
+           
+                string collectionName = tagData.Item1;
+                string bookId = tagData.Item2;
+                string name = tagData.Item3;
+                string author = tagData.Item4;
+                string pages = tagData.Item5;
+                string available = tagData.Item6;
+                UpdateWN updateWN = new UpdateWN();
+                    updateWN.changeBook(collectionName, bookId, name, author, pages, available);
+
+                updateWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                updateWN.WindowStyle = WindowStyle.None;
+                updateWN.Show();
+                this.Close();  
+
+        }
+
+
+
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {

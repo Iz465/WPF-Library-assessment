@@ -29,8 +29,8 @@ namespace WPF_Library_assessment.Window_stuff
 
         private void submitBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           
+            
                 textboxUC usernameTextBox = UserName as textboxUC;
                 textboxUC passwordTextBox = Password as textboxUC;
                 string username = usernameTextBox.Text;
@@ -57,19 +57,14 @@ namespace WPF_Library_assessment.Window_stuff
                         mainWindow.Content = welcomePG;
                     }
 
-                }
+                
                 else
                 {
                     MessageBox.Show("Incorrect Login Details");
                 }
 
             }
-            catch (Exception ex) {
-                Console.WriteLine(ex.ToString());
-                // Optionally, display a message to the user indicating an error occurred
-                MessageBox.Show("An error occurred. Please try again later.");
-
-            }
+           
             }
         
 

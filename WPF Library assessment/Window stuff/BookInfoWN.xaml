@@ -42,16 +42,18 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-            <TextBlock Grid.ColumnSpan="5" Padding="11" TextAlignment="Center" Text="Ancient Library Members" FontSize="40"/>
-            <UserControl:ExitButtonUC Grid.Column="4"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"  Text="Horror" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="30"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Author:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2"  Grid.Column="2" Text="Pages:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2"  Grid.Column="3" Text="Available:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2"  Grid.Column="4" Text="Delete:" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,0,0" Padding="0,0,0,10" FontSize="20"/>
-
+            <TextBlock Grid.ColumnSpan="6" Padding="11" TextAlignment="Center" Text="Ancient Library Members" FontSize="40"/>
+            <UserControl:ExitButtonUC Grid.Column="5"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"  Text="Horror" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="30"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="Author:" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="2" Grid.Column="2" Text="Pages:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="2" Grid.Column="3" Text="Available:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="2" Grid.Column="4" Text="Update" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="2" Grid.Column="5" Text="Delete:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            
             </Grid>
         
            
