@@ -26,7 +26,7 @@ namespace WPF_Library_assessment.Window_stuff
             List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
 
 
-            int row = addInfo(horrorBooks,"Horror", "Fantasy", 3); row++;
+            int row = addInfo(horrorBooks,"Horror", "Fantasy", 4); row++;
             row = addInfo(fantasyBooks,"Fantasy", "Drama", row); row++;
             row = addInfo(DramaBooks,"Drama", "Mystery", row); row++;
             row = addInfo(MysteryBooks,"Mystery", "", row);
@@ -207,5 +207,14 @@ namespace WPF_Library_assessment.Window_stuff
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NewBook newBook = new NewBook();
+            newBook.WindowStartupLocation =(WindowStartupLocation.CenterScreen);
+            newBook.WindowStyle = WindowStyle.None;
+            newBook.Show();
+            this.Close();
+
+        }
     }
 }

@@ -9,16 +9,18 @@
         Title="BookInfoWN" Height="450" Width="800">
     <Window.Resources>
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="2"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border CornerRadius="10" Background="Beige" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -33,7 +35,8 @@
         <Grid x:Name="InfoGrid" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -46,13 +49,14 @@
                 </Grid.ColumnDefinitions>
             <TextBlock Grid.ColumnSpan="6" Padding="11" TextAlignment="Center" Text="Ancient Library Members" FontSize="40"/>
             <UserControl:ExitButtonUC Grid.Column="5"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4"  Text="Horror" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="30"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Author:" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="Pages:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="Available:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2" Grid.Column="4" Text="Update" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
-            <TextBlock Grid.Row="2" Grid.Column="5" Text="Delete:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+                <Button Style="{StaticResource RoundedButtonStyle}" Padding="5"    Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="1" Content="New Book" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Click="Button_Click" />
+            <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4"  Text="Horror" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="30"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Name:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Author:" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="Pages:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="3" Grid.Column="3" Text="Available:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="3" Grid.Column="4" Text="Update" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="0,0,0,10" FontSize="20"/>
+            <TextBlock Grid.Row="3" Grid.Column="5" Text="Delete:" VerticalAlignment="Center" HorizontalAlignment="Center"  Padding="0,0,0,10" FontSize="20"/>
             
             </Grid>
         

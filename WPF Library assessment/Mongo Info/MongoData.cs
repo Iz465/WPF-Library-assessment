@@ -47,17 +47,6 @@ namespace WPF_Library_assessment.Mongo_Info
         collection.DeleteOne(filter);
     }
 
-    //   public void UpdateCollection<T>(string collectionName, string bookId)
-     //   {
-      //     var dataBase = GetMongoDatabase();
-     //      IMongoCollection<T> collection = dataBase.GetCollection<T>(collectionName);
-
-      //      var filter = Builders<T>.Filter.Eq("_id", new ObjectId(bookId));
-
-           
-    //    }
-
-
-
+ 
 }
 }
