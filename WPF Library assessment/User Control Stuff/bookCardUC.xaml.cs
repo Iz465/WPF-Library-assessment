@@ -32,22 +32,12 @@ namespace WPF_Library_assessment.User_Control_Stuff
         
         }
 
-        public static readonly DependencyProperty ImageDetails =
-            DependencyProperty.Register("Image", typeof(string), typeof(bookCardUC));
-
-        public string Image
-        { 
-
-            get { return (string)GetValue(ImageDetails); }
-            set
-            {
-                
-                SetValue(ImageDetails, value); 
-         ImageSource = convertImage.ConvertBase64ToImage(value);
-               
-             
-            } 
-        }
+      
+        public void test(string s)
+        {
+         //   MessageBox.Show(s);
+            ImageSource = convertImage.ConvertBase64ToImage(s);
+        } 
 
         public static readonly DependencyProperty ImageSourceProperty =
        DependencyProperty.Register("ImageSource", typeof(BitmapImage), typeof(bookCardUC));

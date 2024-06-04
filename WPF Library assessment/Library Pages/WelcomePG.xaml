@@ -6,24 +6,47 @@
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
         xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800" Background="White"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="WelcomePG">
-
-    <Grid>
+    <Page.Resources>
+        <Style TargetType="Grid" x:Key="GridStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#154734" Offset="0"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Style="{StaticResource GridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Welcome to the library" HorizontalAlignment="Center"/>
-        <Grid Grid.Row="1" x:Name="Grid">
+        <UserControl:headerUC/>
+        <TextBlock Grid.Row="1" Text="Welcome to the library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <Grid Grid.Row="2" x:Name="Grid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <UserControl:bookCardUC x:Name="card1" Grid.Column="0" Width="200" />
-            <UserControl:bookCardUC x:Name="card2" Grid.Column="1" Width="200" />
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Drama" Margin="10" HorizontalAlignment="Center" />
+            <Image x:Name="dramaImage" MouseLeftButtonDown="dramaImage_MouseLeftButtonDown" Source="Fantasy.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
+            <TextBlock Grid.Column="1" Margin="10" Text="Fantasy" HorizontalAlignment="Center"/>
+            <Image x:Name="fantasyImage" MouseLeftButtonDown="fantasyImage_MouseLeftButtonDown" Grid.Column="1" Source="Fantasy.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
+            <TextBlock Grid.Row="1" Margin="10" Text="Horror"  HorizontalAlignment="Center"/>
+            <Image x:Name="horrorImage" MouseLeftButtonDown="horrorImage_MouseLeftButtonDown" Grid.Row="1" Source="Horror.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Text="Mystery"  HorizontalAlignment="Center"/>
+            <Image x:Name="mysteryImage" MouseLeftButtonDown="mysteryImage_MouseLeftButtonDown" Grid.Row="1" Grid.Column="1" Source="Mystery.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
+
         </Grid>
-        <Button x:Name="MemberBtn" Grid.Row="2" Content="Member info" Width="100" Height="100" Click="MemberBtn_Click"/>
+       
     </Grid>
 </Page>

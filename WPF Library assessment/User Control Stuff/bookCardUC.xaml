@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="400">
     <UserControl.Resources>
         <Style TargetType="Border" x:Key="CardBorder">
-            <Setter Property="Background" Value="MistyRose"/>
+            <Setter Property="Background" Value="LightSalmon"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="CornerRadius" Value="5"/>
@@ -28,31 +28,25 @@
     </UserControl.Resources>
 
     <Grid Margin="10">
-        <Border Style="{StaticResource CardBorder}" MouseLeftButtonDown="Border_MouseLeftButtonDown" Tag="{Binding}">
-            <Border.Effect>
-                <DropShadowEffect ShadowDepth="5" BlurRadius="10" Color="Black" Opacity="0.5"/>
-            </Border.Effect>
-            <!-- Invisible Button covering the entire area of the Border -->
-         
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="200"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Image Source="{Binding ImageSource}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill"/>
-                    <TextBlock Grid.Row="1" Text="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
-                    <TextBlock Grid.Row="2" Text="Author:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <TextBlock Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="48,0,0,0"/>
-                    <TextBlock Grid.Row="3" Text="Pages:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
-                    <TextBlock Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
-                    <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="58,0,0,0"/>
-                </Grid>
-        
+        <Border Style="{StaticResource CardBorder}" MouseDown="Border_MouseLeftButtonDown">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="{Binding ImageSource,RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill"/>
+                <TextBlock Grid.Row="1" Text="Name:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
+                <TextBlock Grid.Row="2" Text="Author:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="48,0,0,0"/>
+                <TextBlock Grid.Row="3" Text="Pages:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
+                <TextBlock Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="58,0,0,0"/>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>

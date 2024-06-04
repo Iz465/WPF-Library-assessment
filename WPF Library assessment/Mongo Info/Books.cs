@@ -27,18 +27,18 @@ namespace WPF_Library_assessment.Mongo_Info
         public int Pages { get; set; }
 
         [BsonElement("Image")] 
-        public string Image { get; set; }
+        public string ImageSource { get; set; }
 
         [BsonElement("Available")]
         public string Available { get; set; }
 
         Books() { }
-        Books(string name, string author, int pages, string image, string available) {
+        Books(string name, string author, int pages, string imageSource, string available) {
             Name = name;
             Author = author;
             Pages = pages;
             Author = author;
-            Image = image;
+            ImageSource = imageSource;
             Available = available;
         }
 

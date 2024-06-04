@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF_Library_assessment"
           xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
