@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.User_Control_Stuff;
 
@@ -16,9 +19,13 @@ namespace WPF_Library_assessment.Library_Pages
               
         InitializeComponent();
 
-            MongoData mongoData = new MongoData();
-            List<Books> horror = mongoData.Connect<Books>("Horror");
-              List<bookCardUC> cardList;
+
+            // Set the ImageSource to an image path or resource.
+     
+
+            //MongoData mongoData = new MongoData();
+            //List<Books> horror = mongoData.Connect<Books>("Horror");
+            //List<bookCardUC> cardList;
 
             //  cardList = new List<bookCardUC> { card1, card2 };
 
@@ -39,25 +46,38 @@ namespace WPF_Library_assessment.Library_Pages
             //       bookcard.GetType().GetProperty("Available").SetValue(bookcard, horror[i].Available);
         }
 
+
+
+
+
         private void dramaImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+    
         }
 
         private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            FantasyPG fantasyPG= new FantasyPG();
+
+
+             
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                
+                    FantasyPG fantasyPG = new FantasyPG();
+                    mainWindow.Content = fantasyPG;
+                
+          
         }
 
         private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            HorrorPG horrorPG = new HorrorPG();
-            this.Content= horrorPG;
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+               HorrorPG horrorPG = new HorrorPG();  
+               mainWindow.Content= horrorPG;
         }
 
         private void mysteryImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+        
         }
 
 

@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
-        xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
+      xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WelcomePG">
@@ -21,10 +21,12 @@
         </Style>
     </Page.Resources>
     <Grid Style="{StaticResource GridStyle}">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <UserControl:headerUC/>
         <TextBlock Grid.Row="1" Text="Welcome to the library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
@@ -37,16 +39,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Drama" Margin="10" HorizontalAlignment="Center" />
-            <Image x:Name="dramaImage" MouseLeftButtonDown="dramaImage_MouseLeftButtonDown" Source="Fantasy.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
-            <TextBlock Grid.Column="1" Margin="10" Text="Fantasy" HorizontalAlignment="Center"/>
-            <Image x:Name="fantasyImage" MouseLeftButtonDown="fantasyImage_MouseLeftButtonDown" Grid.Column="1" Source="Fantasy.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
-            <TextBlock Grid.Row="1" Margin="10" Text="Horror"  HorizontalAlignment="Center"/>
-            <Image x:Name="horrorImage" MouseLeftButtonDown="horrorImage_MouseLeftButtonDown" Grid.Row="1" Source="Horror.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Margin="10" Text="Mystery"  HorizontalAlignment="Center"/>
-            <Image x:Name="mysteryImage" MouseLeftButtonDown="mysteryImage_MouseLeftButtonDown" Grid.Row="1" Grid.Column="1" Source="Mystery.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100"/>
-
+            <UserControl:genreCard TitleGenre="Drama" Height="400" Width="400" ImageGenre="Fantasy.jpg" Grid.Column="0" Grid.Row="0" Margin="0,10,5,0" MouseLeftButtonDown="dramaImage_MouseLeftButtonDown"/>
+            <UserControl:genreCard TitleGenre="Fantasy" Height="400" Width="400" ImageGenre="Fantasy.jpg" Grid.Column="1" Grid.Row="0"  Margin="5,10,0,0" MouseLeftButtonDown="fantasyImage_MouseLeftButtonDown"/>
+            <UserControl:genreCard TitleGenre="Horror" Height="400" Width="400" ImageGenre="Horror.jpg" Grid.Column="0" Grid.Row="1"  Margin="0,10,5,0" MouseLeftButtonDown="horrorImage_MouseLeftButtonDown"/>
+            <UserControl:genreCard TitleGenre="Mystery" Height="400" Width="400" ImageGenre="Mystery.jpg" Grid.Column="1" Grid.Row="1"  Margin="5,10,0,0" MouseLeftButtonDown="mysteryImage_MouseLeftButtonDown"/>
         </Grid>
-       
     </Grid>
 </Page>

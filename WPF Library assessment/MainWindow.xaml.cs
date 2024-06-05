@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment
@@ -11,6 +12,7 @@ namespace WPF_Library_assessment
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         private void signInBtn_Click(object sender, RoutedEventArgs e)

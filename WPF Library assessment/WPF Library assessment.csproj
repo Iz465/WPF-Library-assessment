@@ -9,12 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <None Remove="Images\**" />
+    <Page Remove="Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Library Pages\Fantasy.jpg" />
+    <None Remove="Library Pages\Horror.jpg" />
+    <None Remove="Library Pages\Mystery.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.25.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.25.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Library Pages\Fantasy.jpg" />
+    <Resource Include="Library Pages\Horror.jpg" />
+    <Resource Include="Library Pages\Mystery.jpg" />
   </ItemGroup>
 
 </Project>
