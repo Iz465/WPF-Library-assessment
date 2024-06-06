@@ -16,9 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Library Pages\Drama.jpg" />
     <None Remove="Library Pages\Fantasy.jpg" />
+    <None Remove="Library Pages\History.jpg" />
     <None Remove="Library Pages\Horror.jpg" />
     <None Remove="Library Pages\Mystery.jpg" />
+    <None Remove="Library Pages\Romance.jpg" />
+    <None Remove="Library Pages\Romance2.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,9 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Library Pages\Drama.jpg" />
     <Resource Include="Library Pages\Fantasy.jpg" />
+    <Resource Include="Library Pages\History.jpg" />
     <Resource Include="Library Pages\Horror.jpg" />
     <Resource Include="Library Pages\Mystery.jpg" />
+    <Resource Include="Library Pages\Romance.jpg" />
+    <Resource Include="Library Pages\Romance2.jpg" />
   </ItemGroup>
 
 </Project>

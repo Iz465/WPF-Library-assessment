@@ -52,7 +52,11 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void dramaImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-    
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+
+            DramaPG dramaPG= new DramaPG();
+            mainWindow.Content = dramaPG;
+
         }
 
         private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -77,7 +81,10 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void mysteryImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-        
+               MainWindow mainWindow= Application.Current.MainWindow as MainWindow;
+               MysteryPG mysteryPG= new MysteryPG();
+            mainWindow.Content= mysteryPG;
+             
         }
 
 

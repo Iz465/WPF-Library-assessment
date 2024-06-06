@@ -8,9 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="400">
     <UserControl.Resources>
         <Style TargetType="Border" x:Key="CardBorder">
-            <Setter Property="Background" Value="LightSalmon"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderBrush" Value="Crimson"/>
             <Setter Property="CornerRadius" Value="5"/>
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Margin" Value="10"/>
@@ -21,7 +28,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightBlue"/>
+                    <Setter Property="Background" Value="#80FFFFFF"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
