@@ -18,7 +18,9 @@ using WPF_Library_assessment.User_Control_Stuff;
 
 namespace WPF_Library_assessment.Window_stuff
 {
-  
+    /// <summary>
+    /// Interaction logic for signInWn.xaml.cs
+    /// </summary>
     public partial class signInWn : Window
     {
         public signInWn()
@@ -26,60 +28,59 @@ namespace WPF_Library_assessment.Window_stuff
             InitializeComponent();
         }
 
-
-        private void submitBtn_Click(object sender, RoutedEventArgs e)
+        private void textemail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-           
-            
-                textboxUC usernameTextBox = UserName as textboxUC;
-                textboxUC passwordTextBox = Password as textboxUC;
-                string username = usernameTextBox.Text;
-                string password = passwordTextBox.Text;
-
-                MongoData mongoData = new MongoData();
-                List<Members> members = mongoData.Connect<Members>("Members");
-                List<Admin> admin = mongoData.Connect<Admin>("Administrator");
-
-
-                bool muCheck = checkInfo(username, "Username", members);
-                bool mpCheck = checkInfo(password, "Password", members);
-                bool auCheck = checkInfo(username, "Username", admin);
-                bool apCheck = checkInfo(password, "Password", admin);
-
-                if ((muCheck && mpCheck) || (auCheck && apCheck))
-                {
-                    this.Close();
-
-                    MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                    if (mainWindow != null)
-                    {
-                        WelcomePG welcomePG = new WelcomePG();
-                        mainWindow.Content = welcomePG;
-                    }
-
-                
-                else
-                {
-                    MessageBox.Show("Incorrect Login Details");
-                }
-
-            }
-           
-            }
-        
-
-
-        private bool checkInfo<T>(string info, string type, List<T> items)
-        {
-            var property = typeof(T).GetProperty(type);
-            return items.Any(item => property.GetValue(item)?.ToString() == info);
+            mytextemail.Focus();
         }
 
-
-     
-
-      
+        private void mytextemail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(mytextemail.Text) && mytextemail.Text.Length > 0)
+            {
+                mytextemail.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                mytextemail.Visibility = Visibility.Visible;
+            }
         }
 
-    
+        private void textpassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtpassword.Focus();
+        }
+
+        private void txtpassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtpassword.Password) && txtpassword.Password.Length > 0)
+            {
+                txtpassword.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                txtpassword.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(mytextemail.Text) && !string.IsNullOrEmpty(txtpassword.Password))
+            {
+                MessageBox.Show("Signed In successfully");
+            }
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+    }
 }

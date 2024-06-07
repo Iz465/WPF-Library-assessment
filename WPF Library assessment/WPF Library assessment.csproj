@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Images\**" />
-    <EmbeddedResource Remove="Images\**" />
-    <None Remove="Images\**" />
-    <Page Remove="Images\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Library Pages\Drama.jpg" />
     <None Remove="Library Pages\Fantasy.jpg" />
     <None Remove="Library Pages\History.jpg" />
