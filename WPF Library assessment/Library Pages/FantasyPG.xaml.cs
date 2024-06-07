@@ -46,7 +46,16 @@ namespace WPF_Library_assessment.Library_Pages
                 bookcardUC.test(book.ImageSource);
                 bookcardUC.Width = 200;
                 bookcardUC.Height = 350;
+                if (book.Available == "No")
+                {
+
+                    bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                  //  book. = new SolidColorBrush(Colors.White);
+                  bookcardUC.Foreground = new SolidColorBrush(Colors.White);
+
+                }
                 bookcardUC.DataContext = book;
+               
                 Grid.SetRow(bookcardUC, rowNum);
                 Grid.SetColumn(bookcardUC, num);
 
@@ -71,7 +80,13 @@ namespace WPF_Library_assessment.Library_Pages
 
         }
 
-        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
+        internal void horrorPGBtn()
+        {
+            throw new NotImplementedException();
+        }
+
+       
+        private void fantasyPGBtn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             WelcomePG welcomePG = new WelcomePG();

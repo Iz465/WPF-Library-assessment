@@ -35,7 +35,7 @@
     </UserControl.Resources>
 
     <Grid Margin="10">
-        <Border Style="{StaticResource CardBorder}" MouseDown="Border_MouseLeftButtonDown">
+        <Border x:Name="BorderName" Style="{StaticResource CardBorder}" MouseDown="Border_MouseLeftButtonDown">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
@@ -53,6 +53,18 @@
                 <TextBlock Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="43,0,0,0"/>
                 <TextBlock Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
                 <TextBlock Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="58,0,0,0"/>
+               
+                <TextBlock x:Name="TimerTextBlock"
+                           Height="200"
+                           Width="400"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   FontSize="50"
+                   Foreground="White"
+                   Background="Black"
+                   Padding="5"
+                           Visibility="Collapsed"
+                    />
             </Grid>
         </Border>
     </Grid>

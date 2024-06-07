@@ -4,11 +4,52 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
+       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HorrorPG">
+    <Page.Resources>
+        <Style TargetType="Grid" x:Key="GridStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#154734" Offset="0"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#154734" Offset="0"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Style="{StaticResource GridStyle}" x:Name="horrorGrid">
 
-    <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="auto"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <UserControl:headerUC Grid.ColumnSpan="7"/>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Horror" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+        <Button x:Name="horrorPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="horrorPGBtn_Click" />
+
     </Grid>
 </Page>

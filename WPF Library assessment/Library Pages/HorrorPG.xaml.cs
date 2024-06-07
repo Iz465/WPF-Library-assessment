@@ -12,17 +12,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.User_Control_Stuff;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for HorrorPG.xaml
-    /// </summary>
+
     public partial class HorrorPG : Page
     {
         public HorrorPG()
         {
             InitializeComponent();
+
+            MongoData mongoData = new MongoData();
+            List<Books> horror = mongoData.Connect<Books>("Horror");
+            List<bookCardUC> cardList;
+            int columnNum = 0;
+            int rowNum = 2;
+            FantasyPG fantasyPG = new FantasyPG();
+            fantasyPG.addInfo(horror, columnNum, rowNum, horrorGrid);
+
         }
+
+        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            WelcomePG welcomePG = new WelcomePG();
+            mainWindow.Content = welcomePG;
+        }
+
+       
     }
+
 }
