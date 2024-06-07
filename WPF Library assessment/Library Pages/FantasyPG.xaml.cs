@@ -73,7 +73,7 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             WelcomePG welcomePG = new WelcomePG();
             mainWindow.Content = welcomePG;
         }
