@@ -26,84 +26,59 @@ namespace WPF_Library_assessment.Library_Pages
 
             MongoData mongoData = new MongoData();
             List<Books> horror = mongoData.Connect<Books>("Horror");
-            List<bookCardUC> cardList;
             int columnNum = 0;
             int rowNum = 2;
-            addInfo(horror, columnNum, rowNum);
+            addInfo(horror, columnNum, rowNum, fantasyGrid);
 
 
         }
 
 
-        public void addInfo(List<Books> bookType, int num, int rowNum)
+        public void addInfo(List<Books> bookType, int num, int rowNum, Grid bookGrid)
         {
-            
+
 
             foreach (var book in bookType)
             {
-              
-              
+
                 bookCardUC bookcardUC = new bookCardUC();
-               
+
                 bookcardUC.test(book.ImageSource);
-                bookcardUC.Name = book.Name;
-                bookcardUC.Author = book.Author;
-                bookcardUC.Pages = book.Pages;
-                bookcardUC.Available = book.Available;
                 bookcardUC.Width = 200;
                 bookcardUC.Height = 350;
-                if (book.Available == "No")
-                {
-
-                    bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
-                  //  book. = new SolidColorBrush(Colors.White);
-                  bookcardUC.Foreground = new SolidColorBrush(Colors.White);
-
-                }
                 bookcardUC.DataContext = book;
-               
                 Grid.SetRow(bookcardUC, rowNum);
                 Grid.SetColumn(bookcardUC, num);
 
                 bookGrid.Children.Add(bookcardUC);
                 num++;
-               
+
                 if (num >= 7)
                 {
-                    num= 0;
+                    num = 0;
                     rowNum++;
-                    RowDefinition rowDefinition= new RowDefinition();
+                    RowDefinition rowDefinition = new RowDefinition();
                     rowDefinition.Height = GridLength.Auto;
                     bookGrid.RowDefinitions.Add(rowDefinition);
-                    
+
                 }
+
+
+
+
             }
-            
+
 
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-        internal void horrorPGBtn()
-        {
-            throw new NotImplementedException();
-        }
-
-       
-        private void fantasyPGBtn_Click(object sender, RoutedEventArgs e)
+        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             WelcomePG welcomePG = new WelcomePG();
             mainWindow.Content = welcomePG;
-=======
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
-=======
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
-=======
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
         }
- 
+    }
+
 
 
 }
@@ -121,23 +96,23 @@ namespace WPF_Library_assessment.Library_Pages
 
 
 
-    /* 
-       cardList = new List<bookCardUC> { card1, card2};
+/* 
+   cardList = new List<bookCardUC> { card1, card2};
 
-            try
+        try
+        {
+            for (int i = 0; i < cardList.Count; i++)
             {
-                for (int i = 0; i < cardList.Count; i++)
-                {
-                    bookCardUC bookcard = cardList[i % cardList.Count];
-                    bookcard.test(horror[i].ImageSource);
-                    bookcard.DataContext = horror[i];
-                }
+                bookCardUC bookcard = cardList[i % cardList.Count];
+                bookcard.test(horror[i].ImageSource);
+                bookcard.DataContext = horror[i];
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        
-     
-       
-     */
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+
+
+
+ */

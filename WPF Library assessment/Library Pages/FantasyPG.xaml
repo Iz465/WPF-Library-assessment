@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
-      xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
+       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="FantasyPG">
@@ -19,15 +19,24 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="Button" x:Key="ButtonStyle">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#154734" Offset="0"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
-    
-        <Grid Style="{StaticResource GridStyle}" x:Name="bookGrid">
-        
-            <Grid.RowDefinitions>
+
+    <Grid Style="{StaticResource GridStyle}" x:Name="fantasyGrid">
+        <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
-           
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -40,24 +49,7 @@
         </Grid.ColumnDefinitions>
         <UserControl:headerUC Grid.ColumnSpan="7"/>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Fantasy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <Button x:Name="fantasyPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="fantasyPGBtn_Click" />
+        <Button x:Name="horrorPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="horrorPGBtn_Click" />
 
-
-=======
-    
-       
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
-=======
-    
-       
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
-=======
-    
-       
->>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
     </Grid>
-    
 </Page>

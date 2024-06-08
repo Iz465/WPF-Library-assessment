@@ -59,25 +59,7 @@ namespace WPF_Library_assessment.Library_Pages
 
         }
 
-        private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-
-
-             
-                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                
-                    FantasyPG fantasyPG = new FantasyPG();
-                    mainWindow.Content = fantasyPG;
-                
-          
-        }
-
-        private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-               HorrorPG horrorPG = new HorrorPG();  
-               mainWindow.Content= horrorPG;
-        }
+     
 
         private void mysteryImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -87,6 +69,31 @@ namespace WPF_Library_assessment.Library_Pages
              
         }
 
+        private void historyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+        private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+           FantasyPG fantasyPG= new FantasyPG();
+            mainWindow.Content = fantasyPG;
+
+        }
+        private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            MysteryPG mysteryPG = new MysteryPG();
+            mainWindow.Content = mysteryPG;
+
+        }
+        private void romanceImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            MysteryPG mysteryPG = new MysteryPG();
+            mainWindow.Content = mysteryPG;
+
+        }
 
 
 
