@@ -57,12 +57,13 @@
                 <TextBlock x:Name="TimerTextBlock"
                            Height="200"
                            Width="400"
+                           TextAlignment="Center"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   FontSize="50"
+                   VerticalAlignment="Top"                 
+                   FontSize="30"
                    Foreground="White"
-                   Background="Black"
-                   Padding="5"
+                   Background="#90000000"
+                   Padding="0,70,0,0"
                            Visibility="Collapsed"
                     />
             </Grid>

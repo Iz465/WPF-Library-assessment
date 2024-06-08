@@ -95,6 +95,13 @@ namespace WPF_Library_assessment.Library_Pages
 
         }
 
+        private void InfoBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            LibraryInfo libraryInfo = new LibraryInfo();
+            mainWindow.Content = libraryInfo;
+        }
+
 
 
 

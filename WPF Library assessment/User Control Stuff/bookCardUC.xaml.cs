@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -110,34 +111,50 @@ namespace WPF_Library_assessment.User_Control_Stuff
                
                 var update = Builders<Books>.Update
                    .Set("Available", "No");
+            
 
                 collection.UpdateOne(filter, update);
 
                 
                 MessageBox.Show("Book has been ordered!");
-                StartTimer();
+                book.Available = "No";
+                border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+       
+                
+
+
+                StartTimer(sender);
             }
 
           
         }
-        private void StartTimer()
+        private void StartTimer(object sender)
         {
+            var border = sender as Border;
             TimeSpan time = TimeSpan.FromSeconds(5);
             TimerTextBlock.Visibility = Visibility.Visible;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
+           
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
                 {
                     timer.Stop();
-                   
+
+                    TimerTextBlock.Visibility = Visibility.Collapsed;
+               //     border.Background = new LinearGradientBrush(new GradientStopCollection { new GradientStop(Colors.Black, 0), new GradientStop(Colors.DarkSeaGreen, 1) });
+     
+
+
                 }
                 else
                 {
+
                     time = time.Add(TimeSpan.FromSeconds(-1));
-                    TimerTextBlock.Text = time.ToString(@"ss");
+                  
+                    TimerTextBlock.Text = time.ToString();
                 }
             };
             timer.Start();

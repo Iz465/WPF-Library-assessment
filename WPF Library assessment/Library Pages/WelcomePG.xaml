@@ -26,9 +26,11 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition/>
+            
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <UserControl:headerUC/>
+        <Button x:Name="InfoBtn" Grid.Row="1" Width="100" Height="50" HorizontalAlignment="Left" Margin="125,0,0,0" Content="Book Info" Background="Beige" Click="InfoBtn_Click"/>
         <TextBlock Grid.Row="1" Text="Welcome to the library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
         <Grid Grid.Row="2" x:Name="Grid">
             <Grid.ColumnDefinitions>
@@ -39,7 +41,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
-            </Grid.RowDefinitions> 
+            </Grid.RowDefinitions>
+         
             <UserControl:genreCard TitleGenre="Drama" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="0" Grid.Row="0" Margin="0,10,5,0" MouseLeftButtonDown="dramaImage_MouseLeftButtonDown"/>
             <UserControl:genreCard TitleGenre="Fantasy" Height="400" Width="400" ImageGenre="Fantasy.jpg" Grid.Column="1" Grid.Row="0"  Margin="5,10,0,0" MouseLeftButtonDown="fantasyImage_MouseLeftButtonDown"/>
             <UserControl:genreCard TitleGenre="Horror" Height="400" Width="400" ImageGenre="Horror.jpg" Grid.Column="0" Grid.Row="1"  Margin="0,10,5,0" MouseLeftButtonDown="horrorImage_MouseLeftButtonDown"/>
