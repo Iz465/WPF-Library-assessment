@@ -83,8 +83,8 @@ namespace WPF_Library_assessment.Library_Pages
         private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            MysteryPG mysteryPG = new MysteryPG();
-            mainWindow.Content = mysteryPG;
+          horrorPG horrorPG= new horrorPG();
+            mainWindow.Content = horrorPG;
 
         }
         private void romanceImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
