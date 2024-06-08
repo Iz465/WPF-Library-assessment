@@ -19,25 +19,15 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="Button" x:Key="ButtonStyle">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#154734" Offset="0"/>
-                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Page.Resources>
-
-    <Grid Style="{StaticResource GridStyle}" x:Name="fantasyGrid">
-
-        <Grid.RowDefinitions>
+    
+        <Grid Style="{StaticResource GridStyle}" x:Name="bookGrid">
+        
+            <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="auto"/>
-
+           
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -50,9 +40,24 @@
         </Grid.ColumnDefinitions>
         <UserControl:headerUC Grid.ColumnSpan="7"/>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Fantasy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
         <Button x:Name="fantasyPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="fantasyPGBtn_Click" />
 
 
+=======
+    
+       
+>>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
+=======
+    
+       
+>>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
+=======
+    
+       
+>>>>>>> parent of e9478ce (Merge branch 'master' of https://github.com/Iz465/WPF-Library-assessment)
     </Grid>
-
+    
 </Page>
