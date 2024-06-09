@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,15 +27,17 @@ namespace WPF_Library_assessment.Library_Pages
 
             MongoData mongoData = new MongoData();
             List<Books> horror = mongoData.Connect<Books>("Horror");
+            var database = mongoData.GetMongoDatabase();
+            IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
             int columnNum = 0;
             int rowNum = 2;
-            addInfo(horror, columnNum, rowNum, fantasyGrid);
+            addInfo(horror, columnNum, rowNum, fantasyGrid, collection);
 
 
         }
 
 
-        public void addInfo(List<Books> bookType, int num, int rowNum, Grid bookGrid)
+        public void addInfo(List<Books> bookType, int num, int rowNum, Grid bookGrid, IMongoCollection<Books> collection)
         {
 
 
@@ -42,16 +45,19 @@ namespace WPF_Library_assessment.Library_Pages
             {
 
                 bookCardUC bookcardUC = new bookCardUC();
-
+                
                 bookcardUC.test(book.ImageSource);
                 bookcardUC.Width = 200;
                 bookcardUC.Height = 350;
                 if (book.Available == "No")
                 {
 
+                    //  bookcardUC.Border_MouseLeftButtonDown(sender, e);
+                    
                     bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
-                    //  book. = new SolidColorBrush(Colors.White);
-                    bookcardUC.Foreground = new SolidColorBrush(Colors.White);
+                    bookcardUC.StartTimer(book.Time,book.Genre,book, collection);
+                  
+                 //   bookcardUC.Foreground = new SolidColorBrush(Colors.White);
 
                 }
                 bookcardUC.DataContext = book;

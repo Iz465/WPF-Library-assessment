@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -91,7 +92,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
 
 
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
 
@@ -113,30 +114,38 @@ namespace WPF_Library_assessment.User_Control_Stuff
                    .Set("Available", "No");
             
 
-                collection.UpdateOne(filter, update);
-
-                
+                collection.UpdateOne(filter, update);        
                 MessageBox.Show("Book has been ordered!");
-                book.Available = "No";
+           //     book.Available = "No";
                 border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
-       
-                
 
 
-                StartTimer(sender);
+                int timeLeft = book.Time;
+                string name = book.Genre;
+          
+                StartTimer(timeLeft, name, book, collection);
             }
 
           
         }
-        private void StartTimer(object sender)
+        public void StartTimer(int timeLeft, string collectionName, Books book, IMongoCollection<Books> collection)
         {
-            var border = sender as Border;
-            TimeSpan time = TimeSpan.FromSeconds(5);
+
+      
+            
+          
+           // var border = sender as Border;
+
+            TimeSpan time = TimeSpan.FromSeconds(timeLeft);
             TimerTextBlock.Visibility = Visibility.Visible;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-           
+       //    bookCardUC bookCard = new bookCardUC();
+       //     bookCard.BorderName.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
+
+        
+
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
@@ -144,8 +153,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
                     timer.Stop();
 
                     TimerTextBlock.Visibility = Visibility.Collapsed;
-               //     border.Background = new LinearGradientBrush(new GradientStopCollection { new GradientStop(Colors.Black, 0), new GradientStop(Colors.DarkSeaGreen, 1) });
-     
+                    //  border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                    var filter = Builders<Books>.Filter.Eq("_id", book.Id);
+                    var update = Builders<Books>.Update
+                        .Set("Overdue", "Yes");
+                      collection.UpdateOne(filter, update);
+
+
 
 
                 }
@@ -153,10 +167,12 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 {
 
                     time = time.Add(TimeSpan.FromSeconds(-1));
-                  
+                    var filter = Builders<Books>.Filter.Eq("_id", book.Id);
+                    var update = Builders<Books>.Update.Set("Time", time.TotalSeconds);
+                    collection.UpdateOne(filter, update);
                     TimerTextBlock.Text = time.ToString();
                 }
-            };
+                };
             timer.Start();
         }
      

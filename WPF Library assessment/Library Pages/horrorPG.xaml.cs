@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,11 +27,12 @@ namespace WPF_Library_assessment.Library_Pages
 
             MongoData mongoData = new MongoData();
             List<Books> horror = mongoData.Connect<Books>("Horror");
-            List<bookCardUC> cardList;
+            var database = mongoData.GetMongoDatabase();
+            IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
             int columnNum = 0;
             int rowNum = 2;
             FantasyPG fantasyPG = new FantasyPG();
-            fantasyPG.addInfo(horror, columnNum, rowNum, horrorGrid);
+            fantasyPG.addInfo(horror, columnNum, rowNum, horrorGrid, collection);
 
         }
 

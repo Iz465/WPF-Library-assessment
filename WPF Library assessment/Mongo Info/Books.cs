@@ -32,14 +32,26 @@ namespace WPF_Library_assessment.Mongo_Info
         [BsonElement("Available")]
         public string Available { get; set; }
 
+        [BsonElement("Overdue")]
+        public string Overdue { get; set; }
+
+        [BsonElement("Time")]
+        public int Time { get; set; }
+
+        [BsonElement("Genre")]
+        public string Genre { get; set; }
+
         Books() { }
-        Books(string name, string author, int pages, string imageSource, string available) {
+        Books(string name, string author, int pages, string imageSource, string available, string overdue, int time, string genre) {
             Name = name;
             Author = author;
             Pages = pages;
             Author = author;
             ImageSource = imageSource;
             Available = available;
+            Overdue = overdue;
+            Time = time;
+            Genre = genre;
         }
 
     }
