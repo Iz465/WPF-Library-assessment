@@ -1,14 +1,6 @@
-﻿using Amazon.Runtime.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -25,9 +17,21 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
         }
 
-   
 
-       // <Button x:Name="MemberInfoBtn" Grid.Row="2" Content="Member Info" Click="MemberInfoBtn_Click" Height="100" Width="120" />
-       //  <Button x:Name="BookInfoBtn" Grid.Row="2" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" Height="100" Width="120" />
+        private void MemberInfo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MemberInfoWN memberInfo = new MemberInfoWN();
+            memberInfo.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            memberInfo.WindowStyle = WindowStyle.None;
+            memberInfo.Show();
+        }
+
+        private void BookInfo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            BookInfoWN bookInfoWN = new BookInfoWN();
+            bookInfoWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            bookInfoWN.WindowStyle = WindowStyle.None;
+            bookInfoWN.Show();
+        }
     }
 }

@@ -24,8 +24,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <UserControl:genreCard TitleGenre="Member Info" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="0" Grid.Row="2" Margin="0,10,5,0"/>
-            <UserControl:genreCard TitleGenre="Book Info" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="1" Grid.Row="2" Margin="0,10,5,0"/>
+            <UserControl:genreCard TitleGenre="Member Info" x:Name="MemberInfo" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="0" Grid.Row="2" Margin="0,10,5,0" MouseLeftButtonDown="MemberInfo_MouseLeftButtonDown"/>
+            <UserControl:genreCard TitleGenre="Book Info" x:Name="BookInfo" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="1" Grid.Row="2" Margin="0,10,5,0" MouseLeftButtonDown="BookInfo_MouseLeftButtonDown"/>
         </Grid>
     
            
