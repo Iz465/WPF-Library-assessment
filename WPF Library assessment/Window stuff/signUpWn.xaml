@@ -6,32 +6,113 @@
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
         xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
         mc:Ignorable="d"
-        Title="signUpWn" Height="450" Width="800">
+        Title="signUpWn" Height="750" Width="800">
+    <Window.Resources>
+        <Style x:Key="titleText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="LightGreen"/>
+        </Style>
+        
+
+        <Style x:Key="normalText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="LineHeight" Value="28"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+        </Style>
+
+        <Style x:Key="mybutton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="170"/>
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="Foreground" Value="DarkSeaGreen"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="White" Padding="15">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#e8e8e8"/>
+                    <Setter Property="Foreground" Value="DimGray"/>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Foreground" Value="DimGray"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="textbox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#ffffff"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+        </Style>
+
+        <Style x:Key="passwordBox" TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#ffffff"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="10 0 0 0"/>
+        </Style>
+
+        <Style x:Key="statusText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="LightGreen"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20"/>
+        </Style>
+    </Window.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid>
+        <Grid Background="DarkSlateGray">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Name="closeSignUpBtn" Content="X" Width="50" Height="55" FontSize="40" HorizontalAlignment="Right" Margin="0,0,20,0" Click="closeSignUpBtn_Click" Background="Transparent" BorderThickness="0"/>
-            <UserControl:textboxUC Grid.Row="1" Width="200" Height="40" PlaceHolder="First Name"/>
-            <UserControl:textboxUC Grid.Row="2" Width="200" Height="40" PlaceHolder="Last Name"/>
-            <UserControl:textboxUC Grid.Row="3" Width="200" Height="40" PlaceHolder="Age"/>
-            <UserControl:textboxUC Grid.Row="4" Width="200" Height="40" PlaceHolder="Phone Number"/>
-            <UserControl:textboxUC Grid.Row="5" Width="200" Height="40" PlaceHolder="Address"/>
-            <UserControl:textboxUC Grid.Row="6" Width="200" Height="40" PlaceHolder="Username"/>
-            <UserControl:textboxUC Grid.Row="7" Width="200" Height="40" PlaceHolder="Password"/>
-            <UserControl:textboxUC Grid.Row="8" Width="200" Height="40" PlaceHolder="Reconfirm Password"/>
-            <Button Grid.Row="9" Name="submitBtn" Width="200" Height="40" Content="Submit" Click="submitBtn_Click"/>
+
+            <StackPanel Grid.Row="0" Margin="20">
+                <TextBlock Text="Library Sign-Up" Style="{StaticResource titleText}" Margin="0,0,0,20" />
+
+                <TextBlock Text="First Name:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="FirstNameTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Last Name:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="LastNameTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Age:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="AgeTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Phone Number:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="PhoneNumberTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Address:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="AddressTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Email:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <TextBox Name="EmailTextBox" Width="300" Style="{StaticResource textbox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Password:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <PasswordBox Name="PasswordBox" Width="300" Style="{StaticResource passwordBox}" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Confirm Password:" Style="{StaticResource normalText}" Margin="0,0,0,5"/>
+                <PasswordBox Name="ConfirmPasswordBox" Width="300" Style="{StaticResource passwordBox}" Margin="0,0,0,20"/>
+
+                <Button Content="Sign Up" Style="{StaticResource mybutton}" HorizontalAlignment="Center" Click="SignUpButton_Click"/>
+            </StackPanel>
+
+            <TextBlock Name="StatusTextBlock" Grid.Row="1" Style="{StaticResource statusText}"/>
         </Grid>
     </ScrollViewer>
 </Window>
