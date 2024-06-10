@@ -11,7 +11,11 @@
   <ItemGroup>
     <None Remove="FontStyles\De Valencia %28beta%29.otf" />
     <None Remove="FontStyles\De Valencia .txt" />
+    <None Remove="FontStyles\LibreBaskerville-Bold.ttf" />
+    <None Remove="FontStyles\LibreBaskerville-Italic.ttf" />
+    <None Remove="FontStyles\LibreBaskerville-Regular.ttf" />
     <None Remove="FontStyles\norwester.otf" />
+    <None Remove="FontStyles\OFL.txt" />
     <None Remove="images\close.png" />
     <None Remove="images\emaillogo.png" />
     <None Remove="images\flogo.png" />
@@ -28,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <DesignDataWithDesignTimeCreatableTypes Include="FontStyles\LibreBaskerville-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.25.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.25.0" />
   </ItemGroup>
@@ -35,7 +43,10 @@
   <ItemGroup>
     <Resource Include="FontStyles\De Valencia (beta).otf" />
     <Resource Include="FontStyles\De Valencia .txt" />
+    <Resource Include="FontStyles\LibreBaskerville-Bold.ttf" />
+    <Resource Include="FontStyles\LibreBaskerville-Italic.ttf" />
     <Resource Include="FontStyles\norwester.otf" />
+    <Resource Include="FontStyles\OFL.txt" />
     <Resource Include="images\close.png" />
     <Resource Include="images\emaillogo.png" />
     <Resource Include="images\flogo.png" />
