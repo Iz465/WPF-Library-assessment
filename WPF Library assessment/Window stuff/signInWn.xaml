@@ -121,38 +121,7 @@
 
 
 
-        <Style x:Key="mainbutton" TargetType="Button">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Width" Value="200"/>
-            <Setter Property="Margin" Value="0 20 0 0"/>
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="25" BorderThickness="1" BorderBrush="white" Padding="15">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-
-                    </ControlTemplate>
-
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="DarkRed"/>
-                </Trigger>
-                <Trigger Property="IsMouseCaptured" Value="True">
-                    <Setter Property="Background" Value="Black"/>
-                    <Setter Property="Foreground" Value="DarkRed"/>
-                </Trigger>
-
-
-            </Style.Triggers>
-        </Style>
+       
 
         <Style x:Key="imgclose" TargetType="Image">
 

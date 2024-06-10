@@ -1,35 +1,35 @@
-﻿<Page x:Class="WPF_Library_assessment.Library_Pages.LibraryInfo"
+﻿<Page Style="{StaticResource NorwesterFont}" x:Class="WPF_Library_assessment.Library_Pages.LibraryInfo"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
+      xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LibraryInfo">
 
     <Grid Style="{StaticResource GridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="1" Width="200" Height="50" Text="Member and Book Information" TextAlignment="Center"/>
+        <UserControl:headerUC/>
+        <TextBlock Grid.Row="1" Text="Library Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Button x:Name="MemberInfoBtn" Content="Member Info" Click="MemberInfoBtn_Click" Height="100" Width="120" />
-            <Button x:Name="BookInfoBtn" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" Height="100" Width="120" />
-            <Button x:Name="ModifyBooksBtn" Grid.Row="1" Content="Modify Book List" Click="ModifyBooksBtn_Click" Height="100" Width="120"/>
-            <Button x:Name="ModifyMembersBtn" Grid.Row="1" Grid.Column="1" Content="Modify Member List" Click="ModifyMembersBtn_Click" Height="100" Width="120"/>
+            <UserControl:genreCard TitleGenre="Member Info" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="0" Grid.Row="2" Margin="0,10,5,0"/>
+            <UserControl:genreCard TitleGenre="Book Info" Height="400" Width="400" ImageGenre="Drama.jpg" Grid.Column="1" Grid.Row="2" Margin="0,10,5,0"/>
         </Grid>
+    
+           
+        
 
     </Grid>
 </Page>

@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FontStyles\De Valencia %28beta%29.otf" />
+    <None Remove="FontStyles\De Valencia .txt" />
+    <None Remove="FontStyles\norwester.otf" />
     <None Remove="images\close.png" />
     <None Remove="images\emaillogo.png" />
     <None Remove="images\flogo.png" />
@@ -30,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="FontStyles\De Valencia (beta).otf" />
+    <Resource Include="FontStyles\De Valencia .txt" />
+    <Resource Include="FontStyles\norwester.otf" />
     <Resource Include="images\close.png" />
     <Resource Include="images\emaillogo.png" />
     <Resource Include="images\flogo.png" />

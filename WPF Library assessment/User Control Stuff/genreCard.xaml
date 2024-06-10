@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPF_Library_assessment.User_Control_Stuff.genreCard"
+﻿<UserControl Style="{StaticResource DeValeFontUC}" x:Class="WPF_Library_assessment.User_Control_Stuff.genreCard"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,8 +11,8 @@
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#154734" Offset="0"/>
-                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
+                        <GradientStop Color="DarkSeaGreen" Offset="0"/>
+                        <GradientStop Color="black" Offset="1"/>
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
@@ -38,7 +38,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding TitleGenre}" FontSize="40" FontWeight="Bold" FontFamily="Arial" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+            <TextBlock Text="{Binding TitleGenre}"  FontWeight="UltraBold"  FontSize="40" HorizontalAlignment="Center" Margin="0,0,0,10"/>
             <Image Grid.Row="1" Source="{Binding ImageGenre}" Height="300" HorizontalAlignment="Center" Stretch="UniformToFill"/>
           
         </Grid>

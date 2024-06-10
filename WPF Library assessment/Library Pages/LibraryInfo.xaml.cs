@@ -17,9 +17,7 @@ using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for LibraryInfo.xaml
-    /// </summary>
+
     public partial class LibraryInfo : Page
     {
         public LibraryInfo()
@@ -27,29 +25,9 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
         }
 
-        private void MemberInfoBtn_Click(object sender, RoutedEventArgs e)
-        {
+   
 
-        }
-
-        private void BookInfoBtn_Click(object sender, RoutedEventArgs e)
-        {
-            BookInfoWN bookInfoWN= new BookInfoWN();
-            bookInfoWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            bookInfoWN.WindowStyle = WindowStyle.None;
-            bookInfoWN.Show();
-
-       
-        }
-
-        private void ModifyBooksBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ModifyMembersBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       // <Button x:Name="MemberInfoBtn" Grid.Row="2" Content="Member Info" Click="MemberInfoBtn_Click" Height="100" Width="120" />
+       //  <Button x:Name="BookInfoBtn" Grid.Row="2" Grid.Column="1" Content="Book Info" Click="BookInfoBtn_Click" Height="100" Width="120" />
     }
 }
