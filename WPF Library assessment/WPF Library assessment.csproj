@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="images\close.png" />
+    <None Remove="images\emaillogo.png" />
+    <None Remove="images\flogo.png" />
+    <None Remove="images\instalogo.png" />
+    <None Remove="images\lilogo.png" />
+    <None Remove="images\passswordlogo.png" />
     <None Remove="Library Pages\Drama.jpg" />
     <None Remove="Library Pages\Fantasy.jpg" />
     <None Remove="Library Pages\History.jpg" />
@@ -24,6 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\close.png" />
+    <Resource Include="images\emaillogo.png" />
+    <Resource Include="images\flogo.png" />
+    <Resource Include="images\instalogo.png" />
+    <Resource Include="images\lilogo.png" />
+    <Resource Include="images\passswordlogo.png" />
     <Resource Include="Library Pages\Drama.jpg" />
     <Resource Include="Library Pages\Fantasy.jpg" />
     <Resource Include="Library Pages\History.jpg" />
