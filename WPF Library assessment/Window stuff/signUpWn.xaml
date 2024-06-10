@@ -14,6 +14,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="LightGreen"/>
         </Style>
+        
 
         <Style x:Key="normalText" TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
