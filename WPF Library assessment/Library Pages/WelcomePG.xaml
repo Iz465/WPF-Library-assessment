@@ -8,18 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="WelcomePG">
-    <Page.Resources>
-        <Style TargetType="Grid" x:Key="GridStyle">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#154734" Offset="0"/>
-                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
+   
     <Grid Style="{StaticResource GridStyle}">
         
         <Grid.RowDefinitions>
