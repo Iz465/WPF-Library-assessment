@@ -11,17 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Mongo_Info;
 
 namespace WPF_Library_assessment.Window_stuff
 {
     /// <summary>
     /// Interaction logic for MemberInfoWN.xaml
     /// </summary>
-    public partial class MemberInfoWN : Window
+    public partial class WPF_Library_assessment : UserControl
     {
-        public MemberInfoWN()
+        private readonly MongoData mongoData;
+        private MemberInfoWN _selectedMember;
+
+
+        public WPF_Library_assessment()
         {
-            InitializeComponent();
+            
         }
+
     }
 }
