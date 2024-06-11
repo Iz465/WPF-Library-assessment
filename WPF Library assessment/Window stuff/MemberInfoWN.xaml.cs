@@ -67,6 +67,11 @@ namespace WPF_Library_assessment.Window_stuff
             }
         }
 
+        private void AddMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void ClearTextBoxes()
         {
             

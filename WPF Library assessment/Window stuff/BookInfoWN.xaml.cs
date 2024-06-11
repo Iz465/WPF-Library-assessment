@@ -165,7 +165,7 @@ namespace WPF_Library_assessment.Window_stuff
                 string pages = tagData.Item5;
                 string available = tagData.Item6;
                 UpdateWN updateWN = new UpdateWN();
-                    updateWN.changeBook(collectionName, bookId, name, author, pages, available);
+       //         updateWN.changeBook(collectionName, bookId, name, author, pages, available);
 
                 updateWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 updateWN.WindowStyle = WindowStyle.None;

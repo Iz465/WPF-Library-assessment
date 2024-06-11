@@ -1,0 +1,20 @@
+﻿<Page Style="{StaticResource NorwesterFont}"  x:Class="WPF_Library_assessment.BookPG"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_Library_assessment"
+         xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BookPG">
+    <Grid Style="{StaticResource GridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <UserControl:headerUC/>
+        <TextBlock Grid.Row="1" Text="Member Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+    </Grid>
+</Page>

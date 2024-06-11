@@ -16,12 +16,12 @@ namespace WPF_Library_assessment.Library_Pages
     {
         public WelcomePG()
         {
-              
-        InitializeComponent();
+
+            InitializeComponent();
 
 
             // Set the ImageSource to an image path or resource.
-     
+
 
             //MongoData mongoData = new MongoData();
             //List<Books> horror = mongoData.Connect<Books>("Horror");
@@ -54,19 +54,19 @@ namespace WPF_Library_assessment.Library_Pages
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
 
-            DramaPG dramaPG= new DramaPG();
+            DramaPG dramaPG = new DramaPG();
             mainWindow.Content = dramaPG;
 
         }
 
-     
+
 
         private void mysteryImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-               MainWindow mainWindow= Application.Current.MainWindow as MainWindow;
-               MysteryPG mysteryPG= new MysteryPG();
-            mainWindow.Content= mysteryPG;
-             
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            MysteryPG mysteryPG = new MysteryPG();
+            mainWindow.Content = mysteryPG;
+
         }
 
         private void historyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -76,14 +76,14 @@ namespace WPF_Library_assessment.Library_Pages
         private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-           FantasyPG fantasyPG= new FantasyPG();
+            FantasyPG fantasyPG = new FantasyPG();
             mainWindow.Content = fantasyPG;
 
         }
         private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-          horrorPG horrorPG= new horrorPG();
+            horrorPG horrorPG = new horrorPG();
             mainWindow.Content = horrorPG;
 
         }
@@ -95,40 +95,34 @@ namespace WPF_Library_assessment.Library_Pages
 
         }
 
-        private void InfoBtn_Click(object sender, RoutedEventArgs e)
+
+
+        private void libraryImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
             {
                 MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                LibraryInfo libraryInfo = new LibraryInfo();
-                mainWindow.Content = libraryInfo;
+                BookPG bookPG = new BookPG();
+                mainWindow.Content = bookPG;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+         
+
+        }
+
+        private void memberImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            MemberPG memberPG = new MemberPG();
+            mainWindow.Content= memberPG;
         }
 
 
 
 
-
-
-
-
-        //  }
-
-
-        /*       <Button x:Name="MemberBtn" Grid.Row="2" Content="Member info" Width="100" Height="100" Click="MemberBtn_Click"/>
-              private void MemberBtn_Click(object sender, RoutedEventArgs e)
-              {
-
-                  MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                  if (mainWindow != null)
-                  {
-                      LibraryInfo libraryInfo = new LibraryInfo();
-                      mainWindow.Content = libraryInfo;
-                  }
-              } */
     }
+
 }
