@@ -102,7 +102,12 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
             MongoData mongoData = new MongoData();
             var database = mongoData.GetMongoDatabase();
+
             IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
+         //   IMongoCollection<Members> Membercollection = database.GetCollection<Members>("Members");
+         //   Members member = new Members();
+         //   MessageBox.Show(member.FirstName);
+
 
             var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
             var book = collection.Find(filter).FirstOrDefault();
@@ -128,6 +133,16 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
           
         }
+
+    
+           
+        
+
+
+        
+
+
+
         public void StartTimer(int timeLeft, string collectionName, Books book, IMongoCollection<Books> collection)
         {
 

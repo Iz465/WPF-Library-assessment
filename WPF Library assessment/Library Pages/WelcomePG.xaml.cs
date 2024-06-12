@@ -75,9 +75,17 @@ namespace WPF_Library_assessment.Library_Pages
         }
         private void fantasyImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            FantasyPG fantasyPG = new FantasyPG();
-            mainWindow.Content = fantasyPG;
+       
+            try
+            {
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                FantasyPG fantasyPG = new FantasyPG();
+                mainWindow.Content = fantasyPG;
+            }
+           catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
         private void horrorImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
