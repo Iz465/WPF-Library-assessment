@@ -44,11 +44,11 @@ namespace WPF_Library_assessment.Mongo_Info
         [BsonElement("Owner")]
         public string Owner { get; set; }
 
-     //   [BsonElement("Prebook Owner")]
-    //    public string PrebookOwner { get; set; }
+        [BsonElement("PreBookOwner")]
+        public string PreBookOwner { get; set; }
 
         Books() { }
-        Books(string name, string author, int pages, string imageSource, string available, string overdue, int time, string genre, string owner) {
+        Books(string name, string author, int pages, string imageSource, string available, string overdue, int time, string genre, string owner, string preBookOwner ) {
             Name = name;
             Author = author;
             Pages = pages;
@@ -59,7 +59,7 @@ namespace WPF_Library_assessment.Mongo_Info
             Time = time;
             Genre = genre;
             Owner = owner;
-         //   PrebookOwner = prebookOwner;
+            PreBookOwner = preBookOwner;
         }
 
     }

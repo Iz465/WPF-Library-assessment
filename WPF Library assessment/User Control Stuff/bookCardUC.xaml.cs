@@ -22,7 +22,9 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
 using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.Window_stuff;
 using YourNamespace;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
@@ -104,11 +106,18 @@ namespace WPF_Library_assessment.User_Control_Stuff
             var database = mongoData.GetMongoDatabase();
 
             IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
-         //   IMongoCollection<Members> Membercollection = database.GetCollection<Members>("Members");
-         //   Members member = new Members();
-         //   MessageBox.Show(member.FirstName);
+            var user = signInWn.SessionManager.CurrentUser;
+            
 
+            if (user is WPF_Library_assessment.Mongo_Info.Members member)
+            {
+                MessageBox.Show(member.LastName);
+            }
 
+            else if (user is WPF_Library_assessment.Mongo_Info.Admin admin)
+            {
+                MessageBox.Show(admin.LastName);
+            }
             var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
             var book = collection.Find(filter).FirstOrDefault();
 

@@ -49,7 +49,11 @@ namespace WPF_Library_assessment.Window_stuff
                  {
                      if ((muCheck && mpCheck) || (auCheck && apCheck))
                      {
-                         this.Close();
+
+                    SessionManager.CurrentUser = members.FirstOrDefault(m => m.Username == username && m.Password == password)
+                                        ?? (object)admin.FirstOrDefault(a => a.Username == username && a.Password == password);
+
+                    this.Close();
 
                          MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
                          if (mainWindow != null)
@@ -81,10 +85,15 @@ namespace WPF_Library_assessment.Window_stuff
                  return items.Any(item => property.GetValue(item)?.ToString() == info);
              }
 
+        public static class SessionManager
+        {
+            public static object CurrentUser { get; set; }
+        }
 
 
 
-             
+
+
     }
 
 

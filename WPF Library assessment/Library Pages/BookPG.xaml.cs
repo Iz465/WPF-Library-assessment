@@ -47,7 +47,7 @@ namespace WPF_Library_assessment.Library_Pages
                 row.Height = new GridLength(40);
                 InfoGrid.RowDefinitions.Add(row);
 
-
+                
 
                 TextBlock nameText = new TextBlock(); // makes a textblock with the name nameText
                 nameText.Text = book.Name;
