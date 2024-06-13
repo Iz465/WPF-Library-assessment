@@ -21,10 +21,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
+using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.Window_stuff;
 using YourNamespace;
 using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
+using static WPF_Library_assessment.Window_stuff.signInWn;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
@@ -96,49 +98,43 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
         public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-
-
-            var border = sender as Border;
-            var id = (border.DataContext as Books)?.Id.ToString();
-
-            MongoData mongoData = new MongoData();
-            var database = mongoData.GetMongoDatabase();
-
-            IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
             var user = signInWn.SessionManager.CurrentUser;
-            
 
-            if (user is WPF_Library_assessment.Mongo_Info.Members member)
+            if (user is WPF_Library_assessment.Window_stuff.Members members)
             {
-                MessageBox.Show(member.LastName);
-            }
+                var border = sender as Border;
+                var id = (border.DataContext as Books)?.Id.ToString();
 
-            else if (user is WPF_Library_assessment.Mongo_Info.Admin admin)
-            {
-                MessageBox.Show(admin.LastName);
-            }
-            var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
-            var book = collection.Find(filter).FirstOrDefault();
+                MongoData mongoData = new MongoData();
+                var database = mongoData.GetMongoDatabase();
 
-            if (book.Available == "Yes")
-            {
+                IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
+
                
-                var update = Builders<Books>.Update
-                   .Set("Available", "No");
-            
+                var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
+                var book = collection.Find(filter).FirstOrDefault();
 
-                collection.UpdateOne(filter, update);        
-                MessageBox.Show("Book has been ordered!");
-           //     book.Available = "No";
-                border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                if (book.Available == "Yes")
+                {
+
+                    var update = Builders<Books>.Update
+                       .Set("Available", "No")
+                       .Set("Owner", members.Username);
 
 
-                int timeLeft = book.Time;
-                string name = book.Genre;
-          
-                StartTimer(timeLeft, name, book, collection);
+                    collection.UpdateOne(filter, update);
+                    MessageBox.Show("Book has been ordered!");
+                    border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+
+
+                    int timeLeft = book.Time;
+                    string name = book.Genre;
+
+                    StartTimer(timeLeft, name, book, collection);
+                }
             }
+
+        
 
           
         }

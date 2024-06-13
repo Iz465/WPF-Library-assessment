@@ -45,34 +45,36 @@ namespace WPF_Library_assessment.Window_stuff
                  bool mpCheck = checkInfo(password, "Password", members);
                  bool auCheck = checkInfo(username, "Username", admin);
                  bool apCheck = checkInfo(password, "Password", admin);
-                 try
-                 {
-                     if ((muCheck && mpCheck) || (auCheck && apCheck))
-                     {
+            //   try
+            //   {
+            if ((muCheck && mpCheck) || (auCheck && apCheck))
+            {
 
-                    SessionManager.CurrentUser = members.FirstOrDefault(m => m.Username == username && m.Password == password)
-                                        ?? (object)admin.FirstOrDefault(a => a.Username == username && a.Password == password);
+                SessionManager.CurrentUser = members.FirstOrDefault(m => m.Username == username && m.Password == password);
+                      //?? (object)admin.FirstOrDefault(a => a.Username == username && a.Password == password);
+            
+       
+                this.Close();
 
-                    this.Close();
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                if (mainWindow != null)
+                {
+                    WelcomePG welcomePG = new WelcomePG();
+                    mainWindow.Content = welcomePG;
+                }
 
-                         MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-                         if (mainWindow != null)
-                         {
-                             WelcomePG welcomePG = new WelcomePG();
-                             mainWindow.Content = welcomePG;
-                         }
+            }
+          
+            else
+            {
+                MessageBox.Show("Incorrect Login Details");
+            }
 
-
-                         else
-                         {
-                             MessageBox.Show("Incorrect Login Details");
-                         }
-
-                     }
-                 }
-                 catch (Exception ex) {
-                 MessageBox.Show(ex.Message);
-                 }
+                     
+             //    }
+               //  catch (Exception ex) {
+              //   MessageBox.Show(ex.Message);
+              //   }
 
 
              }
