@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
+       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="DramaPG">
 
-    <Grid>
-        
+    <Grid Style="{StaticResource GridStyle}">
+        <ListBox x:Name="userListBox">
+            <ListBoxItem Content="User Info"/>
+            <ListBoxItem Content="Books ordered"/>
+        </ListBox>
     </Grid>
 </Page>

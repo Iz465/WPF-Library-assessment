@@ -12,17 +12,33 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
-    /// <summary>
-    /// Interaction logic for headerUC.xaml
-    /// </summary>
+
     public partial class headerUC : UserControl
     {
         public headerUC()
         {
             InitializeComponent();
+            var user = signInWn.SessionManager.CurrentUser;
+
+            if (user is WPF_Library_assessment.Window_stuff.Members members)
+            {
+                userName.Text = members.Username;
+            }
         }
+
+
+        private void userImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //     userListBox.Visibility= Visibility.Visible;
+            UsersBooks users = new UsersBooks();
+            users.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            users.WindowStyle = WindowStyle.None;
+            users.Show();
+        }
+
     }
 }

@@ -17,7 +17,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <UserControl:headerUC/>
-       
         <TextBlock Grid.Row="1" Text="Welcome to the library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
         <Grid Grid.Row="2" x:Name="Grid">
             <Grid.ColumnDefinitions>

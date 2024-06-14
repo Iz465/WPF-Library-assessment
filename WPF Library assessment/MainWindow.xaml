@@ -28,7 +28,7 @@
 
             <Button Style="{StaticResource mainbutton}" Name="signInBtn"  Content="Sign In" Click="signInBtn_Click" VerticalAlignment="Bottom" Margin="0,0,0,20" />
             <Button Style="{StaticResource mainbutton}" Name="signUpBtn" Grid.Row="1"  Content="Sign Up" Click="signUpBtn_Click" VerticalAlignment="Top" Margin="0,20,0,0" />
-            <Image Source="pack://application:,,,/images/userProfile.png" Height="50" Width="50" HorizontalAlignment="Left"/>
+
         </Grid>
 
         </Grid>

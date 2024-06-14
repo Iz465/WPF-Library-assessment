@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_Library_assessment.User_Control_Stuff
+namespace WPF_Library_assessment.Window_stuff
 {
     /// <summary>
-    /// Interaction logic for ProfileUC.xaml
+    /// Interaction logic for UsersInfo.xaml
     /// </summary>
-    public partial class ProfileUC : UserControl
+    public partial class UsersInfo : Window
     {
-        public ProfileUC()
+        public UsersInfo()
         {
             InitializeComponent();
-        }
-
-        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }
