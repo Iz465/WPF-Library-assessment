@@ -132,6 +132,12 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
                     StartTimer(timeLeft, name, book, collection);
                 }
+              else  if (book.Overdue == "No" && book.Available == "Yes")
+                {
+                   MessageBox.Show("Book is booked, you have now prebooked it");
+                }
+                
+
             }
 
         

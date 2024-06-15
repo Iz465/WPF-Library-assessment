@@ -23,7 +23,7 @@ namespace WPF_Library_assessment.Mongo_Info
         {
            var settings = MongoClientSettings.FromConnectionString(connectionUri);
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
-            var client = new MongoClient(settings);   // dont need to repeat
+            var client = new MongoClient(settings);   
             return client.GetDatabase("Library");
       
         }
