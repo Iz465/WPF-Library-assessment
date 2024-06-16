@@ -17,13 +17,14 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <UserControl:headerUC/>
+        <Button Style="{StaticResource ButtonStyle}" x:Name="backBtn" Grid.Row="1" Content="Back"  Height="50" Width="50" HorizontalAlignment="Left" Margin="50,0,0,0" Click="backBtn_Click"/>
         <TextBlock Grid.Row="1" Text="Welcome to the library" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-        <Grid Grid.Row="2" x:Name="Grid">
+        <Grid Grid.Row="2" x:Name="ImageGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+             
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -36,8 +37,7 @@
             <UserControl:genreCard TitleGenre="Mystery" Height="400" Width="400" ImageGenre="Mystery.jpg" Grid.Column="1" Grid.Row="1"  Margin="5,10,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
             <UserControl:genreCard TitleGenre="Romance" Height="400" Width="400" ImageGenre="Romance.jpg" Grid.Column="2" Grid.Row="0" Margin="0,10,5,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
             <UserControl:genreCard TitleGenre="History" Height="400" Width="400" ImageGenre="History.jpg" Grid.Column="2" Grid.Row="1"  Margin="5,10,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-            <UserControl:genreCard TitleGenre="Member Info" Height="400" Width="400" ImageGenre="Romance.jpg" Grid.Column="3" Grid.Row="0" Margin="0,10,5,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-            <UserControl:genreCard TitleGenre="Book Info" Height="400" Width="400" ImageGenre="History.jpg" Grid.Column="3" Grid.Row="1"  Margin="5,10,0,0" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+         
         </Grid>
     </Grid>
 </Page>

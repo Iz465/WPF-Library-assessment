@@ -51,8 +51,8 @@ namespace WPF_Library_assessment.Window_stuff
             if ((muCheck && mpCheck) || (auCheck && apCheck))
             {
 
-                SessionManager.CurrentUser = members.FirstOrDefault(m => m.Username == username && m.Password == password);
-                //?? (object)admin.FirstOrDefault(a => a.Username == username && a.Password == password);
+                SessionManager.CurrentUser = members.FirstOrDefault(m => m.Username == username && m.Password == password)
+                ?? (object)admin.FirstOrDefault(a => a.Username == username && a.Password == password);
 
                 overdueCheck();
                 this.Close();
@@ -60,8 +60,16 @@ namespace WPF_Library_assessment.Window_stuff
                 MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
                 if (mainWindow != null)
                 {
-                    WelcomePG welcomePG = new WelcomePG();
-                    mainWindow.Content = welcomePG;
+                    try
+                    {
+                        WelcomePG welcomePG = new WelcomePG();
+                        mainWindow.Content = welcomePG;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                  
                 }
 
             }

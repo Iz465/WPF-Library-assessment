@@ -22,10 +22,40 @@ namespace WPF_Library_assessment.Library_Pages
 
             InitializeComponent();
                              
+            var user = signInWn.SessionManager.CurrentUser;
+            if (user is WPF_Library_assessment.Mongo_Info.Admin admin )
+            {
+                ColumnDefinition columnDefinition = new ColumnDefinition();
+                ImageGrid.ColumnDefinitions.Add(columnDefinition);
+                ImageSource memberInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/Drama.jpg"));
+                ImageSource bookInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/History.jpg"));
+
+                adminPage("Member Info",0,3, memberInfoImage );
+                adminPage("Book Info", 1,3, bookInfoImage);
+            }
+
+  
         }
 
+       
 
 
+        private void adminPage(string name, int rowNum, int colNum, ImageSource image)
+        {
+    
+
+            genreCard genreCard = new genreCard();
+            genreCard.TitleGenre = name;
+            genreCard.Height = 400;
+            genreCard.Width = 400;
+            genreCard.Margin = new Thickness(0,10,5,0);
+            genreCard.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+
+            Grid.SetRow(genreCard, rowNum);
+            Grid.SetColumn(genreCard, colNum);
+            ImageGrid.Children.Add(genreCard);
+            genreCard.ImageGenre = image;
+        }
 
       
 
@@ -66,10 +96,10 @@ namespace WPF_Library_assessment.Library_Pages
                     case "romanceImage":
                         NavigateToPage(new RomancePG());
                         break;
-                    case "libraryImage":
+                    case "Book Info":
                         NavigateToPage(new BookPG());
                         break;
-                    case "memberImage":
+                    case "Member Info":
                         NavigateToPage(new MemberPG());
                         break;
                     default:
@@ -82,9 +112,16 @@ namespace WPF_Library_assessment.Library_Pages
              
         }
 
-
-
-
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+                MainWindow mainWindow = new MainWindow();
+                Application.Current.MainWindow = mainWindow;
+                mainWindow.Show();
+       
+                Window.GetWindow(this).Close();
+                    
+        }
     }
 
 }
