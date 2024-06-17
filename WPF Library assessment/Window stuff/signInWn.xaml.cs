@@ -113,14 +113,21 @@ namespace WPF_Library_assessment.Window_stuff
                 foreach (var book in bookGenres)
                 {
                     IMongoCollection<Books> collection = database.GetCollection<Books>(book);
-                    //                    var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
-                    var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
-                    var filter1 = Builders<Books>.Filter.Eq("Overdue", "Yes");
-                    var overdueBooks = collection.Find(filter).ToList();
+              
+                    var filter = Builders<Books>.Filter.Eq("Owner", members.Username); // looking for book owner
+                    var filter1 = Builders<Books>.Filter.Eq("Overdue", "Yes"); // looking for overdue books
+                    //need to combine above
+                    var filter2 = Builders<Books>.Filter.And(filter,filter1);
+
+                  
+                //    var combinedFilter = Builders<Books>.Filter.And(filter, filter1);
+
+                    var overdueBooks = collection.Find(filter2).ToList();
                     if (overdueBooks.Count > 0)
                     {
-                        MessageBox.Show($"Welcome {members.Username}. You have books overdue");
 
+                        MessageBox.Show($"Welcome {members.Username}. You have books overdue");
+                        MessageBox.Show(overdueBooks.Count.ToString());
                     }
                 }
             }

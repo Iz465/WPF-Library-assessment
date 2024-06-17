@@ -27,8 +27,8 @@ namespace WPF_Library_assessment.Library_Pages
             {
                 ColumnDefinition columnDefinition = new ColumnDefinition();
                 ImageGrid.ColumnDefinitions.Add(columnDefinition);
-                ImageSource memberInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/Drama.jpg"));
-                ImageSource bookInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/History.jpg"));
+                ImageSource memberInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/members-icon.jpg"));
+                ImageSource bookInfoImage = new BitmapImage(new Uri("pack://application:,,,/Library Pages/Books.jpg"));
 
                 adminPage("Member Info",0,3, memberInfoImage );
                 adminPage("Book Info", 1,3, bookInfoImage);

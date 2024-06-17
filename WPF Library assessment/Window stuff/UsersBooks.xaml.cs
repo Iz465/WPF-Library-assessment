@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.User_Control_Stuff;
+using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment.Window_stuff
 {
@@ -58,7 +60,6 @@ namespace WPF_Library_assessment.Window_stuff
                         RowDefinition newRow = new RowDefinition();
                         newRow.Height = new GridLength(40);
                         InfoGrid.RowDefinitions.Add(newRow);
-
                         TextBlock nameText = new TextBlock();
                         nameText.Text = book.Name;
                         nameText.FontSize = 16;
@@ -69,6 +70,7 @@ namespace WPF_Library_assessment.Window_stuff
                         Grid.SetRow(nameText, row);
                         InfoGrid.Children.Add(nameText);
                         row++;
+                     
                     }
 
                 }
@@ -78,7 +80,7 @@ namespace WPF_Library_assessment.Window_stuff
 
 
             }
-
+          
             return row;
         }
 
@@ -115,15 +117,29 @@ namespace WPF_Library_assessment.Window_stuff
 
                 foreach (var collectionName in collections)
                 {
+                    
                     IMongoCollection<Books> collection = dataBase.GetCollection<Books>(collectionName);
                     var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
                     var update = Builders<Books>.Update
                         .Set("Owner", string.Empty)
                         .Set("Overdue", "No")
-                        .Set("Available", "Yes")
+                        .Set("Available", "No")
                         .Set("Time", 300);
 
+                    var returnedBooks = collection.Find(filter).ToList(); // checks every book the member returned to see if it has a prebook in it below
                     collection.UpdateMany(filter, update);
+
+                    bookCardUC bookCardUC = new bookCardUC();
+
+                    foreach (var book in returnedBooks)
+                    {
+                  
+                        if (book.PreBookOwner != "")
+                        {
+                            bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
+                        }
+                    }
+
                 }
 
                 MessageBox.Show("Books returned.");
@@ -133,4 +149,8 @@ namespace WPF_Library_assessment.Window_stuff
 }
 
 
-  
+
+
+          
+
+       

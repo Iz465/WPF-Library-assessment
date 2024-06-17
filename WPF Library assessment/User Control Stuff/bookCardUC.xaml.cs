@@ -124,7 +124,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
                     collection.UpdateOne(filter, update);
                     MessageBox.Show("Book has been ordered!");
-                    border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                    border.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
 
 
                     int timeLeft = book.Time;
@@ -132,9 +132,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
                     StartTimer(timeLeft, name, book, collection);
                 }
-              else  if (book.Overdue == "No" && book.Available == "Yes")
+                 if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner) // && members.Username != book.Owner
                 {
                    MessageBox.Show("Book is booked, you have now prebooked it");
+                    var update = Builders<Books>.Update
+                        .Set("PreBookOwner", members.Username);
+                    collection.UpdateOne(filter,update);
+                    border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
                 }
                 
 
@@ -203,6 +207,26 @@ namespace WPF_Library_assessment.User_Control_Stuff
         }
      
 
+
+        public void prebookConvert(Books book, IMongoCollection<Books> collection, string collectionName, int time)
+        {
+            if (book.PreBookOwner != string.Empty)
+            {
+                var filter = Builders<Books>.Filter.Eq("_id", book.Id);
+                var update = Builders<Books>.Update
+                    .Set("Owner", book.PreBookOwner)
+                    .Set("PreBookOwner", string.Empty)
+                    .Set("Available", "No");
+                collection.UpdateOne(filter, update);
+           
+               
+                  
+             //       StartTimer(time, collectionName, book, collection);
+             
+            }
+
+
+        }
 
     }
 }

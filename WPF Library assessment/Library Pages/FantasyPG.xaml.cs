@@ -52,9 +52,13 @@ namespace WPF_Library_assessment.Library_Pages
                 if (book.Available == "No")
                 {
 
-                    //  bookcardUC.Border_MouseLeftButtonDown(sender, e);
-                    
                     bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                    if (book.PreBookOwner == string.Empty)
+                    {
+                        bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
+                    }
+                    
+     
                     bookcardUC.StartTimer(book.Time,book.Genre,book, collection);
                   
                  //   bookcardUC.Foreground = new SolidColorBrush(Colors.White);
