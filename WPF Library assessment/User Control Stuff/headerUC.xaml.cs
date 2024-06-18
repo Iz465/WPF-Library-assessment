@@ -35,9 +35,27 @@ namespace WPF_Library_assessment.User_Control_Stuff
         {
             //     userListBox.Visibility= Visibility.Visible;
             UsersBooks users = new UsersBooks();
-            users.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            users.WindowStyle = WindowStyle.None;
+            {
+                users.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                users.WindowStyle = WindowStyle.None;
+            };
             users.Show();
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            string query = searchBox.Text;
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                BookInfoWN bookInfoWindow = new BookInfoWN();
+                bookInfoWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                bookInfoWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please enter a search term.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
     }
