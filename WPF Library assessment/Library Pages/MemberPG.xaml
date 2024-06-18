@@ -9,37 +9,40 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MemberPG">
 
-    <Grid Style="{StaticResource GridStyle}">
+    <Grid x:Name="MemberGrid" Style="{StaticResource GridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <UserControl:headerUC/>
-        <TextBlock Grid.Row="1" Text="Member Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="1" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="2" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="3" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="4" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="5" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="6" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="7" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="8" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Column="9" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <UserControl:headerUC Grid.ColumnSpan="9"/>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="9" Text="Member Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="First Name" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Last Name" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Age" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Phone Number" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="4" Text="Address" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="Username" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="6" Text="Password" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="7" Text="Update" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+        <TextBlock Grid.Row="2" Grid.Column="8" Text="Delete" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
+
+
+
+
     </Grid>
-    
+
 </Page>

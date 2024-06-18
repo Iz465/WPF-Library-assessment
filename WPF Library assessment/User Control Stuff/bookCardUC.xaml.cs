@@ -130,7 +130,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                     int timeLeft = book.Time;
                     string name = book.Genre;
 
-                    StartTimer(timeLeft, name, book, collection);
+                    StartTimer(timeLeft, book, collection);
                 }
                  if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner) // && members.Username != book.Owner
                 {
@@ -149,16 +149,10 @@ namespace WPF_Library_assessment.User_Control_Stuff
           
         }
 
-    
-           
-        
-
-
-        
 
 
 
-        public void StartTimer(int timeLeft, string collectionName, Books book, IMongoCollection<Books> collection)
+        public void StartTimer(int timeLeft, Books book, IMongoCollection<Books> collection)
         {
 
       
@@ -181,7 +175,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 if (time == TimeSpan.Zero)
                 {
                     timer.Stop();
-
+                    MessageBox.Show("hi");
                     TimerTextBlock.Visibility = Visibility.Collapsed;
                     //  border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
                     var filter = Builders<Books>.Filter.Eq("_id", book.Id);
@@ -210,20 +204,19 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
         public void prebookConvert(Books book, IMongoCollection<Books> collection, string collectionName, int time)
         {
-            if (book.PreBookOwner != string.Empty)
-            {
+          
                 var filter = Builders<Books>.Filter.Eq("_id", book.Id);
-                var update = Builders<Books>.Update
-                    .Set("Owner", book.PreBookOwner)
-                    .Set("PreBookOwner", string.Empty)
-                    .Set("Available", "No");
+            var update = Builders<Books>.Update
+                .Set("Owner", book.PreBookOwner)
+                .Set("PreBookOwner", string.Empty)
+                .Set("Available", "No");
                 collection.UpdateOne(filter, update);
            
                
                   
              //       StartTimer(time, collectionName, book, collection);
              
-            }
+            
 
 
         }

@@ -33,7 +33,7 @@ namespace WPF_Library_assessment.Mongo_Info
             var dataBase = GetMongoDatabase();
             IMongoCollection<T> collection = dataBase.GetCollection<T>(name);
             return collection.AsQueryable().ToList();
-            
+           
         }
 
 

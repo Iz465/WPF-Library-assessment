@@ -59,7 +59,7 @@ namespace WPF_Library_assessment.Library_Pages
                     }
                     
      
-                    bookcardUC.StartTimer(book.Time,book.Genre,book, collection);
+                    bookcardUC.StartTimer(book.Time,book, collection);
                   
                  //   bookcardUC.Foreground = new SolidColorBrush(Colors.White);
 

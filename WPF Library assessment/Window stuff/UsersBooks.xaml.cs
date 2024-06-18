@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml.Linq;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.User_Control_Stuff;
@@ -120,22 +121,28 @@ namespace WPF_Library_assessment.Window_stuff
                     
                     IMongoCollection<Books> collection = dataBase.GetCollection<Books>(collectionName);
                     var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
-                    var update = Builders<Books>.Update
-                        .Set("Owner", string.Empty)
-                        .Set("Overdue", "No")
-                        .Set("Available", "No")
-                        .Set("Time", 300);
-
-                    var returnedBooks = collection.Find(filter).ToList(); // checks every book the member returned to see if it has a prebook in it below
-                    collection.UpdateMany(filter, update);
+                                  
+                    var returnedBooks = collection.Find(filter).ToList(); 
+ 
 
                     bookCardUC bookCardUC = new bookCardUC();
 
                     foreach (var book in returnedBooks)
                     {
-                  
-                        if (book.PreBookOwner != "")
+                     //   int time = 0;
+               //         bookCardUC.StartTimer(time,book, collection);
+
+                        var update = Builders<Books>.Update
+                      .Set("Owner", string.Empty)
+                      .Set("Overdue", "No")
+                      .Set("Available", "Yes")
+                      .Set("Time", 300); // this doesnt work right now
+
+
+                        collection.UpdateMany(filter, update);
+                        if (book.PreBookOwner != string.Empty)
                         {
+                          
                             bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
                         }
                     }
@@ -143,6 +150,7 @@ namespace WPF_Library_assessment.Window_stuff
                 }
 
                 MessageBox.Show("Books returned.");
+
             }
         }
         }

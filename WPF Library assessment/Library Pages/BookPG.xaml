@@ -40,7 +40,7 @@
             <TextBlock Grid.Row="2" Grid.Column="5" Text="Time" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
             <TextBlock Grid.Row="2" Grid.Column="6" Text="Update" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
             <TextBlock Grid.Row="2" Grid.Column="7" Text="Delete" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-        <TextBlock Grid.Row="3" Grid.ColumnSpan="8" FontSize="30" Text="Horror" HorizontalAlignment="Center" Padding="20"/>
+          <TextBlock Grid.Row="3" Grid.ColumnSpan="8" FontSize="30" Text="Horror" HorizontalAlignment="Center" Padding="20"/>
 
 
 

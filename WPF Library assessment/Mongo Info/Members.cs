@@ -9,7 +9,7 @@ using MongoDB.Bson;
 
 namespace WPF_Library_assessment.Mongo_Info
 {
-    internal class Members
+    public class Members
     {
         [BsonId]
         protected ObjectId Id { get; set; }
