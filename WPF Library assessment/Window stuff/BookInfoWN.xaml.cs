@@ -19,6 +19,17 @@ namespace WPF_Library_assessment.Window_stuff
             InitializeComponent();
             DataContext = this;
 
+
+            LoadBookData();
+        }
+
+
+        private void LoadBookData()
+        { 
+
+         
+
+
             MongoData mongoData = new MongoData();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
@@ -26,7 +37,12 @@ namespace WPF_Library_assessment.Window_stuff
             List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
 
 
-            int row = addInfo(horrorBooks,"Horror", "Fantasy", 4); row++;
+            InfoGrid.Children.Clear();
+            InfoGrid.RowDefinitions.Clear();
+
+
+            int row = 0;
+            row = addInfo(horrorBooks,"Horror", "Fantasy", row); row++;
             row = addInfo(fantasyBooks,"Fantasy", "Drama", row); row++;
             row = addInfo(DramaBooks,"Drama", "Mystery", row); row++;
             row = addInfo(MysteryBooks,"Mystery", "", row);
@@ -206,6 +222,27 @@ namespace WPF_Library_assessment.Window_stuff
                 }
             }
         }
+
+
+
+        public void HandleSearchQuery(string searchQuery)
+        {
+            MongoData mongoData = new MongoData();
+            List<Books> searchResults = mongoData.SearchBooks<Books>("LoadBooksData",searchQuery);
+
+            // Clear existing UI
+            InfoGrid.Children.Clear();
+            InfoGrid.RowDefinitions.Clear();
+
+            int rowNum = 0;
+            foreach (var book in searchResults)
+            {
+                rowNum = addInfo(new List<Books> { book }, "", "", rowNum);
+            }
+        }
+
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

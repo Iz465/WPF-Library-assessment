@@ -49,6 +49,20 @@ namespace WPF_Library_assessment.Mongo_Info
         collection.DeleteOne(filter);
     }
 
- 
-}
+
+        public List<T> SearchBooks<T>(string collectionName, string searchQuery)
+        {
+            var database = GetMongoDatabase();
+            IMongoCollection<T> collection = database.GetCollection<T>(collectionName);
+
+            // Example of text search filter
+            var filter = Builders<T>.Filter.Text(searchQuery);
+
+            var searchResults = collection.Find(filter).ToList();
+
+            return searchResults;
+        }
+
+
+    }
 }
