@@ -34,8 +34,8 @@ namespace WPF_Library_assessment.Mongo_Info
         public string Owner { get; set; }
         [BsonElement("PreBookOwner")]
         public string PreBookOwner { get; set; }
-        [BsonIgnore]
-        public DispatcherTimer Timer { get; set; } = new DispatcherTimer();
+     
+     
     
 
 

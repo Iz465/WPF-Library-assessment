@@ -99,55 +99,83 @@ namespace WPF_Library_assessment.User_Control_Stuff
         public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var user = signInWn.SessionManager.CurrentUser;
+            bookCardUC bookcardUC = new bookCardUC();
 
             if (user is WPF_Library_assessment.Window_stuff.Members members)
             {
                 var border = sender as Border;
-                var id = (border.DataContext as Books)?.Id.ToString();
-
+                var id = (border?.DataContext as Books)?.Id.ToString();
+                
                 MongoData mongoData = new MongoData();
                 var database = mongoData.GetMongoDatabase();
 
-                IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
-
-               
-                var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
-                var book = collection.Find(filter).FirstOrDefault();
-
-                if (book.Available == "Yes")
+                var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
+                try
                 {
+                    foreach (var collectionName in collections)
+                    {
+                        IMongoCollection<Books> collection = database.GetCollection<Books>(collectionName);
+                        var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
+                        var book = collection.Find(filter).FirstOrDefault();
 
-                    var update = Builders<Books>.Update
-                       .Set("Available", "No")
-                       .Set("Owner", members.Username);
+                        if (book.Available == "Yes")
+                        {
+                            
+                            var update = Builders<Books>.Update
+                               .Set("Available", "No")
+                               .Set("Owner", members.Username);
 
 
-                    collection.UpdateOne(filter, update);
-                    MessageBox.Show("Book has been ordered!");
-                    border.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
+                            collection.UpdateOne(filter, update);
+                            MessageBox.Show("Book has been ordered!");
+                            border.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
+                            Colour(new SolidColorBrush(Colors.White));
 
+                            int timeLeft = book.Time;
+                            StartTimer(timeLeft, book, collection);
+                        }
 
-                    int timeLeft = book.Time;
-                    string name = book.Genre;
+                        if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner)
+                        {
+                            MessageBox.Show("Book is booked, you have now prebooked it");
+                            var update = Builders<Books>.Update
+                                .Set("PreBookOwner", members.Username);
+                            collection.UpdateOne(filter, update);
+                            border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                            Colour(new SolidColorBrush(Colors.White));
+                        }
 
-                    StartTimer(timeLeft, book, collection);
+                    }
                 }
-                 if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner) 
+           catch (Exception ex)
                 {
-                   MessageBox.Show("Book is booked, you have now prebooked it");
-                    var update = Builders<Books>.Update
-                        .Set("PreBookOwner", members.Username);
-                    collection.UpdateOne(filter,update);
-                    border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+               //     MessageBox.Show(ex.ToString());
                 }
-               
 
+
+
+
+              
+               
             }
 
         
 
           
         }
+
+        public void Colour(Brush colour)
+        {
+            colour1.Foreground = colour;
+            colour2.Foreground = colour;
+            colour3.Foreground = colour;
+            colour4.Foreground = colour;
+            colour5.Foreground = colour;
+            colour6.Foreground = colour;
+            colour7.Foreground = colour;
+            colour8.Foreground = colour;
+        }
+
 
 
 
@@ -159,12 +187,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            book.Timer = timer; // Assign the timer to the book
+         
 
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
                 {
+                    
                     timer.Stop();
                     TimerTextBlock.Visibility = Visibility.Collapsed;
                     var filter = Builders<Books>.Filter.Eq("_id", book.Id);
@@ -219,11 +248,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 .Set("PreBookOwner", string.Empty)
                 .Set("Available", "No");
                 collection.UpdateOne(filter, update);
-                          
-             
-            
-
-
+                                       
         }
 
     }
