@@ -60,3 +60,4 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
     }
 }
+// TextBoxBase.SelectionChanged="Search"

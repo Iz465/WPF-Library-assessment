@@ -63,6 +63,17 @@ namespace WPF_Library_assessment.Mongo_Info
             return searchResults;
         }
 
+        public static class BookReturnNotifier
+        {
+            public static event Action BooksReturned;
+
+            public static void NotifyBooksReturned()
+            {
+                BooksReturned.Invoke();
+            }
+        }
+
+
 
     }
 }

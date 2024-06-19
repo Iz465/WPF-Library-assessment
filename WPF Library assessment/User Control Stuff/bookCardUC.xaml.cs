@@ -132,7 +132,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
                     StartTimer(timeLeft, book, collection);
                 }
-                 if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner) // && members.Username != book.Owner
+                 if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner) 
                 {
                    MessageBox.Show("Book is booked, you have now prebooked it");
                     var update = Builders<Books>.Update
@@ -140,7 +140,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                     collection.UpdateOne(filter,update);
                     border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
                 }
-                
+               
 
             }
 
@@ -149,57 +149,44 @@ namespace WPF_Library_assessment.User_Control_Stuff
           
         }
 
-
+         
 
 
         public void StartTimer(int timeLeft, Books book, IMongoCollection<Books> collection)
         {
-
-      
-            
-          
-           // var border = sender as Border;
-
             TimeSpan time = TimeSpan.FromSeconds(timeLeft);
             TimerTextBlock.Visibility = Visibility.Visible;
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-       //    bookCardUC bookCard = new bookCardUC();
-       //     bookCard.BorderName.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
-
-        
-
+   
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
                 {
                     timer.Stop();
-                    MessageBox.Show("hi");
                     TimerTextBlock.Visibility = Visibility.Collapsed;
-                    //  border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
                     var filter = Builders<Books>.Filter.Eq("_id", book.Id);
-                    var update = Builders<Books>.Update
-                        .Set("Overdue", "Yes");
-                      collection.UpdateOne(filter, update);
-
-
-
-
+                    var update = Builders<Books>.Update.Set("Overdue", "Yes");
+                    collection.UpdateOne(filter, update);
                 }
                 else
                 {
-
                     time = time.Add(TimeSpan.FromSeconds(-1));
                     var filter = Builders<Books>.Filter.Eq("_id", book.Id);
                     var update = Builders<Books>.Update.Set("Time", time.TotalSeconds);
                     collection.UpdateOne(filter, update);
-                    TimerTextBlock.Text = time.ToString();
+                    TimerTextBlock.Text = time.ToString(@"hh\:mm\:ss");
                 }
-                };
+            };
+
             timer.Start();
         }
-     
+
+
+
+
+
 
 
         public void prebookConvert(Books book, IMongoCollection<Books> collection, string collectionName, int time)
@@ -211,10 +198,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 .Set("PreBookOwner", string.Empty)
                 .Set("Available", "No");
                 collection.UpdateOne(filter, update);
-           
-               
-                  
-             //       StartTimer(time, collectionName, book, collection);
+                          
              
             
 

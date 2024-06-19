@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
+using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.User_Control_Stuff;
 using WPF_Library_assessment.Window_stuff;
@@ -29,19 +31,7 @@ namespace WPF_Library_assessment.Window_stuff
         {
             InitializeComponent();
 
-            MongoData mongoData = new MongoData();
-            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
-            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
-            List<Books> DramaBooks = mongoData.Connect<Books>("Drama");
-            List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
-
-
-
-            int row = addInfo(horrorBooks, 0);
-            row = addInfo(fantasyBooks, row);
-            row = addInfo(DramaBooks, row);
-            row = addInfo(MysteryBooks, row);
-            ReturnBookBtn(row);
+          showOrderedBooks();
 
 
 
@@ -109,7 +99,6 @@ namespace WPF_Library_assessment.Window_stuff
         {
             MongoData mongoData = new MongoData();
             var dataBase = mongoData.GetMongoDatabase();
-
             var user = signInWn.SessionManager.CurrentUser;
 
             if (user is WPF_Library_assessment.Window_stuff.Members members)
@@ -118,42 +107,76 @@ namespace WPF_Library_assessment.Window_stuff
 
                 foreach (var collectionName in collections)
                 {
-                    
                     IMongoCollection<Books> collection = dataBase.GetCollection<Books>(collectionName);
                     var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
-                                  
-                    var returnedBooks = collection.Find(filter).ToList(); 
- 
 
+                    var returnedBooks = collection.Find(filter).ToList();
                     bookCardUC bookCardUC = new bookCardUC();
 
                     foreach (var book in returnedBooks)
                     {
-                     //   int time = 0;
-               //         bookCardUC.StartTimer(time,book, collection);
 
                         var update = Builders<Books>.Update
-                      .Set("Owner", string.Empty)
-                      .Set("Overdue", "No")
-                      .Set("Available", "Yes")
-                      .Set("Time", 300); // this doesnt work right now
+                        .Set("Owner", string.Empty)
+                        .Set("Overdue", "No")
+                        .Set("Available", "Yes");
+                          //  .Set("Time", 300)
 
-
-                        collection.UpdateMany(filter, update);
-                        if (book.PreBookOwner != string.Empty)
+                            collection.UpdateMany(filter, update);
+                        try
                         {
-                          
-                            bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
+                            MessageBox.Show("hi");
+                            var update1 = Builders<Books>.Update.Set("Time", 333);
+                            collection.UpdateMany(filter, update1);
+                        } catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
                         }
-                    }
+                 
+                            if (book.PreBookOwner != string.Empty)
+                            {
+                                bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
 
+                            }
+                       
+                        
+                        }
                 }
 
                 MessageBox.Show("Books returned.");
-
+                try
+                {
+                    MongoData.BookReturnNotifier.NotifyBooksReturned();
+                }
+                catch (Exception ex)
+                {
+           
+                }
+           
             }
         }
+
+
+        private void showOrderedBooks()
+        {
+          
+            MongoData mongoData = new MongoData();
+            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
+            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
+            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
+            List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
+
+
+          
+            int row = addInfo(horrorBooks, 0);
+            row = addInfo(fantasyBooks, row);
+            row = addInfo(dramaBooks, row);
+            row = addInfo(mysteryBooks, row);
+            ReturnBookBtn(row);
         }
+
+
+    }
 }
 
 
