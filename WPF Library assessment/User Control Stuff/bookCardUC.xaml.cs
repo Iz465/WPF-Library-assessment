@@ -149,7 +149,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
           
         }
 
-         
+
 
 
         public void StartTimer(int timeLeft, Books book, IMongoCollection<Books> collection)
@@ -159,7 +159,8 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-   
+            book.Timer = timer; // Assign the timer to the book
+
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
@@ -180,9 +181,29 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 }
             };
 
+            TimerManager.AddTimer(timer); 
             timer.Start();
         }
 
+
+        public static class TimerManager
+        {
+            private static List<DispatcherTimer> timers = new List<DispatcherTimer>();
+
+            public static void AddTimer(DispatcherTimer timer)
+            {
+                timers.Add(timer);
+            }
+
+            public static void StopAllTimers()
+            {
+                foreach (var timer in timers)
+                {
+                    timer.Stop();
+                }
+                timers.Clear();
+            }
+        }
 
 
 

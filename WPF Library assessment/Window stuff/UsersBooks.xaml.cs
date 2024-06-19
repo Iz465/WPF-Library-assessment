@@ -21,6 +21,7 @@ using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.User_Control_Stuff;
 using WPF_Library_assessment.Window_stuff;
+using static WPF_Library_assessment.User_Control_Stuff.bookCardUC;
 
 namespace WPF_Library_assessment.Window_stuff
 {
@@ -109,52 +110,44 @@ namespace WPF_Library_assessment.Window_stuff
                 {
                     IMongoCollection<Books> collection = dataBase.GetCollection<Books>(collectionName);
                     var filter = Builders<Books>.Filter.Eq("Owner", members.Username);
-
-                    var returnedBooks = collection.Find(filter).ToList();
                     bookCardUC bookCardUC = new bookCardUC();
+                    var returnedBooks = collection.Find(filter).ToList();
 
                     foreach (var book in returnedBooks)
                     {
+                    
+                     
 
                         var update = Builders<Books>.Update
-                        .Set("Owner", string.Empty)
-                        .Set("Overdue", "No")
-                        .Set("Available", "Yes");
-                          //  .Set("Time", 300)
+                            .Set("Owner", string.Empty)
+                            .Set("Overdue", "No")
+                            .Set("Available", "Yes")
+                            .Set("Time", 300);
 
-                            collection.UpdateMany(filter, update);
-                        try
-                        {
-                            MessageBox.Show("hi");
-                            var update1 = Builders<Books>.Update.Set("Time", 333);
-                            collection.UpdateMany(filter, update1);
-                        } catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                 
-                            if (book.PreBookOwner != string.Empty)
-                            {
-                                bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
+                        collection.UpdateMany(filter, update);
 
-                            }
-                       
-                        
+                        if (book.PreBookOwner != string.Empty)
+                        {
+                            bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
                         }
+                    }
                 }
 
-                MessageBox.Show("Books returned.");
+                // Stop all timers
+                TimerManager.StopAllTimers();
+
                 try
                 {
                     MongoData.BookReturnNotifier.NotifyBooksReturned();
                 }
                 catch (Exception ex)
                 {
-           
+                    MessageBox.Show(ex.Message);
                 }
-           
             }
         }
+
+
 
 
         private void showOrderedBooks()
