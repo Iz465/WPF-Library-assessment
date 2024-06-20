@@ -57,19 +57,20 @@
                 <TextBlock x:Name="colour6" Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,12,0,0"  Padding="5"/>
                 <TextBlock x:Name="colour7" Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12,0,0"  Padding="5"/>
                 <TextBlock x:Name="colour8" Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="76,12,0,0"  Padding="5"/>
-               
-                <TextBlock x:Name="TimerTextBlock"
-                           Height="370"
-                           Width="300"
-                           TextAlignment="Center"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"                 
-                   FontSize="30"
-                   Foreground="White"
-                   Background="#90000000"
-                   Padding="0,70,0,0"
-                           Visibility="Collapsed"/>
-                    
+
+                <Border CornerRadius="20" Background="#90000000" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="5">
+                    <TextBlock x:Name="TimerTextBlock"
+                               Height="370"
+                               Width="300"
+                               TextAlignment="Center"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="30"
+                               Foreground="White"
+                               Padding="0,70,0,0"
+                               Visibility="Collapsed"/>
+                </Border>
+
             </Grid>
         </Border>
     </Grid>
