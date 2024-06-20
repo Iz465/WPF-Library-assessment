@@ -38,8 +38,8 @@ namespace WPF_Library_assessment.Library_Pages
              
                 bookCardUC bookcardUC = new bookCardUC();
                 bookcardUC.test(book.ImageSource);
-                bookcardUC.Width = 200;
-                bookcardUC.Height = 350;
+                bookcardUC.Width = 300;
+                bookcardUC.Height = 590;
                 if (book.Available == "No")
                 {
                     bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
@@ -56,7 +56,7 @@ namespace WPF_Library_assessment.Library_Pages
                 bookGrid.Children.Add(bookcardUC);
                 columnNum++;
 
-                if (columnNum >= 7)
+                if (columnNum >= 5)
                 {
 
                     columnNum = 0;

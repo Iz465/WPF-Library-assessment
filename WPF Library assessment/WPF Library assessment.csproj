@@ -14,8 +14,13 @@
     <None Remove="FontStyles\LibreBaskerville-Bold.ttf" />
     <None Remove="FontStyles\LibreBaskerville-Italic.ttf" />
     <None Remove="FontStyles\LibreBaskerville-Regular.ttf" />
+    <None Remove="FontStyles\Montserrat-Italic-VariableFont_wght.ttf" />
+    <None Remove="FontStyles\Montserrat-SemiBold.ttf" />
+    <None Remove="FontStyles\Montserrat-Thin.ttf" />
+    <None Remove="FontStyles\Montserrat-ThinItalic.ttf" />
+    <None Remove="FontStyles\Montserrat-VariableFont_wght.ttf" />
     <None Remove="FontStyles\norwester.otf" />
-    <None Remove="FontStyles\OFL.txt" />
+    <None Remove="FontStyles\Overpass-Black.otf" />
     <None Remove="images\close.png" />
     <None Remove="images\emaillogo.png" />
     <None Remove="images\flogo.png" />
@@ -36,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DesignDataWithDesignTimeCreatableTypes Include="FontStyles\LibreBaskerville-Regular.ttf" />
+    <Resource Include="FontStyles\LibreBaskerville-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,8 +54,13 @@
     <Resource Include="FontStyles\De Valencia .txt" />
     <Resource Include="FontStyles\LibreBaskerville-Bold.ttf" />
     <Resource Include="FontStyles\LibreBaskerville-Italic.ttf" />
+    <Resource Include="FontStyles\Montserrat-Italic-VariableFont_wght.ttf" />
+    <Resource Include="FontStyles\Montserrat-SemiBold.ttf" />
+    <Resource Include="FontStyles\Montserrat-Thin.ttf" />
+    <Resource Include="FontStyles\Montserrat-ThinItalic.ttf" />
+    <Resource Include="FontStyles\Montserrat-VariableFont_wght.ttf" />
     <Resource Include="FontStyles\norwester.otf" />
-    <Resource Include="FontStyles\OFL.txt" />
+    <Resource Include="FontStyles\Overpass-Black.otf" />
     <Resource Include="images\close.png" />
     <Resource Include="images\emaillogo.png" />
     <Resource Include="images\flogo.png" />
