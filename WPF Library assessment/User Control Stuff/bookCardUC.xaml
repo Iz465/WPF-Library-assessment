@@ -16,7 +16,7 @@
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
-            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderThickness" Value="10"/>
             <Setter Property="BorderBrush" Value="DarkRed"/>
             <Setter Property="CornerRadius" Value="20"/>
             <Setter Property="Margin" Value="10"/>
@@ -39,24 +39,40 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="20" ClipToBounds="True" Grid.Row="0">
-                    <Image Source="{Binding ImageSource, RelativeSource={RelativeSource AncestorType=UserControl}}" Stretch="Fill" MaxHeight="370">
-                        <Image.Clip>
-                            <RectangleGeometry Rect="0,0,255,400" RadiusX="20" RadiusY="20" />
-                        </Image.Clip>
-                    </Image>
-                </Border>
-                <TextBlock Style="{StaticResource textStyle}" x:Name="colour2" Grid.Row="1" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0"  Padding="5" FontSize="20"/>
-                <TextBlock x:Name="colour3" Grid.Row="2" Text="Author:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,15,0,0"  Padding="5"/>
-                <TextBlock x:Name="colour4" Grid.Row="2" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="65,15,0,0"  Padding="5"/>
-                <TextBlock x:Name="colour5" Grid.Row="3" Text="Pages:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12,0,0"  Padding="5"/>
-                <TextBlock x:Name="colour6" Grid.Row="3" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60,12,0,0"  Padding="5"/>
-                <TextBlock x:Name="colour7" Grid.Row="4" Text="Available:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,12,0,0"  Padding="5"/>
-                <TextBlock x:Name="colour8" Grid.Row="4" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="76,12,0,0"  Padding="5"/>
+                <StackPanel>
+                    <Border CornerRadius="20" ClipToBounds="True" Grid.Row="0">
+                        <Image Source="{Binding ImageSource, RelativeSource={RelativeSource AncestorType=UserControl}}" Stretch="Fill" MaxHeight="370">
+                            <Image.Clip>
+                                <RectangleGeometry Rect="0,0,245,400" RadiusX="20" RadiusY="20" />
+                            </Image.Clip>
+                        </Image>
+
+                    </Border>
+                    <Rectangle Grid.Row="0" Height="15" Fill="DarkRed" />
+                </StackPanel>
+              
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource textStyle}" x:Name="colour2" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0"  Padding="5" FontSize="20" />
+                    <TextBlock x:Name="colour3" Grid.Row="1" Text="Author:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0"  Padding="5" FontSize="12"/>
+                    <TextBlock x:Name="colour4" Grid.Row="1" Grid.Column="1" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0"  Padding="5" FontSize="12" />
+                    <TextBlock x:Name="colour5" Grid.Row="2" Text="Pages:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
+                    <TextBlock x:Name="colour6" Grid.Row="2"  Grid.Column="1" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
+                    <TextBlock x:Name="colour7" Grid.Row="3" Text="Available:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
+                    <TextBlock x:Name="colour8" Grid.Row="3"  Grid.Column="1" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
+
+                </Grid>
+              
 
                 <Border CornerRadius="20" Background="#90000000" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="5">
                     <TextBlock x:Name="TimerTextBlock"
