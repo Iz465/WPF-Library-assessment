@@ -21,27 +21,33 @@
         </Style>
     </Page.Resources>
 
-    <Grid Style="{StaticResource GridStyle}" x:Name="infoGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-      
-        <UserControl:headerUC Grid.ColumnSpan="7"/>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Fantasy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-        <Button x:Name="horrorPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="horrorPGBtn_Click" HorizontalAlignment="Left" Margin="100,0,0,0" />
-        <Grid Grid.Row="2" x:Name="fantasyGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
 
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Style="{StaticResource GridStyle}" x:Name="infoGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <UserControl:headerUC Grid.ColumnSpan="7"/>
+            <TextBlock Grid.Row="1" Grid.ColumnSpan="7" Text="Fantasy" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
+            <Button x:Name="horrorPGBtn" Style="{StaticResource ButtonStyle}" Content="Back" Grid.Row="1" Height="50" Width="50" Click="horrorPGBtn_Click" HorizontalAlignment="Left" Margin="100,0,0,0" />
+            <Grid Grid.Row="2" x:Name="fantasyGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+            </Grid>
         </Grid>
-        </Grid>
+    </ScrollViewer>
 </Page>

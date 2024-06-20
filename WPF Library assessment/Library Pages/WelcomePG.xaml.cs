@@ -88,7 +88,15 @@ namespace WPF_Library_assessment.Library_Pages
                         NavigateToPage(new HistoryPG());
                         break;
                     case "Fantasy":
-                        NavigateToPage(new FantasyPG());
+                        try
+                        {
+                            NavigateToPage(new FantasyPG());
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                                                    
                         break;
                     case "Horror":
                         NavigateToPage(new horrorPG());

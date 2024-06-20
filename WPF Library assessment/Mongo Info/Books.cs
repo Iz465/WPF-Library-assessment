@@ -21,15 +21,19 @@ namespace WPF_Library_assessment.Mongo_Info
         [BsonElement("Pages")]
         public int Pages { get; set; }
         [BsonElement("Image")]
+
         public string ImageSource { get; set; }
+        [BsonElement("Images")]
+
+        public string ImagesSource { get; set; }
+
         [BsonElement("Available")]
         public string Available { get; set; }
         [BsonElement("Overdue")]
         public string Overdue { get; set; }
         [BsonElement("Time")]
         public int Time { get; set; }
-        [BsonElement("Genre")]
-        public string Genre { get; set; }
+
         [BsonElement("Owner")]
         public string Owner { get; set; }
         [BsonElement("PreBookOwner")]
@@ -41,16 +45,16 @@ namespace WPF_Library_assessment.Mongo_Info
 
 
     Books() { }
-        Books(string name, string author, int pages, string imageSource, string available, string overdue, int time, string genre, string owner, string preBookOwner ) {
+        Books(string name, string author, int pages, string imageSource, string available, string overdue, int time, string owner, string preBookOwner, string imagesSource) {
             Name = name;
             Author = author;
             Pages = pages;
             Author = author;
             ImageSource = imageSource;
+            ImagesSource = imagesSource;
             Available = available;
             Overdue = overdue;
             Time = time;
-            Genre = genre;
             Owner = owner;
             PreBookOwner = preBookOwner;
         }
