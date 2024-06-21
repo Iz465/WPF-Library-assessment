@@ -1,49 +1,115 @@
-﻿<Page Style="{StaticResource NorwesterFont}" x:Class="WPF_Library_assessment.Library_Pages.BookPG"
+﻿<Page x:Class="WPF_Library_assessment.Library_Pages.BookPG"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
-       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      mc:Ignorable="d"
+      d:DesignHeight="500" d:DesignWidth="850"
       Title="BookPG">
 
-    <Grid x:Name="InfoGrid" Style="{StaticResource GridStyle}">
+    <Page.Resources>
+        <Style TargetType="Grid" x:Key="GridStyle">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="SmallHeaderTextStyle">
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="LawnGreen"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="BookInfoLabelStyle">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="LawnGreen"/>
+        </Style>
+        <Style TargetType="TextBox" x:Key="BookInfoTextBoxStyle">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Foreground" Value="LawnGreen"/>
+            
+        </Style>
+        <Style TargetType="Button" x:Key="ActionButtonStyle">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Border" x:Key="CardStyle">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="#D3D3D3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Black" ShadowDepth="5" BlurRadius="10"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        
+        <ImageBrush x:Key="PageBackgroundBrush" ImageSource="/images/library.png" Stretch="UniformToFill"/>
+    </Page.Resources>
+
+    <Grid x:Name="InfoGrid" Background="{StaticResource PageBackgroundBrush}" Opacity="0.9" VerticalAlignment="Center">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <UserControl:headerUC Grid.ColumnSpan="8"/>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="8" Text="Book Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-        
-    
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Author" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="Pages" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="Available" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="4" Text="Overdue" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="5" Text="Time" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="6" Text="Update" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="7" Text="Delete" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-          <TextBlock Grid.Row="3" Grid.ColumnSpan="8" FontSize="30" Text="Horror" HorizontalAlignment="Center" Padding="20"/>
 
+        <!-- Small Header -->
+        <TextBlock Text="Library Book Info" Style="{StaticResource SmallHeaderTextStyle}" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="3"/>
 
+        <!-- Book Name -->
+        <TextBlock Text="Book Name:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="1" Grid.Column="0"/>
+        <TextBox x:Name="BookNameTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
 
+        <!-- Author -->
+        <TextBlock Text="Author:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="2" Grid.Column="0"/>
+        <TextBox x:Name="AuthorTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Pages -->
+        <TextBlock Text="Pages:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="3" Grid.Column="0"/>
+        <TextBox x:Name="PagesTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Available -->
+        <TextBlock Text="Available:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="4" Grid.Column="0"/>
+        <TextBox x:Name="AvailableTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Overdue -->
+        <TextBlock Text="Overdue:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="5" Grid.Column="0"/>
+        <TextBox x:Name="OverdueTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Time -->
+        <TextBlock Text="Time:" Style="{StaticResource BookInfoLabelStyle}" Grid.Row="6" Grid.Column="0"/>
+        <TextBox x:Name="TimeTextBox" Style="{StaticResource BookInfoTextBoxStyle}" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+        <!-- Action Buttons -->
+        <Button Content="Update" Style="{StaticResource ActionButtonStyle}" Grid.Row="7" Grid.Column="1"/>
+        <Button Content="Delete" Style="{StaticResource ActionButtonStyle}" Grid.Row="7" Grid.Column="2"/>
     </Grid>
-   
 </Page>
