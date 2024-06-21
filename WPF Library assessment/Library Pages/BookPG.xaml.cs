@@ -31,45 +31,50 @@ namespace WPF_Library_assessment.Library_Pages
             List<Books> DramaBooks = mongoData.Connect<Books>("Drama");
             List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
 
-
-            int row = addInfo(horrorBooks, "Horror", "Fantasy", 4); row++;
-            row = addInfo(fantasyBooks, "Fantasy", "Drama", row); row++;
-            row = addInfo(DramaBooks, "Drama", "Mystery", row); row++;
-            row = addInfo(MysteryBooks, "Mystery", "", row);
+            int row = 4;
+             addInfo(horrorBooks, "Horror", "Fantasy", row); row++;
+             addInfo(fantasyBooks, "Fantasy", "Drama", row); row++;
+             addInfo(DramaBooks, "Drama", "Mystery", row); row++;
+             addInfo(MysteryBooks, "Mystery", "", row);
         }
-        public int addInfo(List<Books> bookType, string collectionName, string genre, int rowNum)
+        public async Task addInfo(List<Books> bookType, string collectionName, string genre, int rowNum)
         {
 
 
-            foreach (var book in bookType)       
+            foreach (var book in bookType)
             {
-                createRow(InfoGrid);
-                TextBlock nameText = CreateTextBlock(book.Name);
-                TextBlock authorText = CreateTextBlock(book.Author);
-                TextBlock pagesText = CreateTextBlock(book.Pages.ToString());
-                TextBlock availableText = CreateTextBlock(book.Available);
-                TextBlock overdueText = CreateTextBlock(book.Overdue);
-                TextBlock timeText = CreateTextBlock(book.Time.ToString());
-                Button updateButton = CreateButton("Update");
-                Button deleteButton = CreateButton("Delete");
+                Application.Current.Dispatcher.Invoke(() =>
+                {
 
-                updateButton.Tag = new Tuple<string, string, string, string, string, string>
-                       (collectionName, book.Id.ToString(), book.Name, book.Author, book.Pages.ToString(), book.Available);
-                updateButton.Click += UpdateButton_Click;
-                deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
-                deleteButton.Click += DeleteButton_Click;
 
-                AddElementToGrid(nameText, rowNum, 0, InfoGrid);
-                AddElementToGrid(authorText, rowNum, 1, InfoGrid);
-                AddElementToGrid(pagesText, rowNum, 2, InfoGrid);
-                AddElementToGrid(availableText, rowNum, 3, InfoGrid);
-                AddElementToGrid(overdueText, rowNum, 4, InfoGrid);
-                AddElementToGrid(timeText, rowNum, 5, InfoGrid);
-                AddElementToGrid(updateButton, rowNum, 6, InfoGrid);
-                AddElementToGrid(deleteButton, rowNum, 7, InfoGrid);
+                    createRow(InfoGrid);
+                    TextBlock nameText = CreateTextBlock(book.Name);
+                    TextBlock authorText = CreateTextBlock(book.Author);
+                    TextBlock pagesText = CreateTextBlock(book.Pages.ToString());
+                    TextBlock availableText = CreateTextBlock(book.Available);
+                    TextBlock overdueText = CreateTextBlock(book.Overdue);
+                    TextBlock timeText = CreateTextBlock(book.Time.ToString());
+                    Button updateButton = CreateButton("Update");
+                    Button deleteButton = CreateButton("Delete");
 
-                rowNum++;
-            }
+                    updateButton.Tag = new Tuple<string, string, string, string, string, string>
+                           (collectionName, book.Id.ToString(), book.Name, book.Author, book.Pages.ToString(), book.Available);
+                    updateButton.Click += UpdateButton_Click;
+                    deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
+                    deleteButton.Click += DeleteButton_Click;
+
+                    AddElementToGrid(nameText, rowNum, 0, InfoGrid);
+                    AddElementToGrid(authorText, rowNum, 1, InfoGrid);
+                    AddElementToGrid(pagesText, rowNum, 2, InfoGrid);
+                    AddElementToGrid(availableText, rowNum, 3, InfoGrid);
+                    AddElementToGrid(overdueText, rowNum, 4, InfoGrid);
+                    AddElementToGrid(timeText, rowNum, 5, InfoGrid);
+                    AddElementToGrid(updateButton, rowNum, 6, InfoGrid);
+                    AddElementToGrid(deleteButton, rowNum, 7, InfoGrid);
+
+                    rowNum++;
+                });
+            } 
 
             TextBlock genreText = new TextBlock();
             genreText.Text = genre;
@@ -83,7 +88,7 @@ namespace WPF_Library_assessment.Library_Pages
             Grid.SetColumnSpan(genreText, 6);
             InfoGrid.Children.Add(genreText);
 
-            return rowNum;
+            
         }
 
         public void createRow(Grid gridName)

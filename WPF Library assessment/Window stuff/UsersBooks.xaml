@@ -11,7 +11,7 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="Ordered Books"/>
+        <TextBlock Style="{StaticResource ResourceKey=textStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="Ordered Books"/>
         <Grid Grid.Row="1" x:Name="InfoGrid" >
 
 
