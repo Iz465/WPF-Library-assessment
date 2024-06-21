@@ -19,7 +19,7 @@ namespace WPF_Library_assessment.Library_Pages
             MongoData.BookReturnNotifier.BooksReturned += resetPage;
         }
 
-        private void setupBooks()
+        public void setupBooks()
         {
             MongoData mongoData = new MongoData();
             List<Books> horror = mongoData.Connect<Books>("Horror");
@@ -56,7 +56,7 @@ namespace WPF_Library_assessment.Library_Pages
                 bookGrid.Children.Add(bookcardUC);
                 columnNum++;
 
-                if (columnNum >= 5)
+                if (columnNum >= 4)
                 {
 
                     columnNum = 0;
@@ -68,7 +68,7 @@ namespace WPF_Library_assessment.Library_Pages
             }
         }
 
-        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
+        public void horrorPGBtn_Click(object sender, RoutedEventArgs e)
         {
             
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
@@ -92,3 +92,6 @@ namespace WPF_Library_assessment.Library_Pages
         }
     }
 }
+
+
+// following is for bookcard:             <TextBlock Style="{StaticResource textCardStyle}" Width="300" Height="590" Background="#80FFFFFF" Visibility="Hidden"/>

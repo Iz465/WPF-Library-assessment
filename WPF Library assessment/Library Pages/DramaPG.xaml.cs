@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Mongo_Info;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for DramaPG.xaml
-    /// </summary>
+    
     public partial class DramaPG : Page
     {
         public DramaPG()
         {
             InitializeComponent();
+            FantasyPG fantasyPG = new FantasyPG();
+            MongoData mongoData = new MongoData();
+            List<Books> drama = mongoData.Connect<Books>("Drama");
+            var database = mongoData.GetMongoDatabase();
+            IMongoCollection<Books> collection = database.GetCollection<Books>("Drama");
+            int columnNum = 0;
+            int rowNum = 0;
+            fantasyPG.addInfo(drama, columnNum, rowNum, dramaGrid, collection);
+        }
+
+        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            WelcomePG welcomePG = new WelcomePG();
+            mainWindow.Content = welcomePG;
         }
     }
 }

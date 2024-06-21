@@ -139,6 +139,7 @@ namespace WPF_Library_assessment.Window_stuff
                 try
                 {
                     MongoData.BookReturnNotifier.NotifyBooksReturned();
+               //     this.Close();
                 }
                 catch (Exception ex)
                 {

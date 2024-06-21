@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
         mc:Ignorable="d"
         Title="UsersBooks" Height="450" Width="800">
-    <Grid x:Name="InfoGrid" Background="#9CAF88">
-     
-  
+    <Grid Background="#9CAF88">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="Ordered Books"/>
+        <Grid Grid.Row="1" x:Name="InfoGrid" >
+
+
+            </Grid>
     </Grid>
 </Window>
