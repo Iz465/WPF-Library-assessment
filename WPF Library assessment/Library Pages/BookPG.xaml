@@ -4,46 +4,41 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
-       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
+      xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BookPG">
 
-    <Grid x:Name="InfoGrid" Style="{StaticResource GridStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-
-        </Grid.ColumnDefinitions>
-        <UserControl:headerUC Grid.ColumnSpan="8"/>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="8" Text="Book Info" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"/>
-        
-    
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="Author" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="2" Text="Pages" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="3" Text="Available" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="4" Text="Overdue" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="5" Text="Time" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="6" Text="Update" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-            <TextBlock Grid.Row="2" Grid.Column="7" Text="Delete" HorizontalAlignment="Center" FontSize="30" Padding="5"/>
-          <TextBlock Grid.Row="3" Grid.ColumnSpan="8" FontSize="30" Text="Horror" HorizontalAlignment="Center" Padding="20"/>
-
-
-
-    </Grid>
-   
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#154734">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <UserControl:headerUC Height="250" VerticalAlignment="Top" HeaderText="Book Info"/>
+            <Grid Grid.Row="1" x:Name="InfoGrid" MaxWidth="1000" Style="{StaticResource GridStyle}" Margin="0,100,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Book" HorizontalAlignment="Center" FontSize="30" Padding="10"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Author" HorizontalAlignment="Center" FontSize="30" Padding="10"/>
+                <TextBlock Grid.Row="1" Grid.Column="4" Text="Update" HorizontalAlignment="Center" FontSize="30" Padding="10" />
+                <TextBlock Grid.Row="1" Grid.Column="6" Text="Delete" HorizontalAlignment="Center" FontSize="30" Padding="10"/>
+                <StackPanel Grid.ColumnSpan="7">
+                    <TextBlock Grid.Row="0" Grid.ColumnSpan="7" FontSize="30" Text="Horror" HorizontalAlignment="Center" Padding="20"/>
+                    <Rectangle Height="10" Fill="AliceBlue"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>
