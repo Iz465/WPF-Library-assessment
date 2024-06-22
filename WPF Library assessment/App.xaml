@@ -54,7 +54,7 @@
             <Setter Property="FontFamily" Value="pack://application:,,,/FontStyles/#De Valencia" />
         </Style>
         <Style TargetType="{x:Type UserControl}" x:Key="montFontUC">
-            <Setter Property="FontFamily" Value="pack://application:,,,/FontStyles/#Montserrat SemiBold" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/FontStyles/#Montserrat ThinItalic" />
             <Setter Property="FontWeight" Value="Black"/>
             <Setter Property="FontSize" Value="12"/>
         </Style>
@@ -72,6 +72,9 @@
         <Style TargetType="TextBlock" x:Key="textStyle">
             <Setter Property="FontFamily" Value="pack://application:,,,/FontStyles/#Overpass Black"/>
         </Style>
-        
+        <LinearGradientBrush x:Key="PageBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#154734" Offset="0"/>
+            <GradientStop Color="DarkSeaGreen" Offset="1"/>
+        </LinearGradientBrush>
     </Application.Resources>
 </Application>

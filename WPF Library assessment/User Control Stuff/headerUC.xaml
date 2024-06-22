@@ -5,35 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="800" Background="White">
-    <UserControl.Resources>
-        <Style TargetType="Grid" x:Key="gridStyle">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#154734" Offset="0"/>
-                        <GradientStop Color="DarkSeaGreen" Offset="1"/>
-                    </LinearGradientBrush>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
-    <Grid Style="{StaticResource gridStyle}">
+             d:DesignHeight="200" d:DesignWidth="800" Background="White">
+
+    <Grid Style="{StaticResource GridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Ancient Library" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="40" FontWeight="Bold" Margin="0,0,20,0"/>
-        <TextBox x:Name="searchBox" Grid.Column="1" HorizontalAlignment="Left" Width="300" Height="50" Margin="0,0,0,0" />
-        <Button Grid.Column="1" HorizontalAlignment="Left" Width="100" Height="50" Margin="230,0,0,0" Content="Search" Click="SearchButton_Click"/>
-        <StackPanel Grid.Column="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- First Row Elements -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Ancient Library" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="40" FontWeight="Bold" Margin="0,0,20,0"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="searchBox" HorizontalAlignment="Left" Width="300" Height="50" Margin="0,0,0,0" />
+        <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Width="100" Height="50" Margin="230,0,0,0" Content="Search" Click="SearchButton_Click"/>
+        <StackPanel Grid.Row="0" Grid.Column="2">
             <Image x:Name="userImage" Source="/images/userProfile.png" Height="50" Width="50" VerticalAlignment="Center" MouseLeftButtonDown="userImage_MouseLeftButtonDown" Margin="25,25,50,0" />
             <TextBlock x:Name="userName" Padding="5" HorizontalAlignment="Center" FontSize="15" TextAlignment="Center" Margin="0,0,25,10"/>
-            <ListBox x:Name="userListBox" Visibility="Hidden">
-                <ListBoxItem x:Name="UserInfo" Content="User Info" HorizontalAlignment="Center" Margin="0,0,25,10"/>
-                <ListBoxItem x:Name="BooksOrdered" Content="Books ordered" HorizontalAlignment="Center" Margin="0,0,25,10"/>
-            </ListBox>
         </StackPanel>
+
+        <!-- Second Row Element -->
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" x:Name="HeaderName" Padding="10" Text="{Binding HeaderText}" FontSize="40"/>
     </Grid>
 </UserControl>

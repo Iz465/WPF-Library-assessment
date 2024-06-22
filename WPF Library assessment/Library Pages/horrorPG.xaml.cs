@@ -30,7 +30,7 @@ namespace WPF_Library_assessment.Library_Pages
             var database = mongoData.GetMongoDatabase();
             IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
             int columnNum = 0;
-            int rowNum = 2;
+            int rowNum = 0;
             FantasyPG fantasyPG = new FantasyPG();
             fantasyPG.addInfo(horror, columnNum, rowNum, horrorGrid, collection);
 

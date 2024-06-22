@@ -166,13 +166,11 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
         public void Colour(Brush colour)
         {
+            colour1.Foreground = colour;
             colour2.Foreground = colour;
-            colour3.Foreground = colour;
+            colour3.Foreground = colour;        
             colour4.Foreground = colour;
-            colour5.Foreground = colour;
-            colour6.Foreground = colour;
-            colour7.Foreground = colour;
-            colour8.Foreground = colour;
+     
         }
 
 

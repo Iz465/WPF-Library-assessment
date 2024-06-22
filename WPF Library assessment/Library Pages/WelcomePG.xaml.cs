@@ -45,7 +45,7 @@ namespace WPF_Library_assessment.Library_Pages
     
 
             genreCard genreCard = new genreCard();
-            genreCard.TitleGenre = name;
+            genreCard.TitleGenre = name; 
             genreCard.Height = 400;
             genreCard.Width = 400;
             genreCard.Margin = new Thickness(0,10,5,0);
@@ -105,10 +105,24 @@ namespace WPF_Library_assessment.Library_Pages
                         NavigateToPage(new RomancePG());
                         break;
                     case "Book Info":
-                        NavigateToPage(new BookPG());
+                        try
+                        {
+                            NavigateToPage(new BookPG());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         break;
                     case "Member Info":
-                        NavigateToPage(new MemberPG());
+                        try
+                        {
+                            NavigateToPage(new MemberPG());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         break;
                     default:
                         break;

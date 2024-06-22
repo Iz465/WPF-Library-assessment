@@ -28,17 +28,17 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
 
             
-                MongoData mongoData = new MongoData();
-                List<Members> members = mongoData.Connect<Members>("Members");
+       //         MongoData mongoData = new MongoData();
+        //        List<Members> members = mongoData.Connect<Members>("Members");
 
-                AddInfo(members, "Members", 3);
+         //       AddInfo(members, "Members", 3);
             
         
 
 
 
         }
-
+         /*
       
        public void AddInfo(List<Members> memberList, string collectionName, int row)
         {
@@ -80,7 +80,7 @@ namespace WPF_Library_assessment.Library_Pages
 
 
           
-        }
+        } */
 
 
 

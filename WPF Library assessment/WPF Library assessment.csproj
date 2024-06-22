@@ -25,6 +25,7 @@
     <None Remove="images\emaillogo.png" />
     <None Remove="images\flogo.png" />
     <None Remove="images\instalogo.png" />
+    <None Remove="images\library.png" />
     <None Remove="images\lilogo.png" />
     <None Remove="images\passswordlogo.png" />
     <None Remove="images\userProfile.png" />
@@ -65,6 +66,7 @@
     <Resource Include="images\emaillogo.png" />
     <Resource Include="images\flogo.png" />
     <Resource Include="images\instalogo.png" />
+    <Resource Include="images\library.png" />
     <Resource Include="images\lilogo.png" />
     <Resource Include="images\passswordlogo.png" />
     <Resource Include="images\userProfile.png" />

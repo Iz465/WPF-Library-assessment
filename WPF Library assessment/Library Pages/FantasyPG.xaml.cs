@@ -43,7 +43,7 @@ namespace WPF_Library_assessment.Library_Pages
                     bookCardUC bookcardUC = new bookCardUC();
                     bookcardUC.test(book.ImageSource);
                     bookcardUC.Width = 300;
-                    bookcardUC.Height = 590;
+                    bookcardUC.Height = 595;
                     if (book.Available == "No")
                     {
                         bookcardUC.BorderName.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);

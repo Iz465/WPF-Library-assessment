@@ -22,6 +22,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
         public headerUC()
         {
             InitializeComponent();
+            this.DataContext = this;
             var user = signInWn.SessionManager.CurrentUser;
 
             if (user is WPF_Library_assessment.Window_stuff.Members members)
@@ -30,10 +31,19 @@ namespace WPF_Library_assessment.User_Control_Stuff
             }
         }
 
+        public static readonly DependencyProperty HeaderTextProperty =
+          DependencyProperty.Register("HeaderText", typeof(string), typeof(headerUC), new PropertyMetadata(string.Empty));
+
+        public string HeaderText
+        {
+            get { return (string)GetValue(HeaderTextProperty); }
+            set { SetValue(HeaderTextProperty, value); }
+        }
+
 
         private void userImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //     userListBox.Visibility= Visibility.Visible;
+            
             UsersBooks users = new UsersBooks();
             {
                 users.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -56,6 +66,16 @@ namespace WPF_Library_assessment.User_Control_Stuff
             {
                 MessageBox.Show("Please enter a search term.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+        }
+
+        private void Grid_MouseEnter(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOver", true);
+        }
+
+        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "Normal", true);
         }
 
     }

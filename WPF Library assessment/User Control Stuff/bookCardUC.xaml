@@ -25,9 +25,10 @@
                     <DropShadowEffect Color="Black" Direction="320" ShadowDepth="14" Opacity="1"/>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Opacity" Value="1"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="Opacity" Value="0.6"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -59,17 +60,21 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Style="{StaticResource textStyle}" x:Name="colour2" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0"  Padding="5" FontSize="20" />
-                    <TextBlock x:Name="colour3" Grid.Row="1" Text="Author:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,5,0,0"  Padding="5" FontSize="12"/>
-                    <TextBlock x:Name="colour4" Grid.Row="1" Grid.Column="1" Text="{Binding Author}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0"  Padding="5" FontSize="12" />
-                    <TextBlock x:Name="colour5" Grid.Row="2" Text="Pages:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
-                    <TextBlock x:Name="colour6" Grid.Row="2"  Grid.Column="1" Text="{Binding Pages}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
-                    <TextBlock x:Name="colour7" Grid.Row="3" Text="Available:" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
-                    <TextBlock x:Name="colour8" Grid.Row="3"  Grid.Column="1" Text="{Binding Available}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0"  Padding="5" FontSize="12" />
+                    <TextBlock Style="{StaticResource textStyle}" x:Name="colour1" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0"  Padding="5" FontSize="20"/>
+
+                    <TextBlock x:Name="colour2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,5,0,0"  Padding="5" FontSize="15" FontWeight="Medium">
+                        <Run Text="Author:"/>
+                        <Run Text="{Binding Author}"/>
+                    </TextBlock>
+                    <TextBlock x:Name="colour3" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"  Padding="5" FontSize="15" FontWeight="Medium">
+                        <Run Text="Pages:"/>
+                        <Run Text="{Binding Pages}"/>
+                    </TextBlock>
+                    <TextBlock x:Name="colour4" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"  Padding="5" FontSize="15" FontWeight="Medium">
+                        <Run Text="Available:"/>
+                        <Run Text="{Binding Available}"/>
+                    </TextBlock>
+                  
 
                 </Grid>
 
