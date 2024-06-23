@@ -81,38 +81,23 @@ namespace WPF_Library_assessment.Library_Pages
                     case "Drama":
                         NavigateToPage(new DramaPG());
                         break;
-                    case "mysteryImage":
+                    case "Mystery":
                         NavigateToPage(new MysteryPG());
                         break;
-                    case "historyImage":
+                    case "History":
                         NavigateToPage(new HistoryPG());
                         break;
                     case "Fantasy":
-                        try
-                        {
-                            NavigateToPage(new FantasyPG());
-                        }
-                        catch(Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                                                    
+                            NavigateToPage(new FantasyPG());                 
                         break;
                     case "Horror":
                         NavigateToPage(new horrorPG());
                         break;
-                    case "romanceImage":
+                    case "Romance":
                         NavigateToPage(new RomancePG());
                         break;
                     case "Book Info":
-                        try
-                        {
                             NavigateToPage(new BookPG());
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
                         break;
                     case "Member Info":
                         try

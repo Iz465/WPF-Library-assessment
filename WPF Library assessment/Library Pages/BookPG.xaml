@@ -37,7 +37,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <StackPanel>
+                        <Button x:Name="NewBookBtn" Content="Add Book" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,50,0" Click="NewBookBtn_Click"/>
+                        <StackPanel>
                             <TextBlock FontSize="30" x:Name="GenreTitle" HorizontalAlignment="Center" Padding="20"/>
                             <Rectangle Height="10" Fill="AliceBlue"/>
                     </StackPanel>
