@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using System.Xml.Linq;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.Window_stuff;
 
@@ -24,17 +27,18 @@ namespace WPF_Library_assessment.Library_Pages
             List<Books> DramaBooks = mongoData.Connect<Books>("Drama");
             List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
 
-            int row = addInfo(horrorBooks, "Horror", "Fantasy", 2); row++;
-            row = addInfo(fantasyBooks, "Fantasy", "Drama", row); row++;
-            row = addInfo(DramaBooks, "Drama", "Mystery", row); row++;
-            row = addInfo(MysteryBooks, "Mystery", "", row);
+            int row = addInfo(horrorBooks, "Horror", 2); 
+            row = addInfo(fantasyBooks, "Fantasy", row); 
+            row = addInfo(DramaBooks, "Drama", row); 
+            row = addInfo(MysteryBooks, "Mystery", row);
+   
         }
 
-        public int addInfo(List<Books> bookType, string collectionName, string genre, int rowNum)
+        public int addInfo(List<Books> bookType, string collectionName,  int rowNum)
         {
             foreach (var book in bookType)
             {
-                createRow(InfoGrid);
+                createRow(InfoGrid, 50);
                 TextBlock nameText = CreateTextBlock(book.Name);
                 TextBlock authorText = CreateTextBlock(book.Author);
                 Button updateButton = CreateButton("Update");
@@ -46,35 +50,36 @@ namespace WPF_Library_assessment.Library_Pages
                 deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
                 deleteButton.Click += DeleteButton_Click;
 
-                AddElementToGrid(nameText, rowNum, 0, InfoGrid);
+
+                AddElementToGrid(nameText, rowNum, 1, InfoGrid);
                 AddElementToGrid(authorText, rowNum, 2, InfoGrid);
-                AddElementToGrid(updateButton, rowNum, 4, InfoGrid);
-                AddElementToGrid(deleteButton, rowNum, 6, InfoGrid);
+                AddElementToGrid(updateButton, rowNum, 3, InfoGrid);
+                AddElementToGrid(deleteButton, rowNum, 4, InfoGrid);
 
                 rowNum++;
+                createRow(InfoGrid, 20);
+               
+                System.Windows.Shapes.Rectangle rectangle = new System.Windows.Shapes.Rectangle(); // converting it to proper one 
+                rectangle.Height = 5;
+                rectangle.Fill = Brushes.White;
+                Grid.SetRow(rectangle, rowNum);
+                Grid.SetColumn(rectangle, 0);
+                Grid.SetColumnSpan(rectangle, 8);
+                InfoGrid.Children.Add(rectangle);
+                rowNum++;
+
             }
-
-            TextBlock genreText = new TextBlock
-            {
-                Text = genre,
-                FontSize = 30,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-
-            Grid.SetRow(genreText, rowNum);
-            Grid.SetColumn(genreText, 1);
-            Grid.SetColumnSpan(genreText, 6);
-            InfoGrid.Children.Add(genreText);
 
             return rowNum;
         }
 
-        public void createRow(Grid gridName)
+        public void createRow(Grid gridName, int height)
         {
+            
             RowDefinition row = new RowDefinition();
-            row.Height = new GridLength(60);
+            row.Height = new GridLength(height);
             gridName.RowDefinitions.Add(row);
+        
         }
 
         public TextBlock CreateTextBlock(string text)
@@ -83,6 +88,7 @@ namespace WPF_Library_assessment.Library_Pages
             {
                 Text = text,
                 FontSize = 16,
+                Style =(Style)FindResource("montFontText"),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
             };
@@ -93,18 +99,22 @@ namespace WPF_Library_assessment.Library_Pages
             return new Button
             {
                 Content = new TextBlock { Text = content },
+                Background = Brushes.Black,
+                Foreground = Brushes.White,
                 FontSize = 16,
                 Padding = new Thickness(10),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
+                Style = (Style)FindResource("codebehindBtn")
             };
+
         }
 
         public void AddElementToGrid(UIElement element, int row, int column, Grid gridName)
         {
             Grid.SetRow(element, row);
             Grid.SetColumn(element, column);
-            Grid.SetColumnSpan(element, 2);
+        //    Grid.SetColumnSpan(element, 2);
             gridName.Children.Add(element);
         }
 
