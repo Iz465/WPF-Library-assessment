@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1000" d:DesignWidth="2000"
       Title="BookPG">
 
     <Grid>
@@ -38,8 +38,8 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <StackPanel>
-                        <TextBlock FontSize="30" x:Name="GenreTitle" HorizontalAlignment="Center" Padding="20"/>
-                        <Rectangle Height="10" Fill="AliceBlue"/>
+                            <TextBlock FontSize="30" x:Name="GenreTitle" HorizontalAlignment="Center" Padding="20"/>
+                            <Rectangle Height="10" Fill="AliceBlue"/>
                     </StackPanel>
                     <Grid Grid.Row="1" x:Name="InfoGrid">
                         <Grid.ColumnDefinitions>
@@ -100,7 +100,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="1" Text="Book Search" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Padding="10" Margin="20"/>
-                        <TextBlock Grid.Row="2" Text="Search" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+                        <UserControl:textboxUC x:Name="SearchBook" Grid.Row="2" PlaceHolder="Search" Width="200" Height="50" FontSize="20" VerticalAlignment="Top"/>
+                        <Button x:Name="BookSearchBtn" Content="Enter" Grid.Row="2" Width="100" Height="50" Margin="0,20,0,0" Click="BookSearchBtn_Click"/>
                     </Grid>
                 </Border>
                 <Border Grid.Row="2" BorderBrush="DarkRed" BorderThickness="5" CornerRadius="15" Background="DarkSeaGreen" Width="500" HorizontalAlignment="Center">

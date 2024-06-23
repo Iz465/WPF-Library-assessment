@@ -73,6 +73,17 @@ namespace WPF_Library_assessment.Mongo_Info
             }
         }
 
+        public void bookCollections()
+        {
+            MongoData mongoData = new MongoData();
+            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
+            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
+            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
+            List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
+         //   List<Books> romanceBooks = mongoData.Connect<Books>("Romance");
+       //     List<Books> historyBooks = mongoData.Connect<Books>("History");
+        }
+
 
 
     }

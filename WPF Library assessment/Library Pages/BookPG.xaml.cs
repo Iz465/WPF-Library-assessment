@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -24,14 +25,14 @@ namespace WPF_Library_assessment.Library_Pages
             MongoData mongoData = new MongoData();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             GenreTitle.Text = "Horror";
-            addInfo(horrorBooks, "Horror", 0); 
+            addInfo(horrorBooks, "Horror", 0);
             // row = addInfo(fantasyBooks, "Fantasy", row); 
             //  row = addInfo(DramaBooks, "Drama", row); 
             //  row = addInfo(MysteryBooks, "Mystery", row);
 
         }
 
-        public void addInfo(List<Books> bookType, string collectionName,  int rowNum)
+        public void addInfo(List<Books> bookType, string collectionName, int rowNum)
         {
             foreach (var book in bookType)
             {
@@ -55,7 +56,7 @@ namespace WPF_Library_assessment.Library_Pages
 
                 rowNum++;
                 createRow(FillGrid, 20);
-               
+
                 System.Windows.Shapes.Rectangle rectangle = new System.Windows.Shapes.Rectangle(); // converting it to proper one 
                 rectangle.Height = 5;
                 rectangle.Fill = Brushes.White;
@@ -67,16 +68,16 @@ namespace WPF_Library_assessment.Library_Pages
 
             }
 
-    
+
         }
 
         public void createRow(Grid gridName, int height)
         {
-            
+
             RowDefinition row = new RowDefinition();
             row.Height = new GridLength(height);
             gridName.RowDefinitions.Add(row);
-        
+
         }
 
         public TextBlock CreateTextBlock(string text)
@@ -85,7 +86,7 @@ namespace WPF_Library_assessment.Library_Pages
             {
                 Text = text,
                 FontSize = 16,
-                Style =(Style)FindResource("montFontText"),
+                Style = (Style)FindResource("montFontText"),
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
             };
@@ -111,7 +112,7 @@ namespace WPF_Library_assessment.Library_Pages
         {
             Grid.SetRow(element, row);
             Grid.SetColumn(element, column);
-        //    Grid.SetColumnSpan(element, 2);
+            //    Grid.SetColumnSpan(element, 2);
             gridName.Children.Add(element);
         }
 
@@ -174,8 +175,8 @@ namespace WPF_Library_assessment.Library_Pages
             FillGrid.RowDefinitions.Clear();
             switch (textblock.Name)
             {
-                case "HorrorList": GenreTitle.Text = "Horror";   List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
-                case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");  addInfo(fantasyBooks, "Fantasy", 0); break;
+                case "HorrorList": GenreTitle.Text = "Horror"; List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
+                case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy"); addInfo(fantasyBooks, "Fantasy", 0); break;
                 case "DramaList": GenreTitle.Text = "Drama"; List<Books> dramaBooks = mongoData.Connect<Books>("Drama"); addInfo(dramaBooks, "Drama", 0); break;
                 case "MysteryList": GenreTitle.Text = "Mystery"; List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery"); addInfo(mysteryBooks, "Mystery", 0); break;
                 case "RomanceList": GenreTitle.Text = "Romance"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
@@ -185,6 +186,33 @@ namespace WPF_Library_assessment.Library_Pages
 
         }
 
-    
+
+        private void BookSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FilterBooks(SearchBook.Text.ToLower());
+        }
+
+        private void FilterBooks(string findBook)
+        {
+            MongoData mongoData = new MongoData();
+            List<Books> library = new List<Books>();
+            library.AddRange(mongoData.Connect<Books>("Horror"));
+            library.AddRange(mongoData.Connect<Books>("Fantasy"));
+            library.AddRange(mongoData.Connect<Books>("Drama"));
+            library.AddRange(mongoData.Connect<Books>("Mystery"));
+            library.AddRange(mongoData.Connect<Books>("Romance"));
+            library.AddRange(mongoData.Connect<Books>("History"));
+
+            
+            List<Books> searchedBooks = library
+                .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook)) 
+                .ToList();
+
+            FillGrid.Children.Clear();
+            FillGrid.RowDefinitions.Clear();
+            addInfo(searchedBooks, "", 0);
+        }
+
+
     }
 }
