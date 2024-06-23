@@ -23,22 +23,19 @@ namespace WPF_Library_assessment.Library_Pages
 
             MongoData mongoData = new MongoData();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
-            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
-            List<Books> DramaBooks = mongoData.Connect<Books>("Drama");
-            List<Books> MysteryBooks = mongoData.Connect<Books>("Mystery");
+            GenreTitle.Text = "Horror";
+            addInfo(horrorBooks, "Horror", 0); 
+            // row = addInfo(fantasyBooks, "Fantasy", row); 
+            //  row = addInfo(DramaBooks, "Drama", row); 
+            //  row = addInfo(MysteryBooks, "Mystery", row);
 
-            int row = addInfo(horrorBooks, "Horror", 2); 
-            row = addInfo(fantasyBooks, "Fantasy", row); 
-            row = addInfo(DramaBooks, "Drama", row); 
-            row = addInfo(MysteryBooks, "Mystery", row);
-   
         }
 
-        public int addInfo(List<Books> bookType, string collectionName,  int rowNum)
+        public void addInfo(List<Books> bookType, string collectionName,  int rowNum)
         {
             foreach (var book in bookType)
             {
-                createRow(InfoGrid, 50);
+                createRow(FillGrid, 50);
                 TextBlock nameText = CreateTextBlock(book.Name);
                 TextBlock authorText = CreateTextBlock(book.Author);
                 Button updateButton = CreateButton("Update");
@@ -51,26 +48,26 @@ namespace WPF_Library_assessment.Library_Pages
                 deleteButton.Click += DeleteButton_Click;
 
 
-                AddElementToGrid(nameText, rowNum, 1, InfoGrid);
-                AddElementToGrid(authorText, rowNum, 2, InfoGrid);
-                AddElementToGrid(updateButton, rowNum, 3, InfoGrid);
-                AddElementToGrid(deleteButton, rowNum, 4, InfoGrid);
+                AddElementToGrid(nameText, rowNum, 1, FillGrid);
+                AddElementToGrid(authorText, rowNum, 2, FillGrid);
+                AddElementToGrid(updateButton, rowNum, 3, FillGrid);
+                AddElementToGrid(deleteButton, rowNum, 4, FillGrid);
 
                 rowNum++;
-                createRow(InfoGrid, 20);
+                createRow(FillGrid, 20);
                
                 System.Windows.Shapes.Rectangle rectangle = new System.Windows.Shapes.Rectangle(); // converting it to proper one 
                 rectangle.Height = 5;
                 rectangle.Fill = Brushes.White;
                 Grid.SetRow(rectangle, rowNum);
                 Grid.SetColumn(rectangle, 0);
-                Grid.SetColumnSpan(rectangle, 8);
-                InfoGrid.Children.Add(rectangle);
+                Grid.SetColumnSpan(rectangle, 6);
+                FillGrid.Children.Add(rectangle);
                 rowNum++;
 
             }
 
-            return rowNum;
+    
         }
 
         public void createRow(Grid gridName, int height)
@@ -150,13 +147,13 @@ namespace WPF_Library_assessment.Library_Pages
             mongoData.DeleteCollection<Books>(collectionName, bookId);
 
             int row = Grid.GetRow(deleteBtn);
-            InfoGrid.Children.Remove(deleteBtn);
+            FillGrid.Children.Remove(deleteBtn);
 
-            foreach (UIElement element in InfoGrid.Children.Cast<UIElement>().ToList())
+            foreach (UIElement element in FillGrid.Children.Cast<UIElement>().ToList())
             {
                 if (Grid.GetRow(element) == row)
                 {
-                    InfoGrid.Children.Remove(element);
+                    FillGrid.Children.Remove(element);
                 }
             }
         }
@@ -168,5 +165,26 @@ namespace WPF_Library_assessment.Library_Pages
             newBook.WindowStyle = WindowStyle.None;
             newBook.Show();
         }
+
+        private void GenreList(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            TextBlock textblock = sender as TextBlock;
+            MongoData mongoData = new MongoData();
+            FillGrid.Children.Clear();
+            FillGrid.RowDefinitions.Clear();
+            switch (textblock.Name)
+            {
+                case "HorrorList": GenreTitle.Text = "Horror";   List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
+                case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");  addInfo(fantasyBooks, "Fantasy", 0); break;
+                case "DramaList": GenreTitle.Text = "Drama"; List<Books> dramaBooks = mongoData.Connect<Books>("Drama"); addInfo(dramaBooks, "Drama", 0); break;
+                case "MysteryList": GenreTitle.Text = "Mystery"; List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery"); addInfo(mysteryBooks, "Mystery", 0); break;
+                case "RomanceList": GenreTitle.Text = "Romance"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
+                case "HistoryList": GenreTitle.Text = "History"; List<Books> historyBooks = mongoData.Connect<Books>("History"); addInfo(historyBooks, "History", 0); break;
+
+            }
+
+        }
+
+    
     }
 }
