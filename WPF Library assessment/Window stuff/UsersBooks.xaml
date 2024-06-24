@@ -30,7 +30,7 @@
 
    
         <Button Grid.Row="2" Content="Return Books" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkSeaGreen" Background="Black" Margin="30"
-                Click="ReturnBooks_Click"/>
+                Click="removeBooksBtn"/>
 
         
     </Grid>
