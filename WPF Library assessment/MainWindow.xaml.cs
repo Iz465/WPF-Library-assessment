@@ -31,5 +31,12 @@ namespace WPF_Library_assessment
             signup.WindowStyle = WindowStyle.None;
             signup.Show();
         }
+
+        private void headerUC_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
+    
+

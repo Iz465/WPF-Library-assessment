@@ -4,36 +4,89 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment"
-          xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
+        xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
         mc:Ignorable="d"
-        WindowState="Maximized"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid Style="{StaticResource GridStyle}">
+        Title="Library System" Height="900" Width="1200"
+        WindowStartupLocation="CenterScreen">
+
+
+    <Grid Background="DarkSeaGreen" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform/>
+                <SkewTransform/>
+                <RotateTransform Angle="-0.307"/>
+                <TranslateTransform/>
+            </TransformGroup>
+        </Grid.RenderTransform>
+
+
+        <Image Source="/images/library logo.png" Width="100" Height="100" Margin="24" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
-
-
-
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <UserControl:headerUC/>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
 
-            <Button Style="{StaticResource mainbutton}" Name="signInBtn"  Content="Sign In" Click="signInBtn_Click" VerticalAlignment="Bottom" Margin="0,0,0,20" />
-            <Button Style="{StaticResource mainbutton}" Name="signUpBtn" Grid.Row="1"  Content="Sign Up" Click="signUpBtn_Click" VerticalAlignment="Top" Margin="0,20,0,0" />
 
+        <UserControl:headerUC Grid.Row="0" Margin="0,25,124,33" Loaded="headerUC_Loaded"/>
+
+
+        <Grid Grid.Row="1" Margin="40,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <StackPanel Grid.Column="0" Margin="20">
+                <TextBlock Text="Welcome to the Library" FontSize="40" FontWeight="Bold" Foreground="Black" HorizontalAlignment="Center" Margin="0,0,0,20" />
+                <TextBlock Text="Discover a world of knowledge and entertainment. Our library offers a vast collection of books from various genres. Explore, learn, and enjoy!" 
+                           FontSize="18" Foreground="Black" TextWrapping="Wrap" Margin="0,0,0,20" />
+
+
+                <Grid x:Name="ImageGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <UserControl:genreCard TitleGenre="Drama" Height="200" Width="200" ImageGenre="/Library Pages/Drama.jpg" Grid.Column="0" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="Fantasy" Height="200" Width="200" ImageGenre="/Library Pages/Fantasy.jpg" Grid.Column="1" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="Horror" Height="200" Width="200" ImageGenre="/Library Pages/Horror.jpg" Grid.Column="2" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="Mystery" Height="200" Width="200" ImageGenre="/Library Pages/Mystery.jpg" Grid.Column="0" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="Romance" Height="200" Width="200" ImageGenre="/Library Pages/Romance.jpg" Grid.Column="1" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="History" Height="200" Width="200" ImageGenre="/Library Pages/History.jpg" Grid.Column="2" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                </Grid>
+
+
+                <StackPanel x:Name="BookInfoPanel" Visibility="Collapsed" Margin="20">
+                    <TextBlock x:Name="BookInfoTitle" FontSize="30" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,10" />
+                    <TextBlock x:Name="BookInfoDescription" FontSize="18" Foreground="#555555" TextWrapping="Wrap" />
+                </StackPanel>
+            </StackPanel>
+
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Style="{StaticResource mainbutton}" Name="signInBtn" Content="Sign In" Click="signInBtn_Click"
+                        Width="200" Height="50" FontSize="16" Background="#2196F3" Foreground="White" Margin="10" />
+                <Button Style="{StaticResource mainbutton}" Name="signUpBtn" Content="Sign Up" Click="signUpBtn_Click"
+                        Width="200" Height="50" FontSize="16" Background="#4CAF50" Foreground="White" Margin="10" />
+            </StackPanel>
         </Grid>
 
-        </Grid>
-      
-      
-   
 
+        <TextBlock Grid.Row="2" Text="© 2024 Library System. All rights reserved."
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontSize="14" Foreground="#777777" Margin="20"/>
+    </Grid>
 </Window>
+
