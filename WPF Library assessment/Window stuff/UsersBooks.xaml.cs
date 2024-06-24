@@ -37,6 +37,20 @@ namespace WPF_Library_assessment.Window_stuff
 
 
         }
+        private void ShowOrderedBooks()
+        {
+            MongoData mongoData = new MongoData();
+            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
+            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
+            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
+            List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
+
+            int row = addInfo(horrorBooks, 0);
+            row = addInfo(fantasyBooks, row);
+            row = addInfo(dramaBooks, row);
+            row = addInfo(mysteryBooks, row);
+            ReturnBookBtn(row);
+        }
 
         public int addInfo(List<Books> BookType, int row)
         {
