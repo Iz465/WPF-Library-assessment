@@ -21,7 +21,7 @@
         </Grid.RenderTransform>
 
 
-        <Image Source="/images/library logo.png" Width="100" Height="100" Margin="24" HorizontalAlignment="Right" VerticalAlignment="Top" />
+       
 
 
         <Grid.RowDefinitions>
@@ -31,10 +31,9 @@
         </Grid.RowDefinitions>
 
 
-        <UserControl:headerUC Grid.Row="0" Margin="0,25,124,33" Loaded="headerUC_Loaded"/>
-
-
-        <Grid Grid.Row="1" Margin="40,0">
+        <UserControl:headerUC Grid.Row="0" Margin="0,36,103,14"/>
+        
+<Grid Grid.Row="1" Margin="40,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
@@ -59,12 +58,12 @@
                     </Grid.RowDefinitions>
 
 
-                    <UserControl:genreCard TitleGenre="Drama" Height="200" Width="200" ImageGenre="/Library Pages/Drama.jpg" Grid.Column="0" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <UserControl:genreCard TitleGenre="Fantasy" Height="200" Width="200" ImageGenre="/Library Pages/Fantasy.jpg" Grid.Column="1" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <UserControl:genreCard TitleGenre="Horror" Height="200" Width="200" ImageGenre="/Library Pages/Horror.jpg" Grid.Column="2" Grid.Row="0" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <UserControl:genreCard TitleGenre="Mystery" Height="200" Width="200" ImageGenre="/Library Pages/Mystery.jpg" Grid.Column="0" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <UserControl:genreCard TitleGenre="Romance" Height="200" Width="200" ImageGenre="/Library Pages/Romance.jpg" Grid.Column="1" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-                    <UserControl:genreCard TitleGenre="History" Height="200" Width="200" ImageGenre="/Library Pages/History.jpg" Grid.Column="2" Grid.Row="1" Margin="10" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                    <UserControl:genreCard TitleGenre="Drama" Height="200" Width="200" ImageGenre="/Library Pages/Drama.jpg" Grid.Column="0" Grid.Row="0" Margin="10" />
+                    <UserControl:genreCard TitleGenre="Fantasy" Height="200" Width="200" ImageGenre="/Library Pages/Fantasy.jpg" Grid.Column="1" Grid.Row="0" Margin="10" />
+                    <UserControl:genreCard TitleGenre="Horror" Height="200" Width="200" ImageGenre="/Library Pages/Horror.jpg" Grid.Column="2" Grid.Row="0" Margin="10"/>
+                    <UserControl:genreCard TitleGenre="Mystery" Height="200" Width="200" ImageGenre="/Library Pages/Mystery.jpg" Grid.Column="0" Grid.Row="1" Margin="10"/>
+                    <UserControl:genreCard TitleGenre="Romance" Height="200" Width="200" ImageGenre="/Library Pages/Romance.jpg" Grid.Column="1" Grid.Row="1" Margin="10" />
+                    <UserControl:genreCard TitleGenre="History" Height="200" Width="200" ImageGenre="/Library Pages/History.jpg" Grid.Column="2" Grid.Row="1" Margin="10" />
                 </Grid>
 
 
