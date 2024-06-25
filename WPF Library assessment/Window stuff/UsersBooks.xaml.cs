@@ -58,7 +58,7 @@ namespace WPF_Library_assessment.Window_stuff
             {
                 var user = signInWn.SessionManager.CurrentUser;
 
-                if (user is WPF_Library_assessment.Window_stuff.Members members)
+                if (user is WPF_Library_assessment.Mongo_Info.Members members)
                 {
                     if (members.Username == book.Owner)
                     {
@@ -116,7 +116,7 @@ namespace WPF_Library_assessment.Window_stuff
             var dataBase = mongoData.GetMongoDatabase();
             var user = signInWn.SessionManager.CurrentUser;
 
-            if (user is WPF_Library_assessment.Window_stuff.Members members)
+            if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
                 var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
 

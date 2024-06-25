@@ -1,11 +1,11 @@
-﻿<Window x:Class="WPF_Library_assessment.Window_stuff.SignUpWN"
+﻿<Window x:Class="WPF_Library_assessment.Window_stuff.NewMember"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
         mc:Ignorable="d"
-        Title="SignUpWN" Height="450" Width="800">
+        Title="NewMember" Height="450" Width="800">
     <Grid>
         
     </Grid>

@@ -25,7 +25,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
             this.DataContext = this;
             var user = signInWn.SessionManager.CurrentUser;
 
-            if (user is WPF_Library_assessment.Window_stuff.Members members)
+            if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
                 userName.Text = members.Username;
             }
@@ -54,18 +54,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            string query = searchBox.Text;
-
-            if (!string.IsNullOrEmpty(query))
-            {
-                BookInfoWN bookInfoWindow = new BookInfoWN();
-                bookInfoWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                bookInfoWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("Please enter a search term.", "Search", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+          
         }
 
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
@@ -80,4 +69,3 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
     }
 }
-// TextBoxBase.SelectionChanged="Search"

@@ -158,9 +158,14 @@ namespace WPF_Library_assessment.Library_Pages
         public void NewBookBtn_Click(object sender, RoutedEventArgs e)
         {
             NewBook newBook = new NewBook();
-            newBook.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            newBook.WindowStyle = WindowStyle.None;
-            newBook.Show(); // adding new book doesnt work with search part right now
+            open(newBook);
+        }
+
+        public void open(Window window )
+        {
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.WindowStyle = WindowStyle.None;
+            window.Show();
         }
 
         private void GenreList(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -189,30 +194,54 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void BookSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            FilterBooks(SearchBook.Text.ToLower());
+            string searchBookText = SearchBook.Text.ToLower();
+            FilterBooks(searchBookText, "");  
         }
 
-        private void FilterBooks(string findBook)
+
+        public void FilterBooks(string findBook, string memberFindBook)
         {
+            MessageBox.Show("hi");
             MongoData mongoData = new MongoData();
-            List<Books> library = new List<Books>();
-            library.AddRange(mongoData.Connect<Books>("Horror"));
-            library.AddRange(mongoData.Connect<Books>("Fantasy"));
-            library.AddRange(mongoData.Connect<Books>("Drama"));
-            library.AddRange(mongoData.Connect<Books>("Mystery"));
-            library.AddRange(mongoData.Connect<Books>("Romance"));
-            library.AddRange(mongoData.Connect<Books>("History"));
 
-            
-            List<Books> searchedBooks = library
-                .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook)) 
-                .ToList();
-            GenreTitle.Text = "Searched Books";
-            FillGrid.Children.Clear();
-            FillGrid.RowDefinitions.Clear();
-            addInfo(searchedBooks, "", 0);
+            // Process books
+            if (!string.IsNullOrEmpty(findBook))
+            {
+                List<Books> library = new List<Books>();
+                library.AddRange(mongoData.Connect<Books>("Horror"));
+                library.AddRange(mongoData.Connect<Books>("Fantasy"));
+                library.AddRange(mongoData.Connect<Books>("Drama"));
+                library.AddRange(mongoData.Connect<Books>("Mystery"));
+                library.AddRange(mongoData.Connect<Books>("Romance"));
+                library.AddRange(mongoData.Connect<Books>("History"));
+                List<Books> searchedBooks = library
+                    .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook))
+                    .ToList();
+                GenreTitle.Text = "Searched Books";
+                FillGrid.Children.Clear();
+                FillGrid.RowDefinitions.Clear();
+                addInfo(searchedBooks, "", 0);
+            }
+
+            MemberPG memberPG = new MemberPG();
+            if (!string.IsNullOrEmpty(memberFindBook))
+            {
+                MessageBox.Show("howdy");
+                List<Members> members = mongoData.Connect<Members>("Members");
+                List<Members> searchedMembers = members
+                        .Where(member => member.Username.ToLower().Contains(memberFindBook))
+                        .ToList();
+                memberPG.GenreTitle.Text = "Searched Members";
+                memberPG.MembersGrid.Children.Clear();
+                memberPG.MembersGrid.RowDefinitions.Clear();
+                memberPG.addMember(searchedMembers, "", 0);
+            }
         }
 
 
-    }
+
+
+
+    
+}
 }

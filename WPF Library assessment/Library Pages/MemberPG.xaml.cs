@@ -18,9 +18,7 @@ using Members = WPF_Library_assessment.Mongo_Info.Members;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for MemberPG.xaml
-    /// </summary>
+ 
     public partial class MemberPG : Page
     {
         public MemberPG()
@@ -31,15 +29,11 @@ namespace WPF_Library_assessment.Library_Pages
                 MongoData mongoData = new MongoData();
                 BookPG bookPG = new BookPG();
                 List<Members> members = mongoData.Connect<Members>("Members");
-                addInfo(members, "Members", 0);
+                addMember(members, "Members", 0);
             
-        
-
-
-
         }       
       
-       public void addInfo(List<Members> memberList, string collectionName, int row)
+       public void addMember(List<Members> memberList, string collectionName, int row)
         {
             BookPG bookPG = new BookPG();
 
@@ -57,15 +51,15 @@ namespace WPF_Library_assessment.Library_Pages
             //    UpdateBtn.Click += UpdateButton_Click;
             //    DeleteBtn.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
             //    DeleteBtn.Click += DeleteButton_Click;
-                bookPG.AddElementToGrid(Username, row, 5, MembersGrid);
-                bookPG.AddElementToGrid(Password, row, 6, MembersGrid);
-                bookPG.AddElementToGrid(UpdateBtn, row, 7, MembersGrid);
-                bookPG.AddElementToGrid(DeleteBtn, row, 8, MembersGrid);
+                bookPG.AddElementToGrid(Username, row, 1, MembersGrid);
+                bookPG.AddElementToGrid(Password, row, 2, MembersGrid);
+                bookPG.AddElementToGrid(UpdateBtn, row, 3, MembersGrid);
+                bookPG.AddElementToGrid(DeleteBtn, row, 4, MembersGrid);
 
                 row++;
                 bookPG.createRow(MembersGrid, 20);
 
-                System.Windows.Shapes.Rectangle rectangle = new System.Windows.Shapes.Rectangle(); // converting it to proper one 
+                System.Windows.Shapes.Rectangle rectangle = new System.Windows.Shapes.Rectangle(); 
                 rectangle.Height = 5;
                 rectangle.Fill = Brushes.White;
                 Grid.SetColumnSpan(rectangle, 6);
@@ -76,11 +70,23 @@ namespace WPF_Library_assessment.Library_Pages
 
 
           
-        } 
-
-
-
         }
+
+        private void NewMemberBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BookPG bookPG = new BookPG();
+            NewMember newMember = new NewMember();
+            bookPG.open(newMember);
+        }
+
+    private void MemberSearchBtn_Click(object sender, RoutedEventArgs e)
+{
+            BookPG bookPG = new BookPG();
+    string searchMemberText = SearchMember.Text.ToLower();
+    bookPG.FilterBooks("", searchMemberText);  // Pass an empty string for books if you only want to search members
+}
+
+    }
 }
 
 /*   <Page.Resources>

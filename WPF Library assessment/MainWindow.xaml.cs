@@ -24,9 +24,9 @@ namespace WPF_Library_assessment
             
         }
 
-        private void signUpBtn_Click(object sender, RoutedEventArgs e)
-        {
-            signUpWn signup = new signUpWn();
+      private void signUpBtn_Click(object sender, RoutedEventArgs e)
+      {
+            SignUpWN signup = new SignUpWN();
             signup.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             signup.WindowStyle = WindowStyle.None;
             signup.Show();

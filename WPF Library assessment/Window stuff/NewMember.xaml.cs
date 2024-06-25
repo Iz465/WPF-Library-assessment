@@ -14,10 +14,10 @@ using System.Windows.Shapes;
 
 namespace WPF_Library_assessment.Window_stuff
 {
-    
-    public partial class SignUpWN : Window
+ 
+    public partial class NewMember : Window
     {
-        public SignUpWN()
+        public NewMember()
         {
             InitializeComponent();
         }

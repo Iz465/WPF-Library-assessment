@@ -106,7 +106,7 @@ namespace WPF_Library_assessment.Window_stuff
             var user = signInWn.SessionManager.CurrentUser;
             MongoData mongoData = new MongoData();
             var database = mongoData.GetMongoDatabase();
-            if (user is WPF_Library_assessment.Window_stuff.Members members)
+            if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
                 var bookGenres = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
 

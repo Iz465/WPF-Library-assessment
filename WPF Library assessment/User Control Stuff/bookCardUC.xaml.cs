@@ -101,7 +101,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
             var user = signInWn.SessionManager.CurrentUser;
             bookCardUC bookcardUC = new bookCardUC();
 
-            if (user is WPF_Library_assessment.Window_stuff.Members members)
+            if (user is Members members)
             {
                 var border = sender as Border;
                 var id = (border?.DataContext as Books)?.Id.ToString();

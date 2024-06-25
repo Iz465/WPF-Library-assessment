@@ -9,9 +9,7 @@ using WPF_Library_assessment.User_Control_Stuff;
 
 namespace WPF_Library_assessment.Window_stuff
 {
-    /// <summary>
-    /// Interaction logic for NewBook.xaml
-    /// </summary>
+
     public partial class NewBook : Window
     {
         public NewBook()

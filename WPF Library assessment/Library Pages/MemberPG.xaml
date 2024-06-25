@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPF_Library_assessment.Library_Pages"
       xmlns:UserControl="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
       mc:Ignorable="d"
-      d:DesignHeight="550" d:DesignWidth="900"
+      d:DesignHeight="1000" d:DesignWidth="2000"
       Title="MemberPG">
     <Grid>
         <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="NewBookBtn" Content="Add Member" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,50,0"/>
+                        <Button x:Name="NewMemberBtn" Content="Add Member" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,50,0" Click="NewMemberBtn_Click"/>
                         <StackPanel>
                             <TextBlock FontSize="30" x:Name="GenreTitle" HorizontalAlignment="Center" Padding="20"/>
                             <Rectangle Height="10" Fill="AliceBlue"/>
@@ -100,8 +100,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="1" Text="Member Search" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Padding="10" Margin="20"/>
-                        <UserControl:textboxUC x:Name="SearchBook" Grid.Row="2" PlaceHolder="Search" Width="200" Height="50" FontSize="20" VerticalAlignment="Top"/>
-                        <Button x:Name="BookSearchBtn" Content="Enter" Grid.Row="2" Width="100" Height="50" Margin="0,20,0,0" />
+                        <UserControl:textboxUC x:Name="SearchMember" Grid.Row="2" PlaceHolder="Search" Width="200" Height="50" FontSize="20" VerticalAlignment="Top"/>
+                        <Button x:Name="MemberSearchBtn" Content="Enter" Grid.Row="2" Width="100" Height="50" Margin="0,20,0,0" Click="MemberSearchBtn_Click" />
                     </Grid>
                 </Border>
               
