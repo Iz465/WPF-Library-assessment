@@ -29,7 +29,7 @@
         </ListBox>
 
    
-        <Button Grid.Row="2" Content="Return Books" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="DarkSeaGreen" Background="Black" Margin="30"
+        <Button Grid.Row="2" Content="Return Books" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" Height="30"  Foreground="DarkSeaGreen" Background="Black" Margin="30"
                 Click="removeBooksBtn"/>
 
         
