@@ -38,7 +38,7 @@ namespace WPF_Library_assessment.Window_stuff
                   textboxUC availableUC = new textboxUC();
                   textboxUC overdueUC = new textboxUC();
                   textboxUC timeUC = new textboxUC();
-            Button submitBtn = new Button();
+                  Button submitBtn = new Button();
 
                   nameUC.Text = name; nameUC.Width = 200; nameUC.Padding = new Thickness(10); nameUC.Height = 60; nameUC.HorizontalAlignment= HorizontalAlignment.Center;
                   authorUC.Text = author; authorUC.Width = 200; authorUC.Padding = new Thickness(10); authorUC.Height = 60; authorUC.HorizontalAlignment= HorizontalAlignment.Center; 

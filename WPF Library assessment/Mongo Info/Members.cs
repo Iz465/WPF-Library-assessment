@@ -12,7 +12,7 @@ namespace WPF_Library_assessment.Mongo_Info
     public class Members
     {
         [BsonId]
-        protected ObjectId Id { get; set; }
+        public ObjectId Id { get; set; }
 
         [BsonElement("First Name")]
 

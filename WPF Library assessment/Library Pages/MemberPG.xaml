@@ -38,7 +38,7 @@
                         </Grid.RowDefinitions>
                         <Button x:Name="NewMemberBtn" Content="Add Member" Width="100" Height="50" HorizontalAlignment="Right" Margin="0,0,50,0" Click="NewMemberBtn_Click"/>
                         <StackPanel>
-                            <TextBlock FontSize="30" x:Name="GenreTitle" HorizontalAlignment="Center" Padding="20"/>
+                            <TextBlock FontSize="30" x:Name="MemberTitle" HorizontalAlignment="Center" Padding="20"/>
                             <Rectangle Height="10" Fill="AliceBlue"/>
                         </StackPanel>
                         <Grid Grid.Row="1" x:Name="InfoGrid">

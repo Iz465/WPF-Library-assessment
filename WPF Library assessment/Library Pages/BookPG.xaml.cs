@@ -34,6 +34,7 @@ namespace WPF_Library_assessment.Library_Pages
         {
             foreach (var book in bookType)
             {
+                
                 createRow(FillGrid, 50);
                 TextBlock nameText = CreateTextBlock(book.Name);
                 TextBlock authorText = CreateTextBlock(book.Author);
@@ -45,7 +46,7 @@ namespace WPF_Library_assessment.Library_Pages
                 updateButton.Click += UpdateButton_Click;
                 deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
                 deleteButton.Click += DeleteButton_Click;
-
+         
 
                 AddElementToGrid(nameText, rowNum, 1, FillGrid);
                 AddElementToGrid(authorText, rowNum, 2, FillGrid);
@@ -132,6 +133,8 @@ namespace WPF_Library_assessment.Library_Pages
             updateWN.Show();
         }
 
+       
+
         public void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             Button deleteBtn = sender as Button;
@@ -194,54 +197,31 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void BookSearchBtn_Click(object sender, RoutedEventArgs e)
         {
-            string searchBookText = SearchBook.Text.ToLower();
-            FilterBooks(searchBookText, "");  
+            FilterBooks(SearchBook.Text.ToLower());
         }
 
-
-        public void FilterBooks(string findBook, string memberFindBook)
+        public void FilterBooks(string findBook)
         {
-            MessageBox.Show("hi");
+
             MongoData mongoData = new MongoData();
+            List<Books> library = new List<Books>();
+            library.AddRange(mongoData.Connect<Books>("Horror"));
+            library.AddRange(mongoData.Connect<Books>("Fantasy"));
+            library.AddRange(mongoData.Connect<Books>("Drama"));
+            library.AddRange(mongoData.Connect<Books>("Mystery"));
+            library.AddRange(mongoData.Connect<Books>("Romance"));
+            library.AddRange(mongoData.Connect<Books>("History"));
 
-            // Process books
-            if (!string.IsNullOrEmpty(findBook))
-            {
-                List<Books> library = new List<Books>();
-                library.AddRange(mongoData.Connect<Books>("Horror"));
-                library.AddRange(mongoData.Connect<Books>("Fantasy"));
-                library.AddRange(mongoData.Connect<Books>("Drama"));
-                library.AddRange(mongoData.Connect<Books>("Mystery"));
-                library.AddRange(mongoData.Connect<Books>("Romance"));
-                library.AddRange(mongoData.Connect<Books>("History"));
-                List<Books> searchedBooks = library
-                    .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook))
-                    .ToList();
-                GenreTitle.Text = "Searched Books";
-                FillGrid.Children.Clear();
-                FillGrid.RowDefinitions.Clear();
-                addInfo(searchedBooks, "", 0);
-            }
-
-            MemberPG memberPG = new MemberPG();
-            if (!string.IsNullOrEmpty(memberFindBook))
-            {
-                MessageBox.Show("howdy");
-                List<Members> members = mongoData.Connect<Members>("Members");
-                List<Members> searchedMembers = members
-                        .Where(member => member.Username.ToLower().Contains(memberFindBook))
-                        .ToList();
-                memberPG.GenreTitle.Text = "Searched Members";
-                memberPG.MembersGrid.Children.Clear();
-                memberPG.MembersGrid.RowDefinitions.Clear();
-                memberPG.addMember(searchedMembers, "", 0);
-            }
+            
+            List<Books> searchedBooks = library
+                .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook)) 
+                .ToList();
+            GenreTitle.Text = "Searched Books";
+            FillGrid.Children.Clear();
+            FillGrid.RowDefinitions.Clear();
+            addInfo(searchedBooks, "", 0);
         }
 
-
-
-
-
-    
-}
+      
+    }
 }
