@@ -74,6 +74,8 @@ namespace WPF_Library_assessment.Window_stuff
                             .Set("Available", available);
 
                             collection.UpdateMany(filter, update);
+                            MessageBox.Show("Book has been updated!");
+                            this.Close();
                     }
             
         

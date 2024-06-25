@@ -73,18 +73,11 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void UpdateMember_Click(object sender, RoutedEventArgs e, Members member)
         {
-            try
-            {
                 UpdateMemberWN updateMemberWN = new UpdateMemberWN();
                 updateMemberWN.changeMember(member);
                 updateMemberWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 updateMemberWN.WindowStyle = WindowStyle.None;
                 updateMemberWN.Show();
-            }
-        catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);   
-            }
             
         }
 

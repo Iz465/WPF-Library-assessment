@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
         mc:Ignorable="d"
-        Title="UpdateMemberWN" Height="450" Width="800" Background="#9CAF88">
+        Title="UpdateMemberWN" Height="600" Width="800" Background="#9CAF88">
     <Grid x:Name="updatingMemberGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>

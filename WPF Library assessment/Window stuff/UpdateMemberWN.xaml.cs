@@ -21,6 +21,13 @@ namespace WPF_Library_assessment.Window_stuff
 
     public partial class UpdateMemberWN : Window
     {
+        private textboxUC firstnameUC;
+        private textboxUC lastnameUC;
+        private textboxUC ageUC;
+        private textboxUC phoneUC;
+        private textboxUC addressUC;
+        private textboxUC usernameUC;
+        private textboxUC passwordUC;
         public UpdateMemberWN()
         {
             InitializeComponent();
@@ -28,13 +35,13 @@ namespace WPF_Library_assessment.Window_stuff
 
         public void changeMember(Members member)
         {
-            textboxUC firstnameUC = new textboxUC(); firstnameUC.Text = member.FirstName; createText(firstnameUC);
-            textboxUC lastnameUC = new textboxUC(); lastnameUC.Text = member.LastName; createText(lastnameUC);
-            textboxUC ageUC = new textboxUC(); ageUC.Text = member.Age; createText(ageUC);
-            textboxUC phoneUC = new textboxUC(); phoneUC.Text = member.PhoneNumber; createText(phoneUC);
-            textboxUC addressUC = new textboxUC(); addressUC.Text = member.Address; createText(addressUC);
-            textboxUC usernameUC = new textboxUC(); usernameUC.Text = member.Username; createText(usernameUC);
-            textboxUC passwordUC = new textboxUC(); passwordUC.Text = member.Password; createText(passwordUC);
+             firstnameUC = new textboxUC(); firstnameUC.Text = member.FirstName; createText(firstnameUC);
+             lastnameUC = new textboxUC(); lastnameUC.Text = member.LastName; createText(lastnameUC);
+             ageUC = new textboxUC(); ageUC.Text = member.Age; createText(ageUC);
+             phoneUC = new textboxUC(); phoneUC.Text = member.PhoneNumber; createText(phoneUC);
+             addressUC = new textboxUC(); addressUC.Text = member.Address; createText(addressUC);
+             usernameUC = new textboxUC(); usernameUC.Text = member.Username; createText(usernameUC);
+             passwordUC = new textboxUC(); passwordUC.Text = member.Password; createText(passwordUC);
             Button submitBtn = new Button(); submitBtn.Content = "Finish Update"; submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center;
             submitBtn.Click += (sender, e) => submitBtnClick(sender,e, member);
 
@@ -70,19 +77,23 @@ namespace WPF_Library_assessment.Window_stuff
             MongoData mongoData = new MongoData();
             var database = mongoData.GetMongoDatabase();
             IMongoCollection<Members> collection = database.GetCollection<Members>("Members");
+            
+                var filter = Builders<Members>.Filter.Eq("_id", member.Id);
+                var update = Builders<Members>.Update
+                    .Set("First Name", firstnameUC.Text)
+                    .Set("Last Name", lastnameUC.Text)
+                    .Set("Age", ageUC.Text)
+                    .Set("Phone Number", phoneUC.Text)
+                    .Set("Address", addressUC.Text)
+                    .Set("Username", usernameUC.Text)
+                    .Set("Password", passwordUC.Text);
 
-            var filter = Builders<Members>.Filter.Eq("_id", new ObjectId(member.Id.ToString()));
-            var update = Builders<Members>.Update
-                .Set("First Name", member.FirstName)
-                .Set("Last Name", member.LastName)
-                .Set("Age", member.Age)
-                .Set("Phone Number", member.PhoneNumber)
-                .Set("Address", member.Address)
-                .Set("Username", member.Username)
-                .Set("Password", member.Password);
-            collection.UpdateMany(filter, update);
+               collection.UpdateOne(filter, update);
+            MessageBox.Show("Member has been updated!");
+            this.Close();
 
         }
+
 
 
 
