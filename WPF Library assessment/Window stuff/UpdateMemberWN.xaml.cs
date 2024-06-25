@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,18 +36,18 @@ namespace WPF_Library_assessment.Window_stuff
             textboxUC usernameUC = new textboxUC(); usernameUC.Text = member.Username; createText(usernameUC);
             textboxUC passwordUC = new textboxUC(); passwordUC.Text = member.Password; createText(passwordUC);
             Button submitBtn = new Button(); submitBtn.Content = "Finish Update"; submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center;
+            submitBtn.Click += (sender, e) => submitBtnClick(sender,e, member);
 
             int row = 2;
             row = addToGrid(firstnameUC, row);
             row = addToGrid(lastnameUC, row);
             row = addToGrid(ageUC, row);
-            row = addToGrid(firstnameUC, row);
             row = addToGrid(phoneUC, row);
             row = addToGrid(addressUC, row);
             row = addToGrid(usernameUC, row);
             row = addToGrid(passwordUC, row);
-           //     Grid.SetRow(submitBtn, row);
-             //   updatingMemberGrid.Children.Add(submitBtn);
+               Grid.SetRow(submitBtn, row);
+               updatingMemberGrid.Children.Add(submitBtn);
 
 
         }
@@ -63,6 +65,24 @@ namespace WPF_Library_assessment.Window_stuff
             return row;
         }
 
+        void submitBtnClick(object sender, EventArgs e, Members member)
+        {
+            MongoData mongoData = new MongoData();
+            var database = mongoData.GetMongoDatabase();
+            IMongoCollection<Members> collection = database.GetCollection<Members>("Members");
+
+            var filter = Builders<Members>.Filter.Eq("_id", new ObjectId(member.Id.ToString()));
+            var update = Builders<Members>.Update
+                .Set("First Name", member.FirstName)
+                .Set("Last Name", member.LastName)
+                .Set("Age", member.Age)
+                .Set("Phone Number", member.PhoneNumber)
+                .Set("Address", member.Address)
+                .Set("Username", member.Username)
+                .Set("Password", member.Password);
+            collection.UpdateMany(filter, update);
+
+        }
 
 
 
