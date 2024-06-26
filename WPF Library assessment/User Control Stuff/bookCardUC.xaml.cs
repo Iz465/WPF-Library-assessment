@@ -1,53 +1,50 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
-using System.Xml.Linq;
 using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.Window_stuff;
-using YourNamespace;
-using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 using static WPF_Library_assessment.Window_stuff.signInWn;
 
 namespace WPF_Library_assessment.User_Control_Stuff
 {
-
     public partial class bookCardUC : UserControl
     {
         public bookCardUC()
         {
             InitializeComponent();
-
         }
 
+        public static readonly DependencyProperty ImageUrlProperty =
+            DependencyProperty.Register("ImageUrl", typeof(string), typeof(bookCardUC), new PropertyMetadata(default(string), OnImageUrlChanged));
 
-        public void test(string s)
+        public string ImageUrl
         {
-            //   MessageBox.Show(s);
-            ImageSource = convertImage.ConvertBase64ToImage(s);
+            get { return (string)GetValue(ImageUrlProperty); }
+            set { SetValue(ImageUrlProperty, value); }
+        }
+
+        private static void OnImageUrlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = (bookCardUC)d;
+            var imageUrl = (string)e.NewValue;
+            var bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.UriSource = new Uri(imageUrl, UriKind.Absolute);
+            bitmap.EndInit();
+            control.ImageSource = bitmap;
         }
 
         public static readonly DependencyProperty ImageSourceProperty =
-       DependencyProperty.Register("ImageSource", typeof(BitmapImage), typeof(bookCardUC));
+            DependencyProperty.Register("ImageSource", typeof(BitmapImage), typeof(bookCardUC));
 
         public BitmapImage ImageSource
         {
@@ -55,10 +52,8 @@ namespace WPF_Library_assessment.User_Control_Stuff
             set { SetValue(ImageSourceProperty, value); }
         }
 
-
-
         public static readonly DependencyProperty NameDetails =
-             DependencyProperty.Register("Name", typeof(string), typeof(bookCardUC));
+            DependencyProperty.Register("Name", typeof(string), typeof(bookCardUC));
 
         public string Name
         {
@@ -85,16 +80,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
         }
 
         public static readonly DependencyProperty AvailableDetails =
-          DependencyProperty.Register("Available", typeof(string), typeof(bookCardUC));
+            DependencyProperty.Register("Available", typeof(string), typeof(bookCardUC));
 
         public string Available
         {
             get { return (string)GetValue(AvailableDetails); }
             set { DataContext = this; SetValue(AvailableDetails, value); }
         }
-
-
-
 
         public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -105,7 +97,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
             {
                 var border = sender as Border;
                 var id = (border?.DataContext as Books)?.Id.ToString();
-                
+
                 MongoData mongoData = new MongoData();
                 var database = mongoData.GetMongoDatabase();
 
@@ -120,11 +112,9 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
                         if (book.Available == "Yes")
                         {
-                            
                             var update = Builders<Books>.Update
                                .Set("Available", "No")
                                .Set("Owner", members.Username);
-
 
                             collection.UpdateOne(filter, update);
                             MessageBox.Show("Book has been ordered!");
@@ -144,38 +134,22 @@ namespace WPF_Library_assessment.User_Control_Stuff
                             border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
                             Colour(new SolidColorBrush(Colors.White));
                         }
-
                     }
                 }
-           catch (Exception ex)
+                catch (Exception ex)
                 {
-               //     MessageBox.Show(ex.ToString());
+                    // MessageBox.Show(ex.ToString());
                 }
-
-
-
-
-              
-               
             }
-
-        
-
-          
         }
 
         public void Colour(Brush colour)
         {
             colour1.Foreground = colour;
             colour2.Foreground = colour;
-            colour3.Foreground = colour;        
+            colour3.Foreground = colour;
             colour4.Foreground = colour;
-     
         }
-
-
-
-
 
         public void StartTimer(int timeLeft, Books book, IMongoCollection<Books> collection)
         {
@@ -184,13 +158,11 @@ namespace WPF_Library_assessment.User_Control_Stuff
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-         
 
             timer.Tick += (sender, args) =>
             {
                 if (time == TimeSpan.Zero)
                 {
-                    
                     timer.Stop();
                     TimerTextBlock.Visibility = Visibility.Collapsed;
                     var filter = Builders<Books>.Filter.Eq("_id", book.Id);
@@ -207,10 +179,9 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 }
             };
 
-            TimerManager.AddTimer(timer); 
+            TimerManager.AddTimer(timer);
             timer.Start();
         }
-
 
         public static class TimerManager
         {
@@ -231,22 +202,14 @@ namespace WPF_Library_assessment.User_Control_Stuff
             }
         }
 
-
-
-
-
-
         public void prebookConvert(Books book, IMongoCollection<Books> collection, string collectionName, int time)
         {
-          
-                var filter = Builders<Books>.Filter.Eq("_id", book.Id);
+            var filter = Builders<Books>.Filter.Eq("_id", book.Id);
             var update = Builders<Books>.Update
                 .Set("Owner", book.PreBookOwner)
                 .Set("PreBookOwner", string.Empty)
                 .Set("Available", "No");
-                collection.UpdateOne(filter, update);
-                                       
+            collection.UpdateOne(filter, update);
         }
-
     }
 }

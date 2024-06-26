@@ -1,11 +1,12 @@
-﻿<UserControl Style="{StaticResource montFontUC}"  x:Class="WPF_Library_assessment.User_Control_Stuff.bookCardUC"
+﻿<UserControl x:Class="WPF_Library_assessment.User_Control_Stuff.bookCardUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:WPF_Library_assessment.User_Control_Stuff"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="400">
+
     <UserControl.Resources>
         <Style TargetType="Border" x:Key="CardBorder">
             <Setter Property="Background">
@@ -32,7 +33,6 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-       
     </UserControl.Resources>
 
     <Grid Margin="10">
@@ -44,7 +44,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <Border CornerRadius="20" ClipToBounds="True" Grid.Row="0">
-                        <Image Source="{Binding ImageSource, RelativeSource={RelativeSource AncestorType=UserControl}}" Stretch="Fill" MaxHeight="370">
+                        <Image Source="{Binding ImageSource}" Stretch="Fill" MaxHeight="370">
                             <Image.Clip>
                                 <RectangleGeometry Rect="0,0,245,400" RadiusX="20" RadiusY="20" />
                             </Image.Clip>
@@ -52,7 +52,7 @@
                     </Border>
                     <Rectangle Grid.Row="0" Height="15" Fill="DarkRed" />
                 </StackPanel>
-              
+
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -74,11 +74,7 @@
                         <Run Text="Available:"/>
                         <Run Text="{Binding Available}"/>
                     </TextBlock>
-                  
-
                 </Grid>
-
-             
                 <Border CornerRadius="20" Background="#90000000" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.RowSpan="5">
                     <TextBlock x:Name="TimerTextBlock"
                                Height="370"
@@ -91,7 +87,6 @@
                                Padding="0,70,0,0"
                                Visibility="Collapsed"/>
                 </Border>
-
             </Grid>
         </Border>
     </Grid>

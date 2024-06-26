@@ -23,9 +23,9 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
 
             MongoData mongoData = new MongoData();
-            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
+         //   List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             GenreTitle.Text = "Horror";
-            addInfo(horrorBooks, "Horror", 0);
+       //     addInfo(horrorBooks, "Horror", 0);
           
 
         }
