@@ -93,7 +93,7 @@ namespace WPF_Library_assessment.Library_Pages
                     case "Horror":
                         NavigateToPage(new horrorPG());
                         break;
-                    case "Romance":
+                    case "Graphic Novel":
                         NavigateToPage(new RomancePG());
                         break;
                     case "Book Info":

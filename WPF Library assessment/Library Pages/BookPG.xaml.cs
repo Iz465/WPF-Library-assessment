@@ -135,27 +135,35 @@ namespace WPF_Library_assessment.Library_Pages
 
        
 
-        public void DeleteButton_Click(object sender, RoutedEventArgs e)
+        public void DeleteButton_Click(object sender, RoutedEventArgs e)  // right now i cant delete any books that have been searched.
         {
-            Button deleteBtn = sender as Button;
-
-            Tuple<string, string> tagData = deleteBtn.Tag as Tuple<string, string>;
-            string collectionName = tagData.Item1;
-            string bookId = tagData.Item2;
-
-            MongoData mongoData = new MongoData();
-            mongoData.DeleteCollection<Books>(collectionName, bookId);
-
-            int row = Grid.GetRow(deleteBtn);
-            FillGrid.Children.Remove(deleteBtn);
-
-            foreach (UIElement element in FillGrid.Children.Cast<UIElement>().ToList())
+            try
             {
-                if (Grid.GetRow(element) == row)
+                Button deleteBtn = sender as Button;
+
+                Tuple<string, string> tagData = deleteBtn.Tag as Tuple<string, string>;
+                string collectionName = tagData.Item1;
+                string bookId = tagData.Item2;
+
+                MongoData mongoData = new MongoData();
+                mongoData.DeleteCollection<Books>(collectionName, bookId);
+
+                int row = Grid.GetRow(deleteBtn);
+                FillGrid.Children.Remove(deleteBtn);
+
+                foreach (UIElement element in FillGrid.Children.Cast<UIElement>().ToList())
                 {
-                    FillGrid.Children.Remove(element);
+                    if (Grid.GetRow(element) == row)
+                    {
+                        FillGrid.Children.Remove(element);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
+         
         }
 
         public void NewBookBtn_Click(object sender, RoutedEventArgs e)

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="WPF_Library_assessment.User_Control_Stuff.bookCardUC"
+﻿<UserControl Style="{StaticResource montFontUC}" x:Class="WPF_Library_assessment.User_Control_Stuff.bookCardUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

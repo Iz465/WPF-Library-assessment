@@ -17,22 +17,36 @@ namespace WPF_Library_assessment.Window_stuff
           
             InitializeComponent();
 
-           textboxUC nameText = new textboxUC(); nameText.Height = 70; nameText.Width = 200;
-           textboxUC authorText = new textboxUC(); authorText.Height = 70; authorText.Width = 200;
-           textboxUC PagesText = new textboxUC(); PagesText.Height = 70; PagesText.Width = 200;
-           textboxUC collectionText = new textboxUC(); collectionText.Height = 70; collectionText.Width = 200;
-           Button addBookBtn = new Button(); addBookBtn.Height = 70; addBookBtn.Width = 200; addBookBtn.Content = "Submit"; addBookBtn.Click += (sender, e) =>
-           submitBtn(nameText.Text, authorText.Text, PagesText.Text, collectionText.Text);
-           Grid.SetRow(nameText,1);
-            Grid.SetRow(authorText,2);
-            Grid.SetRow(PagesText,3);
-            Grid.SetRow(collectionText,4);
-            Grid.SetRow(addBookBtn,5);
-            newGrid.Children.Add(nameText);
-            newGrid.Children.Add(authorText);
-            newGrid.Children.Add(PagesText);
-            newGrid.Children.Add(collectionText);
+            textboxUC nameText = makeText("Name");
+            textboxUC authorText = makeText("Author");
+            textboxUC PagesText = makeText("Pages");
+            textboxUC collectionText = makeText("Collection");
+            Button addBookBtn = new Button(); addBookBtn.Height = 70; addBookBtn.Width = 200; addBookBtn.Content = "Submit"; addBookBtn.Click += (sender, e) =>
+            submitBtn(nameText.Text, authorText.Text, PagesText.Text, collectionText.Text);
+            setGrid(nameText, 2, newGrid);
+            setGrid(authorText,3, newGrid);
+            setGrid(PagesText, 4, newGrid);
+            setGrid(collectionText, 5, newGrid);
+            Grid.SetRow(addBookBtn, 6);
             newGrid.Children.Add(addBookBtn);
+        
+        }
+
+      public textboxUC makeText(string placeholder)
+        {
+            return new textboxUC
+            {
+                Height = 70,
+                Width = 200,
+                PlaceHolder = placeholder
+            };
+        }
+
+     public void setGrid(textboxUC UC, int row, Grid gridname)
+        {
+           Grid.SetRow(UC,row);
+            gridname.Children.Add(UC);
+
         }
 
          void submitBtn(string name, string author, string pages, string collectionName)
@@ -46,10 +60,16 @@ namespace WPF_Library_assessment.Window_stuff
                 {"Name", name},
                 {"Author", author},
                 {"Pages", pages},
-                {"Available", "Yes" }
+                {"Available", "Yes" },
+                {"Overdue", "No" },
+                {"Time", 300 },
+                {"Owner", string.Empty },
+                {"PreBookOwner", string.Empty },
+                {"Image", "https://storage.googleapis.com/librarybookimages/book%20placeholder%20image.avif" }
+
             };
             collection.InsertOne(newBook);
-       
+            MessageBox.Show($"{name} has been added to the library");
 
         }
 

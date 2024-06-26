@@ -15,7 +15,7 @@
                 <RowDefinition Height="200"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <UserControl:headerUC Grid.ColumnSpan="7" Height="250" VerticalAlignment="Top" HeaderText="Romance"/>
+            <UserControl:headerUC Grid.ColumnSpan="7" Height="250" VerticalAlignment="Top" HeaderText="Graphic Novel"/>
             <Grid Grid.Row="2" x:Name="romanceGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

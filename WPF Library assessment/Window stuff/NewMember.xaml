@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Library_assessment.Window_stuff"
         mc:Ignorable="d"
-        Title="NewMember" Height="450" Width="800">
-    <Grid>
-        
+        Title="NewMember" Height="700" Width="800" Background="#9CAF88">
+    <Grid x:Name="newMemGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Text="New Member"/>
     </Grid>
 </Window>
