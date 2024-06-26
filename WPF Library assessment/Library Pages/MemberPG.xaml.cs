@@ -103,12 +103,16 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void NewMemberBtn_Click(object sender, RoutedEventArgs e)
         {
-            BookPG bookPG = new BookPG();
             NewMember newMember = new NewMember();
-            bookPG.open(newMember);
+            newMember.Closed += (s, args) => newMember = null; 
+            newMember.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            newMember.WindowStyle = WindowStyle.None;
+            newMember.Show();
         }
 
-    private void MemberSearchBtn_Click(object sender, RoutedEventArgs e)
+
+
+        private void MemberSearchBtn_Click(object sender, RoutedEventArgs e)
     {
             FilterMembers(SearchMember.Text.ToLower());
         }
