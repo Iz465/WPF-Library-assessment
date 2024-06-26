@@ -49,13 +49,13 @@ namespace WPF_Library_assessment.User_Control_Stuff
         }
         private void txtInput_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInput.Text)) // checks if their is text in it. if their is noe this will happen
+            if (string.IsNullOrEmpty(txtInput.Text)) 
             {
-                tbPlaceHolder.Visibility = Visibility.Visible; // makes placeholder text seen as no user input text is in,
+                tbPlaceHolder.Visibility = Visibility.Visible; 
             }
             else
             {
-                tbPlaceHolder.Visibility = Visibility.Hidden; // makes it hidden as soon as user types in it.
+                tbPlaceHolder.Visibility = Visibility.Hidden; 
             }
         }
 

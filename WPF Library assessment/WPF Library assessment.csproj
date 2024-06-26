@@ -29,9 +29,11 @@
     <None Remove="images\lilogo.png" />
     <None Remove="images\passswordlogo.png" />
     <None Remove="images\userProfile.png" />
+    <None Remove="Library Pages\ancientLibrary.jpg" />
     <None Remove="Library Pages\Books.jpg" />
     <None Remove="Library Pages\Drama.jpg" />
     <None Remove="Library Pages\Fantasy.jpg" />
+    <None Remove="Library Pages\graphicnovel.jpg" />
     <None Remove="Library Pages\History.jpg" />
     <None Remove="Library Pages\Horror.jpg" />
     <None Remove="Library Pages\members-icon.jpg" />
@@ -39,6 +41,7 @@
     <None Remove="Library Pages\Mystery.jpg" />
     <None Remove="Library Pages\Romance.jpg" />
     <None Remove="Library Pages\Romance2.jpg" />
+    <None Remove="Library Pages\Scifi.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,9 +73,11 @@
     <Resource Include="images\lilogo.png" />
     <Resource Include="images\passswordlogo.png" />
     <Resource Include="images\userProfile.png" />
+    <Resource Include="Library Pages\ancientLibrary.jpg" />
     <Resource Include="Library Pages\Books.jpg" />
     <Resource Include="Library Pages\Drama.jpg" />
     <Resource Include="Library Pages\Fantasy.jpg" />
+    <Resource Include="Library Pages\graphicnovel.jpg" />
     <Resource Include="Library Pages\History.jpg" />
     <Resource Include="Library Pages\Horror.jpg" />
     <Resource Include="Library Pages\members-icon.jpg" />
@@ -80,6 +85,7 @@
     <Resource Include="Library Pages\Mystery.jpg" />
     <Resource Include="Library Pages\Romance.jpg" />
     <Resource Include="Library Pages\Romance2.jpg" />
+    <Resource Include="Library Pages\Scifi.jpg" />
   </ItemGroup>
 
 </Project>

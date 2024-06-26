@@ -17,8 +17,8 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        
-     
+        <Button Grid.Row="0" Name="updateWnCloseBtn" Content="X" Width="50" Height="55" FontSize="40" HorizontalAlignment="Right" Margin="0,0,20,0" Click="updateWnCloseBtn_Click" Background="Transparent" BorderThickness="0"/>
+
 
     </Grid>
 </Window>

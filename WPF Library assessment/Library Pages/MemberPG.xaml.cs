@@ -48,11 +48,6 @@ namespace WPF_Library_assessment.Library_Pages
                 TextBlock Password = bookPG.CreateTextBlock(person.Password);
                 Button UpdateBtn = bookPG.CreateButton("Update"); UpdateBtn.Click += (sender, e) => UpdateMember_Click(sender, e, person);
                 Button DeleteBtn = bookPG.CreateButton("Delete"); DeleteBtn.Click += (sender, e) => DeleteMember_Click(sender, e, "Members", person.Id.ToString());
-                //     UpdateBtn.Tag = new Tuple<string, string, string, string, string, string>
-                //      (collectionName, person.Id.ToString(), person.FirstName, person.LastName, book.Pages.ToString(), book.Available);
-                //    UpdateBtn.Click += UpdateButton_Click;
-                //    DeleteBtn.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
-                //    DeleteBtn.Click += DeleteButton_Click;
                 bookPG.AddElementToGrid(Username, row, 1, MembersGrid);
                 bookPG.AddElementToGrid(Password, row, 2, MembersGrid);
                 bookPG.AddElementToGrid(UpdateBtn, row, 3, MembersGrid);
@@ -103,11 +98,19 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void NewMemberBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewMember newMember = new NewMember();
-            newMember.Closed += (s, args) => newMember = null; 
-            newMember.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            newMember.WindowStyle = WindowStyle.None;
-            newMember.Show();
+            try
+            {
+                NewMember newMember = new NewMember();
+                newMember.Closed += (s, args) => newMember = null;
+                newMember.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                newMember.WindowStyle = WindowStyle.None;
+                newMember.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+          
         }
 
 

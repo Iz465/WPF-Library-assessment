@@ -77,8 +77,11 @@ namespace WPF_Library_assessment.Window_stuff
                             MessageBox.Show("Book has been updated!");
                             this.Close();
                     }
-            
-        
+
+        private void updateWnCloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
   

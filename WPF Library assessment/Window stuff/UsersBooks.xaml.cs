@@ -166,12 +166,10 @@ namespace WPF_Library_assessment.Window_stuff
             }
         }
 
-
-
-
-       
-
-
+        private void orderCloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

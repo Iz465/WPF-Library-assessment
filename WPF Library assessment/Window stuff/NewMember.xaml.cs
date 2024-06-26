@@ -41,6 +41,8 @@ namespace WPF_Library_assessment.Window_stuff
             newBook.setGrid(addressUC, 6, newMemGrid);
             newBook.setGrid(usernameUC, 7, newMemGrid);
             newBook.setGrid(passwordUC, 8, newMemGrid);
+            Grid.SetRow(addBookBtn, 9);
+            newMemGrid.Children.Add(addBookBtn);
 
 
 
@@ -49,7 +51,7 @@ namespace WPF_Library_assessment.Window_stuff
         {
             MongoData mongoData = new MongoData();
             var dataBase = mongoData.GetMongoDatabase();
-            IMongoCollection<BsonDocument> collection = dataBase.GetCollection<BsonDocument>("Books");
+            IMongoCollection<BsonDocument> collection = dataBase.GetCollection<BsonDocument>("Members");
 
             var newBook = new BsonDocument
             {
@@ -68,5 +70,9 @@ namespace WPF_Library_assessment.Window_stuff
 
         }
 
+        private void newmemCloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
