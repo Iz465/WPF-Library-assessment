@@ -23,9 +23,9 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
 
             MongoData mongoData = new MongoData();
-         //   List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
+            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             GenreTitle.Text = "Horror";
-       //     addInfo(horrorBooks, "Horror", 0);
+            addInfo(horrorBooks, "Horror", 0);
           
 
         }
@@ -182,9 +182,9 @@ namespace WPF_Library_assessment.Library_Pages
                 {
                     case "HorrorList": GenreTitle.Text = "Horror"; List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
                     case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy"); addInfo(fantasyBooks, "Fantasy", 0); break;
-                    case "DramaList": GenreTitle.Text = "Drama"; List<Books> dramaBooks = mongoData.Connect<Books>("Drama"); addInfo(dramaBooks, "Drama", 0); break;
+                    case "ScifiList": GenreTitle.Text = "Sci-Fi"; List<Books> scifiBooks = mongoData.Connect<Books>("Sci-Fi"); addInfo(scifiBooks, "Sci-Fi", 0); break;
                     case "MysteryList": GenreTitle.Text = "Mystery"; List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery"); addInfo(mysteryBooks, "Mystery", 0); break;
-                    case "RomanceList": GenreTitle.Text = "Romance"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
+                    case "ComicList": GenreTitle.Text = "Comic"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
                     case "HistoryList": GenreTitle.Text = "History"; List<Books> historyBooks = mongoData.Connect<Books>("History"); addInfo(historyBooks, "History", 0); break;
 
                 }
@@ -207,7 +207,7 @@ namespace WPF_Library_assessment.Library_Pages
             List<Books> library = new List<Books>();
             library.AddRange(mongoData.Connect<Books>("Horror"));
             library.AddRange(mongoData.Connect<Books>("Fantasy"));
-            library.AddRange(mongoData.Connect<Books>("Drama"));
+            library.AddRange(mongoData.Connect<Books>("Sci-Fi"));
             library.AddRange(mongoData.Connect<Books>("Mystery"));
             library.AddRange(mongoData.Connect<Books>("Romance"));
             library.AddRange(mongoData.Connect<Books>("History"));

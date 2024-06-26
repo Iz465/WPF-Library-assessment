@@ -22,9 +22,9 @@ namespace WPF_Library_assessment.Library_Pages
         public void setupBooks()
         {
             MongoData mongoData = new MongoData();
-            List<Books> fantasy = mongoData.Connect<Books>("Horror");
+            List<Books> fantasy = mongoData.Connect<Books>("Fantasy");
             var database = mongoData.GetMongoDatabase();
-            IMongoCollection<Books> collection = database.GetCollection<Books>("Horror");
+            IMongoCollection<Books> collection = database.GetCollection<Books>("Fantasy");
             int columnNum = 0;
             int rowNum = 0;
             addInfo(fantasy, columnNum, rowNum, fantasyGrid, collection);
@@ -34,8 +34,8 @@ namespace WPF_Library_assessment.Library_Pages
         {
             foreach (var book in bookType)
             {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
+               
+                
                     bookCardUC bookcardUC = new bookCardUC();
                     bookcardUC.DataContext = book;
                     bookcardUC.Width = 300;
@@ -65,7 +65,7 @@ namespace WPF_Library_assessment.Library_Pages
                         rowDefinition.Height = GridLength.Auto;
                         bookGrid.RowDefinitions.Add(rowDefinition);
                     }
-                });
+                
             }
         }
 

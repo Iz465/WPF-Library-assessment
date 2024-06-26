@@ -37,18 +37,22 @@ namespace WPF_Library_assessment.Window_stuff
 
 
         }
-        private void ShowOrderedBooks()
+        private void showOrderedBooks()
         {
             MongoData mongoData = new MongoData();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
-            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
+            List<Books> scifiBooks = mongoData.Connect<Books>("Sci-Fi");
             List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
+            List<Books> graphicBooks = mongoData.Connect<Books>("Romance");
+            List<Books> historyBooks = mongoData.Connect<Books>("History");
 
             int row = addInfo(horrorBooks, 0);
             row = addInfo(fantasyBooks, row);
-            row = addInfo(dramaBooks, row);
+            row = addInfo(scifiBooks, row);
             row = addInfo(mysteryBooks, row);
+            row = addInfo(graphicBooks, row);
+            row = addInfo(historyBooks, row);
             ReturnBookBtn(row);
         }
 
@@ -118,7 +122,7 @@ namespace WPF_Library_assessment.Window_stuff
 
             if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
-                var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
+                var collections = new List<string> { "Horror", "Fantasy", "Sci-Fi", "Mystery", "Romance", "History" };
 
                 foreach (var collectionName in collections)
                 {
@@ -153,7 +157,7 @@ namespace WPF_Library_assessment.Window_stuff
                 try
                 {
                     MongoData.BookReturnNotifier.NotifyBooksReturned();
-               //     this.Close();
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
@@ -165,23 +169,7 @@ namespace WPF_Library_assessment.Window_stuff
 
 
 
-        private void showOrderedBooks()
-        {
-          
-            MongoData mongoData = new MongoData();
-            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
-            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
-            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
-            List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
-
-
-          
-            int row = addInfo(horrorBooks, 0);
-            row = addInfo(fantasyBooks, row);
-            row = addInfo(dramaBooks, row);
-            row = addInfo(mysteryBooks, row);
-            ReturnBookBtn(row);
-        }
+       
 
 
     }

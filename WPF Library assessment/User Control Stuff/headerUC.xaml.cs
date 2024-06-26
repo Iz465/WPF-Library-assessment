@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Library_assessment.Library_Pages;
 using WPF_Library_assessment.Window_stuff;
 
 namespace WPF_Library_assessment.User_Control_Stuff
@@ -57,15 +58,24 @@ namespace WPF_Library_assessment.User_Control_Stuff
           
         }
 
-        private void Grid_MouseEnter(object sender, MouseEventArgs e)
-        {
-            VisualStateManager.GoToState(this, "MouseOver", true);
-        }
+     
 
-        private void Grid_MouseLeave(object sender, MouseEventArgs e)
+        private void BackPageBtn_Click(object sender, RoutedEventArgs e)
         {
-            VisualStateManager.GoToState(this, "Normal", true);
-        }
+            WelcomePG welcomePG = new WelcomePG();
+          
+            switch (HeaderText)
+            {
+                case "":
+                    MainWindow mainWindow = new MainWindow();
+                    Application.Current.MainWindow = mainWindow;
+                    mainWindow.Show();
 
+                    Window.GetWindow(this).Close(); break;
+                default: welcomePG.NavigateToPage(new WelcomePG());  break;
+            }
+         
+         
+        }
     }
 }

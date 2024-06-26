@@ -59,7 +59,7 @@ namespace WPF_Library_assessment.Library_Pages
 
       
 
-        private void NavigateToPage(Page page)
+        public void NavigateToPage(Page page)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
@@ -78,7 +78,7 @@ namespace WPF_Library_assessment.Library_Pages
             {
                 switch (genreCard.TitleGenre)
                 {
-                    case "Drama":
+                    case "Sci-Fi":
                         NavigateToPage(new DramaPG());
                         break;
                     case "Mystery":
@@ -119,16 +119,7 @@ namespace WPF_Library_assessment.Library_Pages
              
         }
 
-        private void backBtn_Click(object sender, RoutedEventArgs e)
-        {
-           
-                MainWindow mainWindow = new MainWindow();
-                Application.Current.MainWindow = mainWindow;
-                mainWindow.Show();
-       
-                Window.GetWindow(this).Close();
-                    
-        }
+   
     }
 
 }

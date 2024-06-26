@@ -25,12 +25,12 @@ namespace WPF_Library_assessment.Library_Pages
             InitializeComponent();
             FantasyPG fantasyPG = new FantasyPG();
             MongoData mongoData = new MongoData();
-            List<Books> drama = mongoData.Connect<Books>("Drama");
+            List<Books> scifi = mongoData.Connect<Books>("Sci-Fi");
             var database = mongoData.GetMongoDatabase();
-            IMongoCollection<Books> collection = database.GetCollection<Books>("Drama");
+            IMongoCollection<Books> collection = database.GetCollection<Books>("Sci-Fi");
             int columnNum = 0;
             int rowNum = 0;
-            fantasyPG.addInfo(drama, columnNum, rowNum, dramaGrid, collection);
+            fantasyPG.addInfo(scifi, columnNum, rowNum, dramaGrid, collection);
         }
 
         private void horrorPGBtn_Click(object sender, RoutedEventArgs e)

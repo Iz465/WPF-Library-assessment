@@ -101,47 +101,62 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 MongoData mongoData = new MongoData();
                 var database = mongoData.GetMongoDatabase();
 
-                var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
+                var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery", "Romance", "Sci-Fi" };
+                bool bookOrder = false;
+
                 try
                 {
                     foreach (var collectionName in collections)
                     {
+                        if (bookOrder == true)
+                            break;
+
                         IMongoCollection<Books> collection = database.GetCollection<Books>(collectionName);
                         var filter = Builders<Books>.Filter.Eq("_id", ObjectId.Parse(id));
                         var book = collection.Find(filter).FirstOrDefault();
 
-                        if (book.Available == "Yes")
+                        if (book != null)
                         {
-                            var update = Builders<Books>.Update
-                               .Set("Available", "No")
-                               .Set("Owner", members.Username);
+                            if (book.Available == "Yes")
+                            {
+                                var update = Builders<Books>.Update
+                                   .Set("Available", "No")
+                                   .Set("Owner", members.Username);
 
-                            collection.UpdateOne(filter, update);
-                            MessageBox.Show("Book has been ordered!");
-                            border.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
-                            Colour(new SolidColorBrush(Colors.White));
+                                collection.UpdateOne(filter, update);
+                                MessageBox.Show("Book has been ordered!");
+                                border.Background = new LinearGradientBrush(Colors.Purple, Colors.Black, 90);
+                                Colour(new SolidColorBrush(Colors.White));
 
-                            int timeLeft = book.Time;
-                            StartTimer(timeLeft, book, collection);
-                        }
+                                int timeLeft = book.Time;
+                                StartTimer(timeLeft, book, collection);
+                                bookOrder = true;
+                                break;
+                            }
 
-                        if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner)
-                        {
-                            MessageBox.Show("Book is booked, you have now prebooked it");
-                            var update = Builders<Books>.Update
-                                .Set("PreBookOwner", members.Username);
-                            collection.UpdateOne(filter, update);
-                            border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
-                            Colour(new SolidColorBrush(Colors.White));
+                            if (book.Overdue == "No" && book.Available == "No" && members.Username != book.Owner)
+                            {
+                                MessageBox.Show("Book is booked, you have now prebooked it");
+                                var update = Builders<Books>.Update
+                                    .Set("PreBookOwner", members.Username);
+                                collection.UpdateOne(filter, update);
+                                border.Background = new LinearGradientBrush(Colors.Red, Colors.Black, 90);
+                                Colour(new SolidColorBrush(Colors.White));
+                                bookOrder = true;
+                                break;
+                            }
                         }
                     }
+
+               
                 }
                 catch (Exception ex)
                 {
-                    // MessageBox.Show(ex.ToString());
+                    MessageBox.Show("Error: " + ex.ToString());
                 }
             }
         }
+
 
         public void Colour(Brush colour)
         {
