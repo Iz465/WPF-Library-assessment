@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -55,7 +56,7 @@ namespace WPF_Library_assessment.Mongo_Info
             var database = GetMongoDatabase();
             IMongoCollection<T> collection = database.GetCollection<T>(collectionName);
 
-            // Example of text search filter
+            
             var filter = Builders<T>.Filter.Text(searchQuery);
 
             var searchResults = collection.Find(filter).ToList();
@@ -72,18 +73,13 @@ namespace WPF_Library_assessment.Mongo_Info
                 BooksReturned.Invoke();
             }
         }
+        
 
-        public void bookCollections()
+        public interface reloadPage
         {
-            MongoData mongoData = new MongoData();
-            List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
-            List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy");
-            List<Books> dramaBooks = mongoData.Connect<Books>("Drama");
-            List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery");
-         //   List<Books> romanceBooks = mongoData.Connect<Books>("Romance");
-       //     List<Books> historyBooks = mongoData.Connect<Books>("History");
+            void resetPage();
         }
-
+       
 
 
     }

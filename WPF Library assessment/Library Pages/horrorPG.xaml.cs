@@ -19,12 +19,26 @@ using WPF_Library_assessment.User_Control_Stuff;
 namespace WPF_Library_assessment.Library_Pages
 {
 
-    public partial class horrorPG : Page
+    public partial class horrorPG : Page, MongoData.reloadPage
     {
         public horrorPG()
         {
             InitializeComponent();
+            setup();  
+            MongoData.BookReturnNotifier.BooksReturned += resetPage;
 
+        }
+
+      public void resetPage()
+        {
+            horrorGrid.Children.Clear();
+            horrorGrid.RowDefinitions.Clear();
+            setup();
+
+        }
+
+        public void setup()
+        {
             MongoData mongoData = new MongoData();
             List<Books> horror = mongoData.Connect<Books>("Horror");
             var database = mongoData.GetMongoDatabase();
@@ -35,14 +49,6 @@ namespace WPF_Library_assessment.Library_Pages
             fantasyPG.addInfo(horror, columnNum, rowNum, horrorGrid, collection);
 
         }
-
-        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            WelcomePG welcomePG = new WelcomePG();
-            mainWindow.Content = welcomePG;
-        }
-
        
     }
 

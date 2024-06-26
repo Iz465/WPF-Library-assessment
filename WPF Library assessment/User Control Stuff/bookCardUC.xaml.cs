@@ -101,7 +101,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 MongoData mongoData = new MongoData();
                 var database = mongoData.GetMongoDatabase();
 
-                var collections = new List<string> { "Horror", "Fantasy", "Drama", "Mystery", "Romance", "Sci-Fi" };
+                var collections = new List<string> { "Horror", "Fantasy", "History", "Mystery", "Romance", "Sci-Fi" };
                 bool bookOrder = false;
 
                 try

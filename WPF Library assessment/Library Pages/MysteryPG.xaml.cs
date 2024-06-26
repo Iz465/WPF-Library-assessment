@@ -17,14 +17,24 @@ using WPF_Library_assessment.Mongo_Info;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    /// <summary>
-    /// Interaction logic for MysteryPG.xaml
-    /// </summary>
-    public partial class MysteryPG : Page
+    public partial class MysteryPG : Page, MongoData.reloadPage
     {
         public MysteryPG()
         {
             InitializeComponent();
+            setup();
+            MongoData.BookReturnNotifier.BooksReturned += resetPage;
+        }
+    
+        public void resetPage()
+        {
+            mysteryGrid.Children.Clear();
+            mysteryGrid.RowDefinitions.Clear();
+            setup();
+        }
+
+        public void setup()
+        {
             FantasyPG fantasyPG = new FantasyPG();
             MongoData mongoData = new MongoData();
             List<Books> drama = mongoData.Connect<Books>("Mystery");
@@ -34,11 +44,6 @@ namespace WPF_Library_assessment.Library_Pages
             int rowNum = 0;
             fantasyPG.addInfo(drama, columnNum, rowNum, mysteryGrid, collection);
         }
-        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            WelcomePG welcomePG = new WelcomePG();
-            mainWindow.Content = welcomePG;
-        }
+
     }
 }

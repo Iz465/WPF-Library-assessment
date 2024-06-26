@@ -10,7 +10,7 @@ using WPF_Library_assessment.User_Control_Stuff;
 
 namespace WPF_Library_assessment.Library_Pages
 {
-    public partial class FantasyPG : Page
+    public partial class FantasyPG : Page, MongoData.reloadPage
     {
         public FantasyPG()
         {
@@ -83,7 +83,7 @@ namespace WPF_Library_assessment.Library_Pages
             setupBooks();
         }
 
-        public void Page_Unloaded(object sender, RoutedEventArgs e)
+        public void redoPage(object sender, RoutedEventArgs e)
         {
             MongoData.BookReturnNotifier.BooksReturned -= resetPage;
         }

@@ -18,11 +18,26 @@ using WPF_Library_assessment.Mongo_Info;
 namespace WPF_Library_assessment.Library_Pages
 {
     
-    public partial class DramaPG : Page
+    public partial class DramaPG : Page, MongoData.reloadPage
     {
         public DramaPG()
         {
             InitializeComponent();
+            setup();
+            MongoData.BookReturnNotifier.BooksReturned += resetPage;
+        }
+
+
+        public void resetPage()
+        {
+            dramaGrid.Children.Clear();
+            dramaGrid.RowDefinitions.Clear();
+            setup();
+
+        }
+
+        private void setup()
+        {
             FantasyPG fantasyPG = new FantasyPG();
             MongoData mongoData = new MongoData();
             List<Books> scifi = mongoData.Connect<Books>("Sci-Fi");
@@ -33,11 +48,5 @@ namespace WPF_Library_assessment.Library_Pages
             fantasyPG.addInfo(scifi, columnNum, rowNum, dramaGrid, collection);
         }
 
-        private void horrorPGBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            WelcomePG welcomePG = new WelcomePG();
-            mainWindow.Content = welcomePG;
-        }
     }
 }
