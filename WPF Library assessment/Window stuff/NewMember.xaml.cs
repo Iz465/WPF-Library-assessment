@@ -32,6 +32,8 @@ namespace WPF_Library_assessment.Window_stuff
             textboxUC addressUC = newBook.makeText("Address");
             textboxUC usernameUC = newBook.makeText("Username");
             textboxUC passwordUC = newBook.makeText("Password");
+            Button addBookBtn = new Button(); addBookBtn.Height = 70; addBookBtn.Width = 200; addBookBtn.Content = "Submit"; addBookBtn.Click += (sender, e) =>
+            submitmemBtn(firstnameUC.Text, lastnameUC.Text, ageUC.Text, phoneUC.Text, addressUC.Text, usernameUC.Text, passwordUC.Text);
             newBook.setGrid(firstnameUC, 2, newMemGrid);
             newBook.setGrid(lastnameUC, 3, newMemGrid);
             newBook.setGrid(ageUC, 4, newMemGrid);
@@ -41,28 +43,28 @@ namespace WPF_Library_assessment.Window_stuff
             newBook.setGrid(passwordUC, 8, newMemGrid);
 
 
+
         }
-        void submitBtn(string name, string author, string pages, string collectionName)
+        void submitmemBtn(string firstname, string lastname, string age, string phone, string address, string username, string password)
         {
             MongoData mongoData = new MongoData();
             var dataBase = mongoData.GetMongoDatabase();
-            IMongoCollection<BsonDocument> collection = dataBase.GetCollection<BsonDocument>(collectionName);
+            IMongoCollection<BsonDocument> collection = dataBase.GetCollection<BsonDocument>("Books");
 
             var newBook = new BsonDocument
             {
-                {"Name", name},
-                {"Author", author},
-                {"Pages", pages},
-                {"Available", "Yes" },
-                {"Overdue", "No" },
-                {"Time", 300 },
-                {"Owner", string.Empty },
-                {"PreBookOwner", string.Empty },
-                {"Image", "https://storage.googleapis.com/librarybookimages/book%20placeholder%20image.avif" }
-
+                {"First Name", firstname},
+                {"Last Name", lastname},
+                {"Age", age},
+                {"Phone Number", phone},
+                {"Address", address },
+                {"Username", username },
+                {"Password", password }
+              
             };
             collection.InsertOne(newBook);
-            MessageBox.Show($"{name} has been added to the library");
+            MessageBox.Show("Member has been added to the library");
+            this.Close();
 
         }
 

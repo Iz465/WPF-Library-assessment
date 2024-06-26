@@ -70,6 +70,7 @@ namespace WPF_Library_assessment.Window_stuff
             };
             collection.InsertOne(newBook);
             MessageBox.Show($"{name} has been added to the library");
+            this.Close();
 
         }
 
