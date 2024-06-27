@@ -65,7 +65,7 @@ namespace WPF_Library_assessment.Window_stuff
                 {"Time", 300 },
                 {"Owner", string.Empty },
                 {"PreBookOwner", string.Empty },
-                {"Image", "https://storage.googleapis.com/librarybookimages/book%20placeholder%20image.avif" }
+                {"Image", "https://storage.googleapis.com/librarybookimages/ancient%20book%20placeholder.jpg" }
 
             };
             collection.InsertOne(newBook);
