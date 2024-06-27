@@ -28,6 +28,7 @@
     <None Remove="images\library.png" />
     <None Remove="images\lilogo.png" />
     <None Remove="images\passswordlogo.png" />
+    <None Remove="images\sci fi image.jpg" />
     <None Remove="images\userProfile.png" />
     <None Remove="Library Pages\ancientLibrary.jpg" />
     <None Remove="Library Pages\Books.jpg" />
@@ -72,6 +73,7 @@
     <Resource Include="images\library.png" />
     <Resource Include="images\lilogo.png" />
     <Resource Include="images\passswordlogo.png" />
+    <Resource Include="Library Pages\sci fi image.jpg" />
     <Resource Include="images\userProfile.png" />
     <Resource Include="Library Pages\ancientLibrary.jpg" />
     <Resource Include="Library Pages\Books.jpg" />
