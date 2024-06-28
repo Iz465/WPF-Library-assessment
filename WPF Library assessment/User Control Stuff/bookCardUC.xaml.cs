@@ -23,75 +23,10 @@ namespace WPF_Library_assessment.User_Control_Stuff
             InitializeComponent();
         }
 
-        public static readonly DependencyProperty ImageUrlProperty =
-            DependencyProperty.Register("ImageUrl", typeof(string), typeof(bookCardUC), new PropertyMetadata(default(string), OnImageUrlChanged));
-
-        public string ImageUrl
-        {
-            get { return (string)GetValue(ImageUrlProperty); }
-            set { SetValue(ImageUrlProperty, value); }
-        }
-
-        private static void OnImageUrlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var control = (bookCardUC)d;
-            var imageUrl = (string)e.NewValue;
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(imageUrl, UriKind.Absolute);
-            bitmap.EndInit();
-            control.ImageSource = bitmap;
-        }
-
-        public static readonly DependencyProperty ImageSourceProperty =
-            DependencyProperty.Register("ImageSource", typeof(BitmapImage), typeof(bookCardUC));
-
-        public BitmapImage ImageSource
-        {
-            get { return (BitmapImage)GetValue(ImageSourceProperty); }
-            set { SetValue(ImageSourceProperty, value); }
-        }
-
-        public static readonly DependencyProperty NameDetails =
-            DependencyProperty.Register("Name", typeof(string), typeof(bookCardUC));
-
-        public string Name
-        {
-            get { return (string)GetValue(NameDetails); }
-            set { DataContext = this; SetValue(NameDetails, value); }
-        }
-
-        public static readonly DependencyProperty AuthorDetails =
-            DependencyProperty.Register("Author", typeof(string), typeof(bookCardUC));
-
-        public string Author
-        {
-            get { return (string)GetValue(AuthorDetails); }
-            set { DataContext = this; SetValue(AuthorDetails, value); }
-        }
-
-        public static readonly DependencyProperty PagesDetails =
-            DependencyProperty.Register("Pages", typeof(int), typeof(bookCardUC));
-
-        public int Pages
-        {
-            get { return (int)GetValue(PagesDetails); }
-            set { DataContext = this; SetValue(PagesDetails, value); }
-        }
-
-        public static readonly DependencyProperty AvailableDetails =
-            DependencyProperty.Register("Available", typeof(string), typeof(bookCardUC));
-
-        public string Available
-        {
-            get { return (string)GetValue(AvailableDetails); }
-            set { DataContext = this; SetValue(AvailableDetails, value); }
-        }
 
         public void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var user = signInWn.SessionManager.CurrentUser;
-            bookCardUC bookcardUC = new bookCardUC();
 
             if (user is Members members)
             {
@@ -101,7 +36,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 MongoData mongoData = new MongoData();
                 var database = mongoData.GetMongoDatabase();
 
-                var collections = new List<string> { "Horror", "Fantasy", "History", "Mystery", "Romance", "Sci-Fi" };
+                var collections = mongoData.getCollections();
                 bool bookOrder = false;
 
                 try
@@ -152,7 +87,7 @@ namespace WPF_Library_assessment.User_Control_Stuff
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.ToString());
+                    MessageBox.Show(ex.Message);
                 }
             }
         }

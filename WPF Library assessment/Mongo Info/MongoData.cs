@@ -73,6 +73,11 @@ namespace WPF_Library_assessment.Mongo_Info
                 BooksReturned.Invoke();
             }
         }
+
+        public List<string> getCollections()
+        {
+            return new List<string>{"Horror", "Fantasy", "Sci-Fi", "Romance", "Mystery", "History"};
+        }
         
 
         public interface reloadPage

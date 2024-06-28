@@ -31,11 +31,8 @@ namespace WPF_Library_assessment.Window_stuff
              private void submitBtn_Click(object sender, RoutedEventArgs e)
              {
 
-
-                 textboxUC usernameTextBox = UserName as textboxUC;
-                 textboxUC passwordTextBox = Password as textboxUC;
-                 string username = usernameTextBox.Text;
-                 string password = passwordTextBox.Text;
+                 string username = UserName.Text;
+                 string password = Password.Text;
 
                  MongoData mongoData = new MongoData();
                  List<Members> members = mongoData.Connect<Members>("Members");
@@ -108,26 +105,21 @@ namespace WPF_Library_assessment.Window_stuff
             var database = mongoData.GetMongoDatabase();
             if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
-                var bookGenres = new List<string> { "Horror", "Fantasy", "Drama", "Mystery" };
+                var collections = mongoData.getCollections();
 
-                foreach (var book in bookGenres)
+                foreach (var book in collections)
                 {
                     IMongoCollection<Books> collection = database.GetCollection<Books>(book);
               
-                    var filter = Builders<Books>.Filter.Eq("Owner", members.Username); // looking for book owner
-                    var filter1 = Builders<Books>.Filter.Eq("Overdue", "Yes"); // looking for overdue books
-                    //need to combine above
-                    var filter2 = Builders<Books>.Filter.And(filter,filter1);
+                    var filter = Builders<Books>.Filter.Eq("Owner", members.Username); 
+                    var filter1 = Builders<Books>.Filter.Eq("Overdue", "Yes"); 
+                    var filter2 = Builders<Books>.Filter.And(filter,filter1); // im combining both to make sure only books bound to this user that are overdue are filtered.
 
                   
-                //    var combinedFilter = Builders<Books>.Filter.And(filter, filter1);
-
                     var overdueBooks = collection.Find(filter2).ToList();
                     if (overdueBooks.Count > 0)
                     {
-
-                        MessageBox.Show($"Welcome {members.Username}. You have books overdue");
-                        MessageBox.Show(overdueBooks.Count.ToString());
+                        MessageBox.Show($"Welcome {members.Username}. You have {overdueBooks.Count.ToString()} books overdue");
                     }
                 }
             }

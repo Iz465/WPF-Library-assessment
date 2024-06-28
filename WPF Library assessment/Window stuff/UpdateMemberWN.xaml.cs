@@ -35,39 +35,50 @@ namespace WPF_Library_assessment.Window_stuff
 
         public void changeMember(Members member)
         {
-             firstnameUC = new textboxUC(); firstnameUC.Text = member.FirstName; createText(firstnameUC);
-             lastnameUC = new textboxUC(); lastnameUC.Text = member.LastName; createText(lastnameUC);
-             ageUC = new textboxUC(); ageUC.Text = member.Age; createText(ageUC);
-             phoneUC = new textboxUC(); phoneUC.Text = member.PhoneNumber; createText(phoneUC);
-             addressUC = new textboxUC(); addressUC.Text = member.Address; createText(addressUC);
-             usernameUC = new textboxUC(); usernameUC.Text = member.Username; createText(usernameUC);
-             passwordUC = new textboxUC(); passwordUC.Text = member.Password; createText(passwordUC);
+
+            firstnameUC = createText(member.FirstName);
+            lastnameUC = createText(member.LastName);
+            ageUC = createText(member.Age);
+            phoneUC = createText(member.PhoneNumber);
+            addressUC = createText(member.Address);
+            usernameUC = createText(member.Username);
+            passwordUC = createText(member.Password);
+           
             Button submitBtn = new Button(); submitBtn.Content = "Finish Update"; submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center;
             submitBtn.Click += (sender, e) => submitBtnClick(sender,e, member);
 
             int row = 2;
-            row = addToGrid(firstnameUC, row);
-            row = addToGrid(lastnameUC, row);
-            row = addToGrid(ageUC, row);
-            row = addToGrid(phoneUC, row);
-            row = addToGrid(addressUC, row);
-            row = addToGrid(usernameUC, row);
-            row = addToGrid(passwordUC, row);
+
+            row = addToGrid(firstnameUC, row, updatingMemberGrid);
+            row = addToGrid(lastnameUC, row, updatingMemberGrid);
+            row = addToGrid(ageUC, row, updatingMemberGrid);
+            row = addToGrid(phoneUC, row, updatingMemberGrid);
+            row = addToGrid(addressUC, row, updatingMemberGrid);
+            row = addToGrid(usernameUC, row, updatingMemberGrid);
+            row = addToGrid(passwordUC, row, updatingMemberGrid);
                Grid.SetRow(submitBtn, row);
                updatingMemberGrid.Children.Add(submitBtn);
 
 
         }
-
-        public void createText(textboxUC UC)
+    
+        public textboxUC createText(string member)
         {
-            UC.Width = 200; UC.Padding = new Thickness(10); UC.Height = 60; UC.HorizontalAlignment = HorizontalAlignment.Center;
+            return new textboxUC
+            {
+                Text = member,
+                Width = 200,
+                Padding = new Thickness(10),
+                Height = 60,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+        
         }
 
-        public int addToGrid(textboxUC UC, int row)
+        public int addToGrid(textboxUC UC, int row, Grid gridname)
         {
             Grid.SetRow(UC, row);
-            updatingMemberGrid.Children.Add(UC);
+            gridname.Children.Add(UC);
             row++;
             return row;
         }

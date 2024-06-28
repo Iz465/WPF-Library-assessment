@@ -58,6 +58,7 @@ namespace WPF_Library_assessment.Window_stuff
 
         public int addInfo(List<Books> BookType, int row)
         {
+            BookPG bookPG = new BookPG();
             foreach (var book in BookType)
             {
                 var user = signInWn.SessionManager.CurrentUser;
@@ -67,18 +68,21 @@ namespace WPF_Library_assessment.Window_stuff
                     if (members.Username == book.Owner)
                     {
                         
+                     
                         RowDefinition newRow = new RowDefinition();
-                        newRow.Height = new GridLength(40);
+                        newRow.Height = new GridLength(60);
                         InfoGrid.RowDefinitions.Add(newRow);
-                        TextBlock nameText = new TextBlock();
-                        nameText.Text = book.Name;
-                        nameText.FontSize = 16;
-                        nameText.Margin = new Thickness(10, 0, 0, 0);
-                        nameText.HorizontalAlignment = HorizontalAlignment.Center;
-                        nameText.VerticalAlignment = VerticalAlignment.Center;
+                        TextBlock nameText = bookPG.CreateTextBlock(book.Name);
+                        Button returnSpecificBook = bookPG.CreateButton("Return"); returnSpecificBook.Click += (sender, e) => returnSpecific(sender, e, book);
+
 
                         Grid.SetRow(nameText, row);
+                        Grid.SetColumn(nameText, 0);
+                        Grid.SetColumnSpan(nameText, 2);
+                        Grid.SetRow(returnSpecificBook, row);
+                        Grid.SetColumn(returnSpecificBook,1);
                         InfoGrid.Children.Add(nameText);
+                        InfoGrid.Children.Add(returnSpecificBook);
                         row++;
                      
                     }
@@ -94,6 +98,57 @@ namespace WPF_Library_assessment.Window_stuff
             return row;
         }
 
+        public void returnSpecific(object sender, RoutedEventArgs e, Books book) // havent figured out how to reset time for individual one with 
+        {
+            MongoData mongoData = new MongoData();
+            var dataBase = mongoData.GetMongoDatabase();
+            var collections = mongoData.getCollections();
+
+            string collectionName = collections.FirstOrDefault(col => mongoData.Connect<Books>(col).Any(b => b.Id == book.Id)); // im using this so i dont repeat the collections after i have found the id, otherwise itll start bugging out trying to find an id that can only be found once
+
+            IMongoCollection<Books> collection = dataBase.GetCollection<Books>(collectionName);
+            var filter = Builders<Books>.Filter.Eq("_id", book.Id);
+
+            var update = Builders<Books>.Update
+                .Set("Owner", string.Empty)
+                .Set("Overdue", "No")
+                .Set("Available", "Yes")
+                .Set("Time", 300); 
+
+            var result = collection.UpdateOne(filter, update);
+
+         
+                MessageBox.Show("Book has been returned!");
+                MongoData.BookReturnNotifier.NotifyBooksReturned();
+            
+
+            if (book.PreBookOwner != string.Empty)
+            {
+                bookCardUC bookCardUC = new bookCardUC();
+                bookCardUC.prebookConvert(book, collection, collectionName, book.Time);
+            }
+
+            Button returnButton = (Button)sender;
+            int row = Grid.GetRow(returnButton);
+
+            List<UIElement> elementsToRemove = new List<UIElement>();
+            foreach (UIElement element in InfoGrid.Children.Cast<UIElement>())
+            {
+                if (Grid.GetRow(element) == row)
+                {
+                    elementsToRemove.Add(element);
+                }
+            }
+
+            foreach (var element in elementsToRemove)
+            {
+                InfoGrid.Children.Remove(element);
+            }
+
+            InfoGrid.RowDefinitions.RemoveAt(row);
+        }
+
+
 
         public void ReturnBookBtn(int row)
 
@@ -102,12 +157,13 @@ namespace WPF_Library_assessment.Window_stuff
             newRow.Height = GridLength.Auto;
             InfoGrid.RowDefinitions.Add(newRow);
             Button newButton= new Button();
-            newButton.Content = "Return Books";
+            newButton.Content = "Return All Books";
             newButton.Style = (Style)FindResource("mainbutton");
             newButton.Click += removeBooksBtn;
 
 
             Grid.SetRow(newButton, row);
+            Grid.SetColumnSpan(newButton, 2);
             InfoGrid.Children.Add(newButton);
            
 
@@ -122,7 +178,8 @@ namespace WPF_Library_assessment.Window_stuff
 
             if (user is WPF_Library_assessment.Mongo_Info.Members members)
             {
-                var collections = new List<string> { "Horror", "Fantasy", "Sci-Fi", "Mystery", "Romance", "History" };
+                var collections = mongoData.getCollections();
+ 
 
                 foreach (var collectionName in collections)
                 {
@@ -156,6 +213,7 @@ namespace WPF_Library_assessment.Window_stuff
 
                 try
                 {
+                    MessageBox.Show("Books Returned");
                     MongoData.BookReturnNotifier.NotifyBooksReturned();
                     this.Close();
                 }

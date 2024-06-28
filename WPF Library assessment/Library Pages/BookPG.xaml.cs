@@ -41,7 +41,7 @@ namespace WPF_Library_assessment.Library_Pages
                 Button updateButton = CreateButton("Update");
                 Button deleteButton = CreateButton("Delete");
 
-                updateButton.Tag = new Tuple<string, string, string, string, string, string>
+                updateButton.Tag = new Tuple<string, string, string, string, string, string> // need to get rid of this. This method makes it too cluttered.
                        (collectionName, book.Id.ToString(), book.Name, book.Author, book.Pages.ToString(), book.Available);
                 updateButton.Click += UpdateButton_Click;
                 deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());

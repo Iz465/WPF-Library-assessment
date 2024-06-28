@@ -28,7 +28,7 @@ namespace WPF_Library_assessment.Window_stuff
         }
 
 
-        public void changeBook(string collection, string id, string name, string author, string pages, string available)
+        public void changeBook(string collection, string id, string name, string author, string pages, string available) // need to convert this how update member is set up to save code
         {
             
 
@@ -44,7 +44,7 @@ namespace WPF_Library_assessment.Window_stuff
                   authorUC.Text = author; authorUC.Width = 200; authorUC.Padding = new Thickness(10); authorUC.Height = 60; authorUC.HorizontalAlignment= HorizontalAlignment.Center; 
                   pagesUC.Text = pages; pagesUC.Width = 200; pagesUC.Padding = new Thickness(10); pagesUC.Height = 60; pagesUC.HorizontalAlignment= HorizontalAlignment.Center; 
                   availableUC.Text = available; availableUC.Padding = new Thickness(10); availableUC.Width = 200; availableUC.Height = 60; availableUC.HorizontalAlignment= HorizontalAlignment.Center;
-            //      overdueUC.Text = overdue; overdueUC.Padding = new Thickness(10); overdueUC.Width = 200; overdueUC.Height = 60; overdueUC.HorizontalAlignment = HorizontalAlignment.Center;
+            //    overdueUC.Text = overdue; overdueUC.Padding = new Thickness(10); overdueUC.Width = 200; overdueUC.Height = 60; overdueUC.HorizontalAlignment = HorizontalAlignment.Center;
                   availableUC.Text = available; availableUC.Padding = new Thickness(10); availableUC.Width = 200; availableUC.Height = 60; availableUC.HorizontalAlignment = HorizontalAlignment.Center;
             submitBtn.Content = "Finish Update";  submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center; submitBtn.Click += (sender, e) => submitBtnClick<Books>(collection, id, nameUC.Text, authorUC.Text, pagesUC.Text, availableUC.Text);
 
