@@ -16,67 +16,64 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Library_assessment.Mongo_Info;
 using WPF_Library_assessment.User_Control_Stuff;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace WPF_Library_assessment.Window_stuff
 {
 
     public partial class UpdateWN : Window
     {
+        private textboxUC nameUC;
+        private textboxUC authorUC;
+        private textboxUC pagesUC;
+        private textboxUC collectionUC;
+        private Button submitBtn;
+        private UpdateMemberWN updateMemberWN;
+        private MongoData mongoData;
+
+
         public UpdateWN()
         {
             InitializeComponent();
+            updateMemberWN = new UpdateMemberWN();
+            mongoData = new MongoData();
         }
 
 
-        public void changeBook(string collection, string id, string name, string author, string pages, string available) // need to convert this how update member is set up to save code
+        public void changeBook(Books book)
         {
-            
+            nameUC = updateMemberWN.createText(book.Name);
+            authorUC = updateMemberWN.createText(book.Author);
+            pagesUC = updateMemberWN.createText(book.Pages.ToString());
+            collectionUC = updateMemberWN.createText(book.Genre);
+            submitBtn = updateMemberWN.createButton("Update");
+            submitBtn.Click += (sender, e) => submitBtnClick(sender, e, book);
+            int row = 2;
+            row = updateMemberWN.addToGrid(nameUC, row, updateGrid);
+            row = updateMemberWN.addToGrid(authorUC, row, updateGrid);
+            row = updateMemberWN.addToGrid(pagesUC, row, updateGrid);
+            row = updateMemberWN.addToGrid(collectionUC, row, updateGrid);
+            Grid.SetRow(submitBtn, row);
+            updateGrid.Children.Add(submitBtn);
 
-                  textboxUC nameUC = new textboxUC();
-                  textboxUC authorUC = new textboxUC();
-                  textboxUC pagesUC = new textboxUC();
-                  textboxUC availableUC = new textboxUC();
-                  textboxUC overdueUC = new textboxUC();
-                  textboxUC timeUC = new textboxUC();
-                  Button submitBtn = new Button();
+        }
 
-                  nameUC.Text = name; nameUC.Width = 200; nameUC.Padding = new Thickness(10); nameUC.Height = 60; nameUC.HorizontalAlignment= HorizontalAlignment.Center;
-                  authorUC.Text = author; authorUC.Width = 200; authorUC.Padding = new Thickness(10); authorUC.Height = 60; authorUC.HorizontalAlignment= HorizontalAlignment.Center; 
-                  pagesUC.Text = pages; pagesUC.Width = 200; pagesUC.Padding = new Thickness(10); pagesUC.Height = 60; pagesUC.HorizontalAlignment= HorizontalAlignment.Center; 
-                  availableUC.Text = available; availableUC.Padding = new Thickness(10); availableUC.Width = 200; availableUC.Height = 60; availableUC.HorizontalAlignment= HorizontalAlignment.Center;
-            //    overdueUC.Text = overdue; overdueUC.Padding = new Thickness(10); overdueUC.Width = 200; overdueUC.Height = 60; overdueUC.HorizontalAlignment = HorizontalAlignment.Center;
-                  availableUC.Text = available; availableUC.Padding = new Thickness(10); availableUC.Width = 200; availableUC.Height = 60; availableUC.HorizontalAlignment = HorizontalAlignment.Center;
-            submitBtn.Content = "Finish Update";  submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center; submitBtn.Click += (sender, e) => submitBtnClick<Books>(collection, id, nameUC.Text, authorUC.Text, pagesUC.Text, availableUC.Text);
+        void submitBtnClick(object sender, EventArgs e, Books book)
+        {
+            var database = mongoData.GetMongoDatabase();
+            IMongoCollection<Members> collection = database.GetCollection<Members>(book.Genre);
 
-                  Grid.SetRow(nameUC,2);
-                  Grid.SetRow(authorUC,3);
-                  Grid.SetRow(pagesUC,4);
-                  Grid.SetRow(availableUC,5);
-                 Grid.SetRow(submitBtn,6);
-                  updateGrid.Children.Add(nameUC);
-                  updateGrid.Children.Add(authorUC);
-                  updateGrid.Children.Add(pagesUC);
-                  updateGrid.Children.Add(availableUC);
-                  updateGrid.Children.Add(submitBtn); 
+            var filter = Builders<Members>.Filter.Eq("_id", book.Id);
+            var update = Builders<Members>.Update
+                .Set("Name", nameUC.Text)
+                .Set("Author", authorUC.Text)
+                .Set("Pages", pagesUC.Text);
 
-              } 
-            
-                    void submitBtnClick<T>(string collectionName, string id, string name, string author, string pages, string available) {
-                    MongoData mongoData = new MongoData();
-                        var database = mongoData.GetMongoDatabase();
-                        IMongoCollection<T> collection = database.GetCollection<T>(collectionName);
+            collection.UpdateOne(filter, update);
+            MessageBox.Show("Member has been updated!");
+            this.Close();
+        }
 
-                        var filter = Builders<T>.Filter.Eq("_id", new ObjectId(id));
-                        var update = Builders<T>.Update
-                            .Set("Name", name)
-                            .Set("Author", author)
-                            .Set("Pages", pages)
-                            .Set("Available", available);
-
-                            collection.UpdateMany(filter, update);
-                            MessageBox.Show("Book has been updated!");
-                            this.Close();
-                    }
 
         private void updateWnCloseBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -84,7 +81,7 @@ namespace WPF_Library_assessment.Window_stuff
         }
     }
 
-  
+
 
 
 

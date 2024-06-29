@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -12,21 +13,28 @@ using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Xml.Linq;
 using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.Reused_Functions;
 using WPF_Library_assessment.Window_stuff;
+using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 
 namespace WPF_Library_assessment.Library_Pages
 {
     public partial class BookPG : Page
     {
+      
+        MongoData mongoData;
+        editlibrary editlibrary;
+
         public BookPG()
         {
             InitializeComponent();
-
-            MongoData mongoData = new MongoData();
+           
+                mongoData = new MongoData();
+           editlibrary = new editlibrary();
             List<Books> horrorBooks = mongoData.Connect<Books>("Horror");
             GenreTitle.Text = "Horror";
             addInfo(horrorBooks, "Horror", 0);
-          
+
 
         }
 
@@ -34,19 +42,14 @@ namespace WPF_Library_assessment.Library_Pages
         {
             foreach (var book in bookType)
             {
-                
+               
+
                 createRow(FillGrid, 50);
                 TextBlock nameText = CreateTextBlock(book.Name);
                 TextBlock authorText = CreateTextBlock(book.Author);
-                Button updateButton = CreateButton("Update");
-                Button deleteButton = CreateButton("Delete");
+                Button updateButton = CreateButton("Update"); updateButton.Click += (sender, e) => UpdateButton_Click(sender, e, book);
+                Button deleteButton = CreateButton("Delete"); deleteButton.Click += (sender, e) => editlibrary.DeleteMember_Click<Books>(sender, e, collectionName, book.Id.ToString(), FillGrid);
 
-                updateButton.Tag = new Tuple<string, string, string, string, string, string> // need to get rid of this. This method makes it too cluttered.
-                       (collectionName, book.Id.ToString(), book.Name, book.Author, book.Pages.ToString(), book.Available);
-                updateButton.Click += UpdateButton_Click;
-                deleteButton.Tag = new Tuple<string, string>(collectionName, book.Id.ToString());
-                deleteButton.Click += DeleteButton_Click;
-         
 
                 AddElementToGrid(nameText, rowNum, 1, FillGrid);
                 AddElementToGrid(authorText, rowNum, 2, FillGrid);
@@ -109,62 +112,30 @@ namespace WPF_Library_assessment.Library_Pages
         {
             Grid.SetRow(element, row);
             Grid.SetColumn(element, column);
-          //  Grid.SetColumnSpan(element, 6);
+            //  Grid.SetColumnSpan(element, 6);
             gridName.Children.Add(element);
         }
 
-        public void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button updatebtn = sender as Button;
-            Tuple<string, string, string, string, string, string> tagData = updatebtn.Tag as Tuple<string, string, string, string, string, string>;
-
-            string collectionName = tagData.Item1;
-            string bookId = tagData.Item2;
-            string name = tagData.Item3;
-            string author = tagData.Item4;
-            string pages = tagData.Item5;
-            string available = tagData.Item6;
-
-            UpdateWN updateWN = new UpdateWN();
-            updateWN.changeBook(collectionName, bookId, name, author, pages, available);
-
-            updateWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            updateWN.WindowStyle = WindowStyle.None;
-            updateWN.Show();
-        }
-
-       
-
-        public void DeleteButton_Click(object sender, RoutedEventArgs e)  // right now i cant delete any books that have been searched.
+        public void UpdateButton_Click(object sender, RoutedEventArgs e, Books book)
         {
             try
             {
-                Button deleteBtn = sender as Button;
-
-                Tuple<string, string> tagData = deleteBtn.Tag as Tuple<string, string>;
-                string collectionName = tagData.Item1;
-                string bookId = tagData.Item2;
-
-                MongoData mongoData = new MongoData();
-                mongoData.DeleteCollection<Books>(collectionName, bookId);
-
-                int row = Grid.GetRow(deleteBtn);
-                FillGrid.Children.Remove(deleteBtn);
-
-                foreach (UIElement element in FillGrid.Children.Cast<UIElement>().ToList())
-                {
-                    if (Grid.GetRow(element) == row)
-                    {
-                        FillGrid.Children.Remove(element);
-                    }
-                }
+                UpdateWN updateWN = new UpdateWN();
+                updateWN.changeBook(book);
+                updateWN.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                updateWN.WindowStyle = WindowStyle.None;
+                updateWN.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);    
+                MessageBox.Show(ex.Message);
             }
-         
+
         }
+
+
+
+            
 
         public void NewBookBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -172,7 +143,7 @@ namespace WPF_Library_assessment.Library_Pages
             open(newBook);
         }
 
-        public void open(Window window )
+        public void open(Window window)
         {
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             window.WindowStyle = WindowStyle.None;
@@ -181,24 +152,24 @@ namespace WPF_Library_assessment.Library_Pages
 
         private void GenreList(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
-                TextBlock textblock = sender as TextBlock;
-                MongoData mongoData = new MongoData();
-                FillGrid.Children.Clear();
-                FillGrid.RowDefinitions.Clear();
-                switch (textblock.Name)
-                {
-                    case "HorrorList": GenreTitle.Text = "Horror"; List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
-                    case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy"); addInfo(fantasyBooks, "Fantasy", 0); break;
-                    case "ScifiList": GenreTitle.Text = "Sci-Fi"; List<Books> scifiBooks = mongoData.Connect<Books>("Sci-Fi"); addInfo(scifiBooks, "Sci-Fi", 0); break;
-                    case "MysteryList": GenreTitle.Text = "Mystery"; List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery"); addInfo(mysteryBooks, "Mystery", 0); break;
-                    case "ComicList": GenreTitle.Text = "Comic"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
-                    case "HistoryList": GenreTitle.Text = "History"; List<Books> historyBooks = mongoData.Connect<Books>("History"); addInfo(historyBooks, "History", 0); break;
 
-                }
-            
-            
-          
+            TextBlock textblock = sender as TextBlock;
+            MongoData mongoData = new MongoData();
+            FillGrid.Children.Clear();
+            FillGrid.RowDefinitions.Clear();
+            switch (textblock.Name)
+            {
+                case "HorrorList": GenreTitle.Text = "Horror"; List<Books> horrorBooks = mongoData.Connect<Books>("Horror"); addInfo(horrorBooks, "Horror", 0); break;
+                case "FantasyList": GenreTitle.Text = "Fantasy"; List<Books> fantasyBooks = mongoData.Connect<Books>("Fantasy"); addInfo(fantasyBooks, "Fantasy", 0); break;
+                case "ScifiList": GenreTitle.Text = "Sci-Fi"; List<Books> scifiBooks = mongoData.Connect<Books>("Sci-Fi"); addInfo(scifiBooks, "Sci-Fi", 0); break;
+                case "MysteryList": GenreTitle.Text = "Mystery"; List<Books> mysteryBooks = mongoData.Connect<Books>("Mystery"); addInfo(mysteryBooks, "Mystery", 0); break;
+                case "ComicList": GenreTitle.Text = "Comic"; List<Books> romanceBooks = mongoData.Connect<Books>("Romance"); addInfo(romanceBooks, "Romance", 0); break;
+                case "HistoryList": GenreTitle.Text = "History"; List<Books> historyBooks = mongoData.Connect<Books>("History"); addInfo(historyBooks, "History", 0); break;
+
+            }
+
+
+
 
         }
 
@@ -220,9 +191,9 @@ namespace WPF_Library_assessment.Library_Pages
             library.AddRange(mongoData.Connect<Books>("Romance"));
             library.AddRange(mongoData.Connect<Books>("History"));
 
-            
+
             List<Books> searchedBooks = library
-                .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook)) 
+                .Where(book => book.Name.ToLower().Contains(findBook) || book.Author.ToLower().Contains(findBook))
                 .ToList();
             GenreTitle.Text = "Searched Books";
             FillGrid.Children.Clear();
@@ -230,6 +201,8 @@ namespace WPF_Library_assessment.Library_Pages
             addInfo(searchedBooks, "", 0);
         }
 
-      
+
     }
 }
+
+// book page above

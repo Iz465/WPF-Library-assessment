@@ -79,10 +79,24 @@ namespace WPF_Library_assessment.Library_Pages
                 switch (genreCard.TitleGenre)
                 {
                     case "Sci-Fi":
-                        NavigateToPage(new DramaPG());
+                        try
+                        {
+                            NavigateToPage(new DramaPG());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         break;
                     case "Mystery":
-                        NavigateToPage(new MysteryPG());
+                        try
+                        {
+                            NavigateToPage(new MysteryPG());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                         break;
                     case "History":
                         NavigateToPage(new HistoryPG());

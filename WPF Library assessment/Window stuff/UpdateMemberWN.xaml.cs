@@ -28,9 +28,13 @@ namespace WPF_Library_assessment.Window_stuff
         private textboxUC addressUC;
         private textboxUC usernameUC;
         private textboxUC passwordUC;
+        private Button submitBtn;
+        private MongoData mongoData;
+
         public UpdateMemberWN()
         {
             InitializeComponent();
+            mongoData = new MongoData();
         }
 
         public void changeMember(Members member)
@@ -43,9 +47,9 @@ namespace WPF_Library_assessment.Window_stuff
             addressUC = createText(member.Address);
             usernameUC = createText(member.Username);
             passwordUC = createText(member.Password);
-           
-            Button submitBtn = new Button(); submitBtn.Content = "Finish Update"; submitBtn.Width = 200; submitBtn.Height = 60; submitBtn.HorizontalAlignment = HorizontalAlignment.Center;
-            submitBtn.Click += (sender, e) => submitBtnClick(sender,e, member);
+
+            submitBtn = createButton("Update");
+            submitBtn.Click += (sender, e) => submitBtnClick(sender, e, member);
 
             int row = 2;
 
@@ -56,24 +60,37 @@ namespace WPF_Library_assessment.Window_stuff
             row = addToGrid(addressUC, row, updatingMemberGrid);
             row = addToGrid(usernameUC, row, updatingMemberGrid);
             row = addToGrid(passwordUC, row, updatingMemberGrid);
-               Grid.SetRow(submitBtn, row);
-               updatingMemberGrid.Children.Add(submitBtn);
+            Grid.SetRow(submitBtn, row);
+            updatingMemberGrid.Children.Add(submitBtn);
 
 
         }
-    
-        public textboxUC createText(string member)
+
+        public textboxUC createText(string updateText)
         {
             return new textboxUC
             {
-                Text = member,
+                Text = updateText,
                 Width = 200,
                 Padding = new Thickness(10),
                 Height = 60,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-        
+
         }
+        public Button createButton(string buttonText)
+        {
+            return new Button
+            {
+                Content = buttonText,
+                Width = 200,
+                Padding = new Thickness(10),
+                Height = 60,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+        }
+
+
 
         public int addToGrid(textboxUC UC, int row, Grid gridname)
         {
@@ -83,27 +100,33 @@ namespace WPF_Library_assessment.Window_stuff
             return row;
         }
 
+
+
+
         void submitBtnClick(object sender, EventArgs e, Members member)
         {
-            MongoData mongoData = new MongoData();
             var database = mongoData.GetMongoDatabase();
             IMongoCollection<Members> collection = database.GetCollection<Members>("Members");
-            
-                var filter = Builders<Members>.Filter.Eq("_id", member.Id);
-                var update = Builders<Members>.Update
-                    .Set("First Name", firstnameUC.Text)
-                    .Set("Last Name", lastnameUC.Text)
-                    .Set("Age", ageUC.Text)
-                    .Set("Phone Number", phoneUC.Text)
-                    .Set("Address", addressUC.Text)
-                    .Set("Username", usernameUC.Text)
-                    .Set("Password", passwordUC.Text);
 
-               collection.UpdateOne(filter, update);
+            var filter = Builders<Members>.Filter.Eq("_id", member.Id);
+            var update = Builders<Members>.Update
+                .Set("First Name", firstnameUC.Text)
+                .Set("Last Name", lastnameUC.Text)
+                .Set("Age", ageUC.Text)
+                .Set("Phone Number", phoneUC.Text)
+                .Set("Address", addressUC.Text)
+                .Set("Username", usernameUC.Text)
+                .Set("Password", passwordUC.Text);
+
+            collection.UpdateOne(filter, update);
             MessageBox.Show("Member has been updated!");
             this.Close();
 
         }
+
+
+
+
 
         private void updateMemCloseBtn_Click(object sender, RoutedEventArgs e)
         {

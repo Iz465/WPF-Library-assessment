@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Library_assessment.Mongo_Info;
+using WPF_Library_assessment.Reused_Functions;
 using WPF_Library_assessment.Window_stuff;
 using static MongoDB.Bson.Serialization.Serializers.SerializerHelper;
 using Members = WPF_Library_assessment.Mongo_Info.Members;
@@ -23,12 +24,15 @@ namespace WPF_Library_assessment.Library_Pages
  
     public partial class MemberPG : Page
     {
+        MongoData mongoData;
+        editlibrary editlibrary;
         public MemberPG()
         {
             InitializeComponent();
 
             MemberTitle.Text = "Members";
-            MongoData mongoData = new MongoData();
+                mongoData = new MongoData();
+            editlibrary = new editlibrary();
                 BookPG bookPG = new BookPG();
                 List<Members> members = mongoData.Connect<Members>("Members");
                 addMember(members, "Members", 0);
@@ -47,7 +51,7 @@ namespace WPF_Library_assessment.Library_Pages
                 TextBlock Username = bookPG.CreateTextBlock(person.Username);
                 TextBlock Password = bookPG.CreateTextBlock(person.Password);
                 Button UpdateBtn = bookPG.CreateButton("Update"); UpdateBtn.Click += (sender, e) => UpdateMember_Click(sender, e, person);
-                Button DeleteBtn = bookPG.CreateButton("Delete"); DeleteBtn.Click += (sender, e) => DeleteMember_Click(sender, e, "Members", person.Id.ToString());
+                Button DeleteBtn = bookPG.CreateButton("Delete"); DeleteBtn.Click += (sender, e) => editlibrary.DeleteMember_Click<Members>(sender, e, "Members", person.Id.ToString(), MembersGrid);
                 bookPG.AddElementToGrid(Username, row, 1, MembersGrid);
                 bookPG.AddElementToGrid(Password, row, 2, MembersGrid);
                 bookPG.AddElementToGrid(UpdateBtn, row, 3, MembersGrid);
@@ -76,24 +80,7 @@ namespace WPF_Library_assessment.Library_Pages
             
         }
 
-        private void DeleteMember_Click(object sender, RoutedEventArgs e, string collectionName, string memberId)
-        {
-            Button deleteBtn = sender as Button;
-            MongoData mongoData = new MongoData();
-            
-             mongoData.DeleteCollection<Member>(collectionName,memberId);
-            int row = Grid.GetRow(deleteBtn);
-            MembersGrid.Children.Remove(deleteBtn);
-
-            foreach (UIElement element in MembersGrid.Children.Cast<UIElement>().ToList())
-            {
-                if (Grid.GetRow(element) == row)
-                {
-                    MembersGrid.Children.Remove(element);
-                }
-            }
-
-        }
+    
 
    
 

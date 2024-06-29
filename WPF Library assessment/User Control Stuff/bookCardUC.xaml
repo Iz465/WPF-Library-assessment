@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <Border CornerRadius="20" ClipToBounds="True" Grid.Row="0">
-                        <Image Source="{Binding ImageSource}" Stretch="Fill" MaxHeight="370">
+                        <Image Source="{Binding Image}" Stretch="Fill" MaxHeight="370">
                             <Image.Clip>
                                 <RectangleGeometry Rect="0,0,245,400" RadiusX="20" RadiusY="20" />
                             </Image.Clip>

@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace WPF_Library_assessment.Mongo_Info
 {
-    internal class MongoData
+    public class MongoData
     {
         const string connectionUri = "mongodb+srv://Isak:juju4u4udahdah5@cluster0.akdrimv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
