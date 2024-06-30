@@ -15,8 +15,6 @@ namespace WPF_Library_assessment.Reused_Functions
         public void DeleteMember_Click<T>(object sender, RoutedEventArgs e, string collectionName, string ID, Grid gridname) where T : class
         {
             mongoData = new MongoData();
-            MessageBox.Show("trtrt");
-            MessageBox.Show("jhowdyz");
             Button deleteBtn = sender as Button;
 
 
